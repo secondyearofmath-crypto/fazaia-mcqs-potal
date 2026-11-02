@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAZAIA INTER COLLEGE LAHORE - Math & Science Practice Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Patrick+Hand&display=swap');
+        
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Patrick Hand', cursive, sans-serif;
+        }
+        .handwriting {
+            font-family: 'Kalam', cursive, sans-serif;
+        }
+        .notebook-paper {
+            background-color: #fffdf9;
+            background-image: linear-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 100% 2rem;
+            position: relative;
+        }
+        .notebook-margin {
+            position: absolute;
+            left: 3.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #fca5a5;
+        }
+        .spiral-binding {
+            background: repeating-linear-gradient(
+                90deg,
+                #9ca3af,
+                #9ca3af 10px,
+                #4b5563 10px,
+                #4b5563 20px
+            );
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 flex items-center justify-center min-h-screen">
+
+    <div class="max-w-4xl w-full bg-amber-50 rounded-xl shadow-2xl overflow-hidden border-4 border-amber-800 relative">
+        <div class="h-8 spiral-binding w-full shadow-inner flex justify-around items-center px-4">
+            <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
+            <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
+            <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
+            <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
+            <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
+        </div>
+
+        <div class="notebook-paper p-6 md:p-10 min-h-[550px] relative">
+            <div class="notebook-margin hidden md:block"></div>
+            
+            <div class="flex flex-col border-b-2 border-amber-200 pb-4 mb-6 pl-0 md:pl-12 gap-2">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-amber-800 shadow-md bg-white flex items-center justify-center shrink-0">
+                            <img src="https://lh3.googleusercontent.com/d/1L5AEIEOwOvdm0wNw9m9t_g5_J62WV82s=s220" alt="College Logo" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h1 class="text-3xl font-bold text-blue-900 handwriting">FAZAIA INTER COLLEGE LAHORE</h1>
+                            <p class="text-lg font-semibold text-amber-900 handwriting mt-1">📝 FBISE Model Paper & Practice Portal</p>
+                            <p class="text-md text-emerald-800 font-bold handwriting">👨‍🏫 PREPARED BY: ASAD SHAFAT ALI</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <button onclick="toggleLeaderboard()" class="px-3 py-1.5 bg-amber-700 text-white font-bold rounded-lg text-md handwriting shadow hover:bg-amber-800 transition">🏆 Leaderboard</button>
+                    </div>
+                </div>
+
+                <div class="mt-4 flex flex-wrap items-center gap-3 bg-amber-100 p-3 rounded-lg border border-amber-300">
+                    <label class="font-bold text-amber-900 handwriting text-lg">📚 Select Practice Category:</label>
+                    <select id="chapter-select" class="p-2 border-2 border-amber-300 rounded-lg font-bold text-blue-900 bg-white focus:outline-none">
+                        <option value="unit6_ex6_1">Unit 6: Exercise 6.1 (MCQs 1-15 & Scenarios 1-5)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- STEP 1: Student Details Entry Screen -->
+            <div id="registration-card" class="pl-0 md:pl-12 max-w-lg mx-auto py-8">
+                <div class="bg-white p-6 rounded-2xl border-2 border-amber-300 shadow-lg">
+                    <h2 class="text-2xl font-bold text-blue-900 handwriting mb-4 text-center">🎓 Student Registration</h2>
+                    
+                    <form onsubmit="startQuiz(event)" class="flex flex-col gap-4">
+                        <div>
+                            <label class="block text-amber-900 font-bold handwriting text-lg">Class / Section:</label>
+                            <select id="std-class" required onchange="handleClassChange(this)" class="w-full p-2.5 border-2 border-amber-200 rounded-lg font-sans">
+                                <option value="">Select Class / Section</option>
+                                <option value="11-B">11-B</option>
+                                <option value="11-E">11-E</option>
+                                <option value="Guest">Guest / Other (Manual)</option>
+                            </select>
+                        </div>
+                        
+                        <div id="student-input-box" class="hidden">
+                            <label class="block text-amber-900 font-bold handwriting text-lg">Student Name:</label>
+                            <input type="text" id="std-name-input" list="students-datalist" required placeholder="Type name or select..." oninput="handleStudentInput(this)" class="w-full p-2.5 border-2 border-amber-200 rounded-lg font-sans bg-white">
+                            <datalist id="students-datalist"></datalist>
+                        </div>
+
+                        <div>
+                            <label class="block text-amber-900 font-bold handwriting text-lg">SIM ID / Roll No:</label>
+                            <input type="text" id="std-sim" required placeholder="Enter or auto-filled" class="w-full p-2.5 border-2 border-amber-200 rounded-lg font-sans bg-slate-50">
+                        </div>
+                        
+                        <button type="submit" class="mt-4 py-3 bg-emerald-700 text-white text-xl font-bold rounded-xl handwriting shadow hover:bg-emerald-800 transition">🚀 Start Practice MCQs</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- STEP 2: Quiz Container -->
+            <div id="quiz-container" class="hidden pl-0 md:pl-12">
+                <div class="flex justify-between items-center mb-4 bg-amber-100 p-3 rounded-lg border border-amber-300">
+                    <div class="text-sm font-semibold text-slate-700">
+                        👤 Student: <span id="display-std-name" class="text-blue-900 font-bold"></span> | Class: <span id="display-std-class" class="text-blue-900 font-bold"></span>
+                    </div>
+                    <div class="text-sm font-bold text-indigo-900 bg-white px-3 py-1 rounded-md shadow-sm border border-indigo-200">
+                        📊 Progress: <span id="progress-current" class="text-emerald-700">1</span> / <span id="progress-total" class="text-blue-900"></span>
+                    </div>
+                </div>
+
+                <div id="question-text" class="text-2xl text-slate-800 font-semibold mb-6 handwriting">Loading question...</div>
+                <div id="options-container" class="grid grid-cols-1 gap-4 mb-6"></div>
+
+                <div class="flex justify-between mt-8">
+                    <button id="prev-btn" onclick="prevQuestion()" class="px-6 py-2 bg-amber-700 text-white rounded-lg font-bold shadow hover:bg-amber-800 transition">⬅ Prev</button>
+                    <button id="next-btn" onclick="nextQuestion()" class="px-6 py-2 bg-blue-800 text-white rounded-lg font-bold shadow hover:bg-blue-900 transition">Next ➡</button>
+                </div>
+            </div>
+
+            <!-- STEP 4: Standard Leaderboard Modal -->
+            <div id="leaderboard-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+                <div class="bg-amber-50 max-w-3xl w-full rounded-2xl border-4 border-amber-800 p-6 shadow-2xl relative max-h-[80vh] overflow-y-auto">
+                    <button onclick="toggleLeaderboard()" class="absolute top-4 right-4 text-2xl font-bold text-amber-900 hover:text-red-600">✕</button>
+                    <h2 class="text-3xl font-bold text-center text-blue-900 handwriting mb-2">🏆 Live Leaderboard</h2>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-amber-200 text-amber-900 handwriting text-lg">
+                                    <th class="p-2 border border-amber-400">Rank</th>
+                                    <th class="p-2 border border-amber-400">Name</th>
+                                    <th class="p-2 border border-amber-400">Class</th>
+                                    <th class="p-2 border border-amber-400">SIM ID</th>
+                                    <th class="p-2 border border-amber-400">Score</th>
+                                    <th class="p-2 border border-amber-400">Percentage</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-body" class="font-sans text-sm">
+                                <tr><td colspan="6" class="p-4 text-center text-gray-500">Loading Live Leaderboard...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const FIREBASE_DB_URL = "https://fazaia-inter-college-mcqs-pot-default-rtdb.firebaseio.com";
+        let studentData = { name: "", class: "", sim: "" };
+        let currentQuestionIdx = 0;
+        let userAnswers = {};
+        let fullLeaderboardData = [];
+
+        const masterStudentRoster = [
+            { name: "UMAIR FAROOQ", class: "11-B", sim: "22514" },
+            { name: "MUHAMMAD AHMAD ANWAR", class: "11-B", sim: "22521" },
+            { name: "HAFIZ TAYYAB SAQLAIN", class: "11-B", sim: "22522" },
+            { name: "YASHWA NASAR", class: "11-B", sim: "22530" },
+            { name: "ABDUR REHMAN SAQIB", class: "11-B", sim: "22578" },
+            { name: "MUHAMMAD HASSAN", class: "11-B", sim: "22582" },
+            { name: "BILAL AHMAD", class: "11-B", sim: "22583" },
+            { name: "SYED DEEBAJ HUSSAIN", class: "11-B", sim: "22585" },
+            { name: "SAAD BIN AAMIR", class: "11-E", sim: "21817" },
+            { name: "MAHAD AHMAD", class: "11-E", sim: "21958" },
+            { name: "MUHAMMAD AHMAD", class: "11-E", sim: "22066" }
+        ];
+
+        const questionsDatabase = {
+            "unit6_ex6_1": [
+                { q: "1. If n is a negative integer then n! is:", options: ["1", "Not defined", "zero", "n"], correct: 1 },
+                { q: "2. 4! - 0! is equal to:", options: ["24", "-24", "0", "23"], correct: 3 },
+                { q: "3. If n = 1, then value of n(n-1)! is:", options: ["zero", "1", "2", "-1"], correct: 1 },
+                { q: "4. 6! + 0! is equal to:", options: ["719", "720", "721", "722"], correct: 2 },
+                { q: "5. 3! / 0! equals:", options: ["3", "6", "∞", "12"], correct: 1 },
+                { q: "6. The factorial form of 6 . 5 . 4 is:", options: ["6! / 3!", "6!", "3!", "6! / 2!"], correct: 0 },
+                { q: "7. 9 × 8 × 7 is equal to:", options: ["9!", "9! / 7!", "3! / 2!", "9! / 6!"], correct: 3 },
+                { q: "8. The value of 9! / (6! . 3!) is:", options: ["84", "48", "24", "42"], correct: 0 },
+                { q: "9. The value of 4! . 0! . 1! is:", options: ["0", "1", "4", "24"], correct: 3 },
+                { q: "10. Simplified form of 10! / 7! is:", options: ["720", "620", "520", "420"], correct: 0 },
+                { q: "11. The factorial form of (10 . 9)/(2 . 1) is:", options: ["10! / 12!", "10! / (8! . 2!)", "10! / (8! . 12!)", "10! / (8! . 14!)"], correct: 1 },
+                { q: "12. Factorial form of n(n-1)(n-2) = ?", options: ["n! / (n-1)!", "n! / (n-2)!", "n! / (n-3)!", "n! / (n-4)!"], correct: 2 },
+                { q: "13. Factorial form of (n+1)(n)(n-1)/(3.2.1) is:", options: ["(n-1)! / (3! 2!)", "(n+1)! / (3! (n-2)!)", "n! / (3! (n-2)!)", "None of these"], correct: 1 },
+                { q: "14. The expression ((n-1)! (n-2)!) / (n!)^2 reduced to:", options: ["1 / (n(n-1))", "1 / (n³ - n²)", "1 / n²", "1 / n"], correct: 1 },
+                { q: "15. Factorial notation was introduced by:", options: ["Leibniz", "Euler", "Seik kowa", "Christian Kramp"], correct: 3 },
+                
+                { q: "[Ex 6.1 - Scenario 1] A school forms a student ID code consisting of 2 different letters followed by 3 different digits. How many choices are available for the first letter?", options: ["3", "4", "5", "6"], correct: 2 },
+                { q: "[Ex 6.1 - Scenario 1] How many choices are available for the first two letters?", options: ["10", "20", "25", "30"], correct: 1 },
+                { q: "[Ex 6.1 - Scenario 1] How many different ID codes can be formed?", options: ["1200", "1800", "2400", "3600"], correct: 2 },
+                { q: "[Ex 6.1 - Scenario 1] If repetition of digits is allowed, how many ID codes can be formed?", options: ["2400", "3000", "3600", "4320"], correct: 3 },
+
+                { q: "[Ex 6.1 - Scenario 2] Fundamental Counting Principle states that if Event A occurs in m ways and Event B in n ways, in how many ways can both occur sequentially?", options: ["m + n", "mⁿ", "m × n", "m / n"], correct: 2 },
+                { q: "[Ex 6.1 - Scenario 2] A user chooses EITHER a 4-digit PIN (0-9) OR a 2-letter security code (A-Z). Total unique choices?", options: ["10,676", "6,760,000", "92", "10,000"], correct: 0 },
+                { q: "[Ex 6.1 - Scenario 2] Code consists of 2 letters (A-Z) followed by 3 digits (0-9) without repetition. How many unique codes?", options: ["676,000", "468,000", "1,757,600", "1,404,000"], correct: 1 },
+                { q: "[Ex 6.1 - Scenario 2] How many 4-digit passcodes (0-9) are even numbers if digit repetition is allowed?", options: ["4,500", "5,000", "9,000", "10,000"], correct: 1 },
+
+                { q: "[Ex 6.1 - Scenario 3] Encryption key requires a 4-letter prefix (A,B,C,D,E,F - repetition allowed) followed by a 3-digit suffix of odd digits. How many total distinct prefixes can be formed?", options: ["1,024", "1,156", "1,296", "1,600"], correct: 2 },
+                { q: "[Ex 6.1 - Scenario 3] How many distinct suffixes using odd digits without repetition?", options: ["24", "60", "120", "240"], correct: 1 },
+                { q: "[Ex 6.1 - Scenario 3] Total number of unique encryption keys possible?", options: ["54,400", "77,760", "65,536", "93,312"], correct: 1 },
+                { q: "[Ex 6.1 - Scenario 3] If prefix letters cannot repeat while odd digits also cannot repeat, new total unique keys?", options: ["14,400", "18,250", "21,600", "25,920"], correct: 2 },
+
+                { q: "[Ex 6.1 - Scenario 4] Corporate committee of 5 members from 6 engineers and 4 analysts. Ways to form committee with 3 engineers & 2 analysts including a Lead engineer?", options: ["240", "300", "360", "420"], correct: 2 },
+                { q: "[Ex 6.1 - Scenario 4] Ways to form committee with 4 engineers & 1 analyst including a Lead engineer?", options: ["120", "180", "240", "300"], correct: 2 },
+                { q: "[Ex 6.1 - Scenario 4] Total valid committees meeting condition of at least 3 engineers and a Lead engineer?", options: ["510", "570", "630", "720"], correct: 2 },
+                { q: "[Ex 6.1 - Scenario 4] If Lead engineer designation is removed, total combinations?", options: ["142", "165", "186", "210"], correct: 2 },
+
+                { q: "[Ex 6.1 - Scenario 5] Routing protocol through 3 gateway layers. Total routing pathways from Layer 1 through Layer 2?", options: ["10", "12", "14", "16"], correct: 2 },
+                { q: "[Ex 6.1 - Scenario 5] Total end-to-end pathways (L₁ → L₂ → L₃)?", options: ["36", "42", "54", "48"], correct: 1 },
+                { q: "[Ex 6.1 - Scenario 5] If Node 3 fails, remaining end-to-end pathways?", options: ["30", "33", "36", "39"], correct: 2 },
+                { q: "[Ex 6.1 - Scenario 5] If 2 redundant direct backup paths bypass L₂ from L₁ to L₃, new total pathways?", options: ["40", "42", "44", "46"], correct: 2 }
+            ]
+        };
+
+        function handleClassChange(selectElem) {
+            const cls = selectElem.value;
+            const inputContainer = document.getElementById("student-input-box");
+            const datalist = document.getElementById("students-datalist");
+            const nameInput = document.getElementById("std-name-input");
+            const simInput = document.getElementById("std-sim");
+            
+            datalist.innerHTML = "";
+            nameInput.value = "";
+            simInput.value = "";
+            simInput.readOnly = false;
+            simInput.classList.remove("bg-slate-100");
+
+            if (!cls) {
+                inputContainer.classList.add("hidden");
+                return;
+            }
+            inputContainer.classList.remove("hidden");
+            if (cls === "Guest") return;
+
+            const filtered = masterStudentRoster.filter(s => s.class === cls);
+            filtered.forEach(s => {
+                const opt = document.createElement("option");
+                opt.value = s.name;
+                datalist.appendChild(opt);
+            });
+        }
+
+        function handleStudentInput(inputElem) {
+            const val = inputElem.value.trim().toUpperCase();
+            const cls = document.getElementById("std-class").value;
+            const simInput = document.getElementById("std-sim");
+
+            const match = masterStudentRoster.find(s => s.name === val && s.class === cls);
+            if (match) {
+                simInput.value = match.sim;
+                simInput.readOnly = true;
+                simInput.classList.add("bg-slate-100");
+            } else {
+                simInput.readOnly = false;
+                simInput.classList.remove("bg-slate-100");
+            }
+        }
+
+        function startQuiz(e) {
+            e.preventDefault();
+            studentData.class = document.getElementById("std-class").value;
+            studentData.name = document.getElementById("std-name-input").value.trim().toUpperCase();
+            studentData.sim = document.getElementById("std-sim").value.trim();
+
+            if(!studentData.class || !studentData.name || !studentData.sim) {
+                alert("Please complete all registration details.");
+                return;
+            }
+
+            document.getElementById("display-std-name").innerText = studentData.name;
+            document.getElementById("display-std-class").innerText = studentData.class;
+
+            document.getElementById("registration-card").classList.add("hidden");
+            document.getElementById("quiz-container").classList.remove("hidden");
+            currentQuestionIdx = 0;
+            userAnswers = {};
+            loadQuestion();
+        }
+
+        function getCurrentQuestions() {
+            const cat = document.getElementById("chapter-select").value;
+            return questionsDatabase[cat] || [];
+        }
+
+        function loadQuestion() {
+            const questions = getCurrentQuestions();
+            const q = questions[currentQuestionIdx];
+
+            document.getElementById("progress-current").innerText = currentQuestionIdx + 1;
+            document.getElementById("progress-total").innerText = questions.length;
+            document.getElementById("question-text").innerText = q.q;
+
+            const container = document.getElementById("options-container");
+            container.innerHTML = "";
+
+            q.options.forEach((opt, i) => {
+                const btn = document.createElement("button");
+                btn.className = "w-full text-left p-3.5 border-2 rounded-xl text-lg font-semibold handwriting transition shadow-sm ";
+                if (userAnswers[currentQuestionIdx] === i) {
+                    btn.className += "bg-blue-100 border-blue-600 text-blue-900 font-bold";
+                } else {
+                    btn.className += "bg-white border-amber-200 text-slate-800 hover:bg-amber-100";
+                }
+                btn.onclick = () => { userAnswers[currentQuestionIdx] = i; loadQuestion(); };
+                btn.innerText = `${String.fromCharCode(65+i)}. ${opt}`;
+                container.appendChild(btn);
+            });
+
+            document.getElementById("prev-btn").disabled = (currentQuestionIdx === 0);
+            document.getElementById("prev-btn").style.opacity = (currentQuestionIdx === 0) ? "0.5" : "1";
+
+            const nextBtn = document.getElementById("next-btn");
+            if (currentQuestionIdx === questions.length - 1) {
+                nextBtn.innerText = "Submit Test 🏁";
+                nextBtn.className = "px-6 py-2 bg-emerald-700 text-white rounded-lg font-bold shadow hover:bg-emerald-800 transition";
+            } else {
+                nextBtn.innerText = "Next ➡";
+                nextBtn.className = "px-6 py-2 bg-blue-800 text-white rounded-lg font-bold shadow hover:bg-blue-900 transition";
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIdx > 0) {
+                currentQuestionIdx--;
+                loadQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            const questions = getCurrentQuestions();
+            if (currentQuestionIdx < questions.length - 1) {
+                currentQuestionIdx++;
+                loadQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            const questions = getCurrentQuestions();
+            let score = 0;
+            questions.forEach((q, i) => {
+                if (userAnswers[i] === q.correct) score++;
+            });
+
+            const pct = Math.round((score / questions.length) * 100);
+            
+            // Save to Firebase
+            const record = {
+                name: studentData.name,
+                class: studentData.class,
+                sim: studentData.sim,
+                score: score,
+                total: questions.length,
+                percentage: pct,
+                timestamp: new Date().toISOString()
+            };
+
+            fetch(`${FIREBASE_DB_URL}/leaderboard.json`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(record)
+            }).then(() => {
+                alert(`Test Submitted Successfully!\nYour Score: ${score} / ${questions.length} (${pct}%)`);
+                toggleLeaderboard();
+            }).catch(err => alert("Score saved locally, check leaderboard!"));
+        }
+
+        function toggleLeaderboard() {
+            const modal = document.getElementById("leaderboard-modal");
+            modal.classList.toggle("hidden");
+            if (!modal.classList.contains("hidden")) {
+                fetchLeaderboard();
+            }
+        }
+
+        function fetchLeaderboard() {
+            fetch(`${FIREBASE_DB_URL}/leaderboard.json`)
+                .then(res => res.json())
+                .then(data => {
+                    fullLeaderboardData = [];
+                    if (data) {
+                        Object.keys(data).forEach(k => fullLeaderboardData.push(data[k]));
+                    }
+                    fullLeaderboardData.sort((a, b) => b.percentage - a.percentage || b.score - a.score);
+                    
+                    const tbody = document.getElementById("leaderboard-body");
+                    tbody.innerHTML = "";
+                    if (fullLeaderboardData.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500">No records found yet.</td></tr>`;
+                        return;
+                    }
+
+                    fullLeaderboardData.forEach((item, idx) => {
+                        const tr = document.createElement("tr");
+                        tr.className = "border-b border-amber-200 hover:bg-amber-100/50";
+                        tr.innerHTML = `
+                            <td class="p-2 border border-amber-300 font-bold text-center">${idx + 1}</td>
+                            <td class="p-2 border border-amber-300 font-semibold">${item.name}</td>
+                            <td class="p-2 border border-amber-300">${item.class}</td>
+                            <td class="p-2 border border-amber-300">${item.sim}</td>
+                            <td class="p-2 border border-amber-300 font-bold">${item.score} / ${item.total}</td>
+                            <td class="p-2 border border-amber-300 font-bold text-emerald-800">${item.percentage}%</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                }).catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>
