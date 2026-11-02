@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAZAIA INTER COLLEGE LAHORE - Math & Science Practice Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Patrick+Hand&display=swap');
+        
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Patrick Hand', cursive, sans-serif;
+        }
+        .handwriting {
+            font-family: 'Kalam', cursive, sans-serif;
+        }
+        .notebook-paper {
+            background-color: #fffdf9;
+            background-image: linear-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 100% 2rem;
+            position: relative;
+        }
+        .notebook-margin {
+            position: absolute;
+            left: 3.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #fca5a5;
+        }
+        .spiral-binding {
+            background: repeating-linear-gradient(
+                90deg,
+                #9ca3af,
+                #9ca3af 10px,
+                #4b5563 10px,
+                #4b5563 20px
+            );
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #certificate-modal, #certificate-modal * {
+                visibility: visible;
+            }
+            #certificate-modal {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: white;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 flex items-center justify-center min-h-screen">
+
+    <div class="max-w-4xl w-full bg-amber-50 rounded-xl shadow-2xl overflow-hidden border-4 border-amber-800 relative">
+        
+        <!-- Spiral Header -->
+        <div class="h-8 spiral-binding w-full shadow-inner flex justify-around items-center px-4">
+            <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
+            <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
+            <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
+            <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
+            <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
+        </div>
+
+        <!-- Notebook Content Area -->
+        <div class="notebook-paper p-6 md:p-10 min-h-[550px] relative">
+            <div class="notebook-margin hidden md:block"></div>
+            
+            <!-- Header Section -->
+            <div class="flex flex-col border-b-2 border-amber-200 pb-4 mb-6 pl-0 md:pl-12 gap-2">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-amber-800 shadow-md bg-white flex items-center justify-center shrink-0">
+                            <img src="https://lh3.googleusercontent.com/d/1L5AEIEOwOvdm0wNw9m9t_g5_J62WV82s=s220" alt="College Logo" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h1 class="text-3xl font-bold text-blue-900 handwriting">FAZAIA INTER COLLEGE LAHORE</h1>
+                            <p class="text-lg font-semibold text-amber-900 handwriting mt-1">📝 FBISE Model Paper & Practice Portal</p>
+                            <p class="text-md text-emerald-800 font-bold handwriting">👨‍🏫 PREPARED BY: ASAD SHAFAT ALI</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-amber-800 shadow-md bg-amber-200 flex items-center justify-center shrink-0">
+                            <img src="https://lh3.googleusercontent.com/d/1GDnMf8PG-hpRejy9-7SGQ3r8F2wdQVCA=s220" alt="Sir Asad Shafat Ali" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <button onclick="toggleLeaderboard()" class="px-3 py-1.5 bg-amber-700 text-white font-bold rounded-lg text-md handwriting shadow hover:bg-amber-800 transition cursor-pointer">🏆 Leaderboard</button>
+                            <button id="import-btn" onclick="checkTeacherPassword()" class="px-3 py-1.5 bg-indigo-700 text-white font-bold rounded-lg text-md handwriting shadow hover:bg-indigo-800 transition cursor-pointer">🔒 Teacher Panel</button>
+                            <div id="score-board" class="text-lg font-bold text-emerald-700 handwriting text-center">Score: 0 / 0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chapter & Exercise Selection Dropdown (Units 6 to 9) -->
+                <div class="mt-4 flex flex-wrap items-center gap-3 bg-amber-100 p-3 rounded-lg border border-amber-300">
+                    <label class="font-bold text-amber-900 handwriting text-lg">📚 Select Practice Category:</label>
+                    <select id="chapter-select" onchange="changeChapter()" class="p-2 border-2 border-amber-300 rounded-lg font-bold text-blue-900 bg-white focus:outline-none">
+                        <optgroup label="Unit 9: Trigonometric Functions & Graphs">
+                            <option value="unit9_ex9_1" selected>Unit 9: Exercise 9.1 & Scenarios 1-6 (Periods & Graphs)</option>
+                            <option value="unit9_ex9_2">Unit 9: Exercise 9.2 & Scenarios 7-10 (Transformations)</option>
+                            <option value="unit9_review">Unit 9: Review Exercise</option>
+                        </optgroup>
+                        <optgroup label="Unit 8: Trigonometry & Fundamental Laws">
+                            <option value="unit8_ex8_1">Unit 8: Exercise 8.1 & Scenarios 1-3 (Fundamental Laws)</option>
+                            <option value="unit8_ex8_2">Unit 8: Exercise 8.2 & Scenarios 4-11 (Double/Half Angles)</option>
+                            <option value="unit8_ex8_3">Unit 8: Exercise 8.3 & Scenarios 12-14 (Product to Sum)</option>
+                        </optgroup>
+                        <optgroup label="Unit 7: Mathematical Induction & Binomial Theorem">
+                            <option value="unit7_ex7_1">Unit 7: Exercise 7.1 & Scenarios 1-5 (Induction)</option>
+                            <option value="unit7_ex7_2">Unit 7: Exercise 7.2 & Scenarios 6-10 (Binomial Theorem)</option>
+                            <option value="unit7_ex7_3">Unit 7: Exercise 7.3 & Scenarios 11-15 (Binomial Series)</option>
+                            <option value="unit7_ex7_4">Unit 7: Exercise 7.4 & Scenarios 16-19 (Divisibility)</option>
+                            <option value="unit7_review">Unit 7: Review Exercise</option>
+                        </optgroup>
+                        <optgroup label="Unit 6: Permutation & Combination">
+                            <option value="unit6_ex6_1">Unit 6: Exercise 6.1 (MCQs & Scenarios 1-5)</option>
+                            <option value="unit6_ex6_2">Unit 6: Exercise 6.2 (MCQs & Scenarios 6-8)</option>
+                            <option value="unit6_ex6_3">Unit 6: Exercise 6.3 (MCQs & Scenarios 9-13)</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <!-- SECURE TEACHER PANEL -->
+            <div id="import-panel" class="hidden mb-6 pl-0 md:pl-12 p-5 bg-amber-100 rounded-xl border-4 border-indigo-700 shadow-lg">
+                <div class="flex justify-between items-center mb-4 border-b-2 border-indigo-200 pb-2">
+                    <h3 class="text-2xl font-bold text-indigo-900 handwriting">🔐 Teacher Management Panel (Sir Asad Shafat Ali)</h3>
+                    <button onclick="document.getElementById('import-panel').classList.add('hidden')" class="text-red-700 font-bold text-xl hover:text-red-900">✕ Close</button>
+                </div>
+
+                <div class="mb-6 bg-white p-4 rounded-xl border-2 border-amber-300">
+                    <div class="flex justify-between items-center mb-3">
+                        <h4 class="text-xl font-bold text-amber-900 handwriting">📊 Class Performance Summary & Export</h4>
+                        <button onclick="exportLeaderboardCSV()" class="px-4 py-2 bg-emerald-700 text-white rounded-lg font-bold text-sm shadow hover:bg-emerald-800 transition">📥 Export Leaderboard to CSV</button>
+                    </div>
+                    <div id="analytics-container" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div class="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                            <p class="font-bold text-blue-900 text-sm">Class 11-B Stats</p>
+                            <p id="stats-11b" class="text-xs text-slate-700 mt-1">Avg: 0% | Top: None</p>
+                        </div>
+                        <div class="p-3 bg-amber-50 rounded-lg border border-amber-200">
+                            <p class="font-bold text-amber-900 text-sm">Class 11-E Stats</p>
+                            <p id="stats-11e" class="text-xs text-slate-700 mt-1">Avg: 0% | Top: None</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border-2 border-amber-300">
+                    <h4 class="text-xl font-bold text-amber-900 mb-2 handwriting">⏳ Pending Students & WhatsApp Reminders</h4>
+                    <div class="flex gap-2 mb-3">
+                        <button onclick="loadPendingStudents('ALL')" class="px-3 py-1 bg-slate-700 text-white rounded text-xs font-bold">All Classes (11-B & 11-E)</button>
+                        <button onclick="loadPendingStudents('11-B')" class="px-3 py-1 bg-amber-700 text-white rounded text-xs font-bold">11-B</button>
+                        <button onclick="loadPendingStudents('11-E')" class="px-3 py-1 bg-emerald-700 text-white rounded text-xs font-bold">11-E</button>
+                    </div>
+                    <div class="overflow-x-auto max-h-60 overflow-y-auto">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-amber-200 text-amber-900 handwriting">
+                                    <th class="p-2 border border-amber-400">S.No</th>
+                                    <th class="p-2 border border-amber-400">Name</th>
+                                    <th class="p-2 border border-amber-400">Class</th>
+                                    <th class="p-2 border border-amber-400">SIM ID</th>
+                                    <th class="p-2 border border-amber-400">WhatsApp No</th>
+                                    <th class="p-2 border border-amber-400 text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="teacher-pending-body">
+                                <tr><td colspan="6" class="p-3 text-center text-gray-500">Click class filter above to load pending students...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 1: Student Details Entry Screen -->
+            <div id="registration-card" class="pl-0 md:pl-12 max-w-lg mx-auto py-8">
+                <div class="bg-white p-6 rounded-2xl border-2 border-amber-300 shadow-lg">
+                    <h2 class="text-2xl font-bold text-blue-900 handwriting mb-4 text-center">🎓 Student Registration</h2>
+                    <p class="text-gray-600 mb-6 text-center text-lg handwriting">Please enter your details to start the practice test:</p>
+                    
+                    <form onsubmit="startQuiz(event)" class="flex flex-col gap-4">
+                        <div>
+                            <label class="block text-amber-900 font-bold handwriting text-lg">Class / Section:</label>
+                            <select id="std-class" required onchange="handleClassChange(this)" class="w-full p-2.5 border-2 border-amber-200 rounded-lg focus:outline-none focus:border-amber-600 font-sans">
+                                <option value="">Select Class / Section</option>
+                                <option value="11-B">11-B</option>
+                                <option value="11-E">11-E</option>
+                                <option value="Guest">Guest / Other (Manual)</option>
+                            </select>
+                        </div>
+                        
+                        <div id="student-input-box" class="hidden">
+                            <label class="block text-amber-900 font-bold handwriting text-lg">Student Name:</label>
+                            <input type="text" id="std-name-input" list="students-datalist" required placeholder="Type name..." oninput="handleStudentInput(this)" class="w-full p-2.5 border-2 border-amber-200 rounded-lg focus:outline-none focus:border-amber-600 font-sans bg-white">
+                            <datalist id="students-datalist"></datalist>
+                        </div>
+
+                        <div>
+                            <label class="block text-amber-900 font-bold handwriting text-lg">SIM ID / Roll No:</label>
+                            <input type="text" id="std-sim" required placeholder="e.g. 22514" class="w-full p-2.5 border-2 border-amber-200 rounded-lg focus:outline-none focus:border-amber-600 font-sans bg-slate-50">
+                        </div>
+                        
+                        <button type="submit" class="mt-4 py-3 bg-emerald-700 text-white text-xl font-bold rounded-xl handwriting shadow hover:bg-emerald-800 transition cursor-pointer">🚀 Start Practice MCQs</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- STEP 2: Quiz Container -->
+            <div id="quiz-container" class="hidden pl-0 md:pl-12">
+                <div class="flex flex-wrap justify-between items-center mb-4 bg-amber-100 p-3 rounded-lg border border-amber-300 gap-2">
+                    <div class="text-sm font-semibold text-slate-700">
+                        👤 Student: <span id="display-std-name" class="text-blue-900 font-bold"></span> | Class: <span id="display-std-class" class="text-blue-900 font-bold"></span> | SIM ID: <span id="display-std-sim" class="text-blue-900 font-bold"></span>
+                    </div>
+                    <div class="text-sm font-bold text-indigo-900 bg-white px-3 py-1 rounded-md shadow-sm border border-indigo-200">
+                        📊 Progress: <span id="progress-current" class="text-emerald-700">1</span> / <span id="progress-total" class="text-blue-900">15</span> (Remaining: <span id="progress-remaining" class="text-rose-600">14</span>)
+                    </div>
+                </div>
+
+                <div id="question-text" class="text-2xl text-slate-800 font-semibold mb-6 handwriting leading-snug">
+                    Loading question...
+                </div>
+
+                <div id="options-container" class="grid grid-cols-1 gap-4 mb-6"></div>
+
+                <div id="feedback-box" class="hidden p-4 rounded-lg bg-red-50 border-2 border-dashed border-red-400 mb-6 handwriting text-lg text-slate-800"></div>
+
+                <div class="flex justify-between mt-8">
+                    <button id="prev-btn" onclick="prevQuestion()" class="px-6 py-2 bg-amber-700 text-white rounded-lg font-bold shadow hover:bg-amber-800 transition">⬅ Prev</button>
+                    <button id="next-btn" onclick="nextQuestion()" class="px-6 py-2 bg-blue-800 text-white rounded-lg font-bold shadow hover:bg-blue-900 transition">Next ➡</button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Certificate Modal -->
+            <div id="certificate-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+                <div class="bg-amber-50 max-w-2xl w-full rounded-2xl border-4 border-amber-800 p-6 shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
+                    <button onclick="closeCertificate()" class="absolute top-4 right-4 text-2xl font-bold text-amber-900 hover:text-red-600 no-print">✕</button>
+                    <h2 class="text-3xl font-bold text-blue-900 handwriting">FAZAIA INTER COLLEGE LAHORE</h2>
+                    <p class="text-amber-900 font-semibold handwriting text-lg mt-1">Certificate of Achievement</p>
+                    <hr class="border-amber-300 my-4">
+                    <p class="text-gray-700 handwriting text-xl mb-2">This is proudly presented to:</p>
+                    <h3 id="cert-name" class="text-3xl font-bold text-emerald-800 handwriting underline mb-3">Student Name</h3>
+                    <p class="text-gray-700 handwriting text-lg mb-4">
+                        Class/Section: <strong id="cert-class" class="text-blue-900"></strong> &nbsp;|&nbsp; SIM ID: <strong id="cert-sim" class="text-blue-900"></strong>
+                    </p>
+                    <div class="bg-white p-4 rounded-xl border-2 border-amber-300 inline-block mb-4 shadow-inner">
+                        <p class="text-lg font-bold text-slate-800 handwriting">Final Score Secured:</p>
+                        <p id="cert-score" class="text-3xl font-extrabold text-emerald-700 handwriting">0 / 0</p>
+                        <p id="cert-percentage" class="text-sm font-bold text-indigo-700 mt-1">Percentage: 0%</p>
+                    </div>
+
+                    <div class="text-left bg-white p-4 rounded-xl border-2 border-amber-300 mb-6 shadow-inner">
+                        <p class="font-bold text-amber-900 handwriting text-lg mb-2">📋 Instant Practice Analytics & Review:</p>
+                        <div id="cert-review-list" class="space-y-3 max-h-56 overflow-y-auto font-sans text-xs"></div>
+                    </div>
+
+                    <div class="flex justify-between items-center mt-4 border-t-2 border-amber-200 pt-4">
+                        <div class="text-left">
+                            <p class="text-xs text-gray-500">Prepared By:</p>
+                            <p class="font-bold text-amber-900 handwriting text-sm">Sir Asad Shafat Ali</p>
+                        </div>
+                        <div class="flex gap-2 no-print">
+                            <button onclick="window.print()" class="px-4 py-2 bg-indigo-700 text-white rounded-lg font-bold handwriting shadow hover:bg-indigo-800 transition">📥 Print / Save PDF</button>
+                            <button onclick="toggleLeaderboardFromCert()" class="px-4 py-2 bg-amber-700 text-white rounded-lg font-bold handwriting shadow hover:bg-amber-800 transition">🏆 Leaderboard</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3.5: Score Completion Notice Modal -->
+            <div id="score-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+                <div class="bg-amber-50 max-w-2xl w-full rounded-2xl border-4 border-amber-800 p-6 shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
+                    <button onclick="closeScoreModal()" class="absolute top-4 right-4 text-2xl font-bold text-amber-900 hover:text-red-600">✕</button>
+                    <h2 class="text-3xl font-bold text-blue-900 handwriting">Test Completed!</h2>
+                    <hr class="border-amber-300 my-4">
+                    <p class="text-gray-700 handwriting text-xl mb-2">Well tried, <strong id="final-std-name"></strong>!</p>
+                    <div class="bg-white p-4 rounded-xl border-2 border-amber-300 inline-block mb-4 shadow-inner">
+                        <p class="text-lg font-bold text-slate-800 handwriting">Your Final Score:</p>
+                        <p id="final-score-text" class="text-3xl font-extrabold text-emerald-700 handwriting">0 / 0</p>
+                        <p class="text-xs text-rose-600 mt-2 font-semibold">Note: Certificates are awarded only for 100% full marks.</p>
+                    </div>
+
+                    <div class="text-left bg-white p-4 rounded-xl border-2 border-amber-300 mb-6 shadow-inner">
+                        <p class="font-bold text-amber-900 handwriting text-lg mb-2">📋 Instant Practice Analytics & Review:</p>
+                        <div id="score-review-list" class="space-y-3 max-h-56 overflow-y-auto font-sans text-xs"></div>
+                    </div>
+
+                    <div class="flex justify-center gap-3 mt-4">
+                        <button onclick="toggleLeaderboardFromScoreModal()" class="px-4 py-2 bg-amber-700 text-white rounded-lg font-bold handwriting shadow hover:bg-amber-800 transition">🏆 Leaderboard</button>
+                        <button onclick="location.reload()" class="px-4 py-2 bg-blue-800 text-white rounded-lg font-bold handwriting shadow hover:bg-blue-900 transition">🔄 Try Again</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: Standard Leaderboard Modal -->
+            <div id="leaderboard-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+                <div class="bg-amber-50 max-w-3xl w-full rounded-2xl border-4 border-amber-800 p-6 shadow-2xl relative max-h-[80vh] overflow-y-auto">
+                    <button onclick="toggleLeaderboard()" class="absolute top-4 right-4 text-2xl font-bold text-amber-900 hover:text-red-600">✕</button>
+                    <h2 class="text-3xl font-bold text-center text-blue-900 handwriting mb-2">🏆 Live Leaderboard</h2>
+                    <div class="flex flex-wrap justify-center gap-2 mb-4 font-sans text-sm">
+                        <button onclick="filterLeaderboard('ALL')" class="px-3 py-1 bg-blue-900 text-white rounded-lg font-semibold hover:bg-blue-800">All</button>
+                        <button onclick="filterLeaderboard('11-B')" class="px-3 py-1 bg-amber-700 text-white rounded-lg font-semibold hover:bg-amber-800">11-B</button>
+                        <button onclick="filterLeaderboard('11-E')" class="px-3 py-1 bg-amber-700 text-white rounded-lg font-semibold hover:bg-amber-800">11-E</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-amber-200 text-amber-900 handwriting text-lg">
+                                    <th class="p-2 border border-amber-400">Rank</th>
+                                    <th class="p-2 border border-amber-400">Name</th>
+                                    <th class="p-2 border border-amber-400">Class</th>
+                                    <th class="p-2 border border-amber-400">SIM ID</th>
+                                    <th class="p-2 border border-amber-400">Score</th>
+                                    <th class="p-2 border border-amber-400">Percentage</th>
+                                    <th class="p-2 border border-amber-400">Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-body" class="font-sans text-sm">
+                                <tr><td colspan="7" class="p-4 text-center text-gray-500">Loading Live Leaderboard...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const FIREBASE_DB_URL = "https://fazaia-inter-college-mcqs-pot-default-rtdb.firebaseio.com";
+
+        let studentData = { name: "", class: "", sim: "" };
+        let fullLeaderboardData = [];
+        let currentQuestionIdx = 0;
+        let userAnswers = {};
+        let tabSwitchCount = 0;
+
+        const masterStudentRoster = [
+            { name: "UMAIR FAROOQ", class: "11-B", sim: "22514", phone: "923094158298" },
+            { name: "MUHAMMAD AHMAD ANWAR", class: "11-B", sim: "22521", phone: "923007226886" },
+            { name: "HAFIZ TAYYAB SAQLAIN", class: "11-B", sim: "22522", phone: "923463238792" },
+            { name: "YASHWA NASAR", class: "11-B", sim: "22530", phone: "923234165932" },
+            { name: "ABDUR REHMAN SAQIB", class: "11-B", sim: "22578", phone: "923154838869" },
+            { name: "MUHAMMAD HASSAN", class: "11-B", sim: "22582", phone: "923004762339" },
+            { name: "BILAL AHMAD", class: "11-B", sim: "22583", phone: "923015755488" },
+            { name: "SYED DEEBAJ HUSSAIN", class: "11-B", sim: "22585", phone: "923238847880" },
+            { name: "SAAD BIN AAMIR", class: "11-E", sim: "21817", phone: "923004123493" },
+            { name: "MAHAD AHMAD", class: "11-E", sim: "21958", phone: "923004123494" },
+            { name: "MUHAMMAD AHMAD", class: "11-E", sim: "22066", phone: "923004123495" }
+        ];
+
+        let questionsDatabase = {
+            // ================= UNIT 6 =================
+            "unit6_ex6_1": [
+                { q: "Ex6.1 Q1: If n is a negative integer then n! is:", options: ["1", "Not defined", "zero", "n"], correct: 1, exp: "Factorial is defined only for non-negative integers." }
+            ],
+            "unit6_ex6_2": [
+                { q: "Ex6.2 Q1: n different objects taken all at a time can be arranged in:", options: ["(n-1) ways", "(n+1)! ways", "n! ways", "(2n)! ways"], correct: 2, exp: "n! ways." }
+            ],
+            "unit6_ex6_3": [
+                { q: "Ex6.3 Q1: nCr is valid only if:", options: ["n ≤ r", "r ≤ n", "r > n", "r < n"], correct: 1, exp: "r ≤ n." }
+            ],
+
+            // ================= UNIT 7 =================
+            "unit7_ex7_1": [
+                { q: "Ex7.1 Q1: For n = 2, (n³ + 2n)/3 represents:", options: ["irrational no.", "negative integer", "odd no.", "natural no."], correct: 3, exp: "Natural number result[cite: 17]." },
+                { q: "Ex7.1 Q2: n² - n + 41 represents a prime number for all n ∈ N where:", options: ["n ≥ 100", "n ≥ 200", "n ≤ 40", "n ≤ 50"], correct: 3, exp: "n ≤ 50[cite: 17]." }
+            ],
+            "unit7_ex7_2": [
+                { q: "Ex7.2 Q1: Number of terms in the expansion of (1 + x)²ⁿ⁺¹ is:", options: ["2n + 1", "2n", "2n + 2", "3n + 1"], correct: 2, exp: "2n + 2 terms[cite: 20]." }
+            ],
+            "unit7_ex7_3": [
+                { q: "Ex7.3 Q1: Number of terms in the expansion of (1 + x)^(1/2) (|x| < 1) are:", options: ["2", "n", "n/2", "infinite"], correct: 3, exp: "Infinite terms for fractional index[cite: 11]." }
+            ],
+            "unit7_ex7_4": [
+                { q: "Ex7.4 Q1: What is the remainder when 7⁵⁰ is divided by 50?:", options: ["1", "7", "25", "49"], correct: 0, exp: "Remainder is 1[cite: 13]." }
+            ],
+            "unit7_review": [
+                { q: "Review Q1: Mathematical induction is used to check a proposition for all n where n is a:", options: ["Real number", "Rational number", "Integer", "Positive integer"], correct: 3, exp: "Positive integer." }
+            ],
+
+            // ================= UNIT 8 =================
+            "unit8_ex8_1": [
+                { q: "Ex8.1 Q1: 3π/2 + θ lies in:", options: ["1st quadrant", "2nd quadrant", "3rd quadrant", "4th quadrant"], correct: 3, exp: "Lies in 4th quadrant[cite: 22]." },
+                { q: "Ex8.1 Q2: Sin 390° is equal to:", options: ["sin 30°", "cos 30°", "zero", "sin 60°"], correct: 1, exp: "Sin(360° + 30°) = sin 30°[cite: 22]." },
+                { q: "[Ex 8.1 - Scenario 1] Q1: Distance formula representation:", options: ["(cos α - cos β)² + (sin α - sin β)²", "(cos α + cos β)²", "1 - 2cos(α-β)", "None"], correct: 0, exp: "Coordinate distance formula[cite: 24]." }
+            ],
+            "unit8_ex8_2": [
+                { q: "Ex8.2 Q1: 2 sin θ/2 cos θ/2 is equal to:", options: ["2 sin 2θ", "sin θ", "2 sin 2(θ/2)", "2 cos 2(θ/2)"], correct: 1, exp: "sin θ[cite: 26]." },
+                { q: "Ex8.2 Q2: (1 - tan²x)/(1 + tan²x) =", options: ["sin 2x", "cos 2x", "tan 2x", "cot 2x"], correct: 1, exp: "cos 2x[cite: 26]." }
+            ],
+            "unit8_ex8_3": [
+                { q: "Ex8.3 Q1: sin 3θ - sin 5θ equals:", options: ["2 sin 4θ cos 2θ", "2 cos 4θ sin θ", "-2 cos 4θ sin θ", "2 sin 4θ cos θ"], correct: 2, exp: "-2 cos 4θ sin θ[cite: 32]." }
+            ],
+
+            // ================= UNIT 9 =================
+            "unit9_ex9_1": [
+                { q: "Ex9.1 Q1: The Period of 3 cos 2x is:", options: ["π", "2π", "3π", "2π/3"], correct: 0, exp: "2π / 2 = π[cite: 31]." },
+                { q: "Ex9.1 Q2: The Period of sin 2x is:", options: ["π/3", "π/2", "2π/5", "π"], correct: 3, exp: "2π / 2 = π[cite: 31]." },
+                { q: "Ex9.1 Q5: The Period of sin(x/3) is:", options: ["π", "3π", "2π/3", "6π"], correct: 3, exp: "2π / (1/3) = 6π[cite: 31]." },
+                { q: "[Ex 9.1 - Scenario 5] Q2: Max value of y = 4 + 3 cos x:", options: ["3", "1", "4", "7"], correct: 3, exp: "4 + 3(1) = 7[cite: 34]." }
+            ],
+            "unit9_ex9_2": [
+                { q: "Ex9.2 Q1: Trigonometric functions are:", options: ["discontinuous", "not circular", "not periodic", "periodic"], correct: 3, exp: "periodic[cite: 35]." },
+                { q: "Ex9.2 Q5: Midline equation for f(θ) = sin θ - 3:", options: ["y = -3", "y = -1", "y = 1", "y = 3"], correct: 0, exp: "y = -3[cite: 35]." },
+                { q: "[Ex 9.2 - Scenario 9] Q1: Function symmetric with respect to y-axis (even):", options: ["y = sin x", "y = cos x", "y = tan x", "y = csc x"], correct: 1, exp: "y = cos x[cite: 37]." }
+            ],
+            "unit9_review": [
+                { q: "Review Q1: If cos θ = -√3/2 in III quadrant, sin θ is:", options: ["1/2", "-1/2", "√3", "-2/√3"], correct: 1, exp: "-1/2[cite: 38]." },
+                { q: "Review Q2: Exact value of tan(-15π):", options: ["0", "-1", "1", "Undefined"], correct: 0, exp: "0[cite: 38]." }
+            ]
+        };
+
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden && !document.getElementById("quiz-container").classList.contains("hidden")) {
+                tabSwitchCount++;
+                if (tabSwitchCount >= 2) {
+                    alert("⚠️ Warning: Tab switching detected multiple times! Auto-submitting test.");
+                    finishQuiz();
+                } else {
+                    alert("⚠️ Warning: Please stay on the test page.");
+                }
+            }
+        });
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const savedState = localStorage.getItem("fazaia_quiz_state");
+            if (savedState) {
+                try {
+                    const data = JSON.parse(savedState);
+                    if (data && data.name) {
+                        document.getElementById("std-class").value = data.class;
+                        handleClassChange({ value: data.class });
+                        document.getElementById("std-sim").value = data.sim;
+                        document.getElementById("std-name-input").value = data.name;
+                    }
+                } catch(e) {}
+            }
+            fetchLeaderboard();
+        });
+
+        function handleClassChange(selectElem) {
+            const selectedClass = selectElem.value;
+            const inputContainer = document.getElementById("student-input-box");
+            const datalist = document.getElementById("students-datalist");
+            const simInput = document.getElementById("std-sim");
+            const nameInput = document.getElementById("std-name-input");
+
+            datalist.innerHTML = "";
+            simInput.value = "";
+            nameInput.value = "";
+
+            if (selectedClass) {
+                inputContainer.classList.remove("hidden");
+                if (selectedClass !== "Guest") {
+                    const filtered = masterStudentRoster.filter(s => s.class === selectedClass);
+                    filtered.forEach(student => {
+                        const option = document.createElement("option");
+                        option.value = student.name;
+                        option.setAttribute("data-sim", student.sim);
+                        datalist.appendChild(option);
+                    });
+                }
+            } else {
+                inputContainer.classList.add("hidden");
+            }
+        }
+
+        function handleStudentInput(inputElem) {
+            const enteredName = inputElem.value;
+            const selectedClass = document.getElementById("std-class").value;
+            const found = masterStudentRoster.find(s => s.class === selectedClass && s.name.toLowerCase() === enteredName.toLowerCase());
+            if (found) {
+                document.getElementById("std-sim").value = found.sim;
+            }
+        }
+
+        function startQuiz(event) {
+            event.preventDefault();
+            studentData.class = document.getElementById("std-class").value;
+            studentData.name = document.getElementById("std-name-input").value || "Guest Student";
+            studentData.sim = document.getElementById("std-sim").value;
+
+            localStorage.setItem("fazaia_quiz_state", JSON.stringify(studentData));
+
+            document.getElementById("registration-card").classList.add("hidden");
+            document.getElementById("quiz-container").classList.remove("hidden");
+
+            document.getElementById("display-std-name").innerText = studentData.name;
+            document.getElementById("display-std-class").innerText = studentData.class;
+            document.getElementById("display-std-sim").innerText = studentData.sim;
+
+            currentQuestionIdx = 0;
+            userAnswers = {};
+            loadCurrentQuestion();
+        }
+
+        function getCurrentChapterQuestions() {
+            const chapter = document.getElementById("chapter-select").value;
+            return questionsDatabase[chapter] || questionsDatabase["unit9_ex9_1"];
+        }
+
+        function loadCurrentQuestion() {
+            const questions = getCurrentChapterQuestions();
+            const totalQ = questions.length;
+            const currentQNum = currentQuestionIdx + 1;
+            const remainingQ = totalQ - currentQNum;
+
+            document.getElementById("progress-current").innerText = currentQNum;
+            document.getElementById("progress-total").innerText = totalQ;
+            document.getElementById("progress-remaining").innerText = remainingQ;
+
+            const q = questions[currentQuestionIdx];
+            document.getElementById("question-text").innerText = `Q${currentQNum}: ${q.q}`;
+            
+            const optionsContainer = document.getElementById("options-container");
+            optionsContainer.innerHTML = "";
+
+            q.options.forEach((opt, idx) => {
+                const isSelected = userAnswers[currentQuestionIdx] === idx;
+                const btn = document.createElement("button");
+                btn.className = `p-3 rounded-xl border-2 text-left font-sans text-lg transition cursor-pointer ${isSelected ? 'bg-amber-200 border-amber-600 font-bold' : 'bg-white border-amber-200 hover:bg-amber-50'}`;
+                btn.innerHTML = `<strong>${String.fromCharCode(65 + idx)}.</strong> ${opt}`;
+                btn.onclick = () => selectOption(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            const feedbackBox = document.getElementById("feedback-box");
+            if (userAnswers[currentQuestionIdx] !== undefined) {
+                const selected = userAnswers[currentQuestionIdx];
+                feedbackBox.classList.remove("hidden");
+                if (selected === q.correct) {
+                    feedbackBox.className = "p-4 rounded-lg bg-emerald-50 border-2 border-dashed border-emerald-400 mb-6 handwriting text-lg text-emerald-900";
+                    feedbackBox.innerHTML = `✅ Correct! ${q.exp}`;
+                } else {
+                    feedbackBox.className = "p-4 rounded-lg bg-red-50 border-2 border-dashed border-red-400 mb-6 handwriting text-lg text-red-900";
+                    feedbackBox.innerHTML = `❌ Incorrect. Correct Answer: <strong>${String.fromCharCode(65 + q.correct)}</strong>. ${q.exp}`;
+                }
+            } else {
+                feedbackBox.classList.add("hidden");
+            }
+
+            document.getElementById("prev-btn").style.display = currentQuestionIdx === 0 ? "none" : "block";
+            document.getElementById("next-btn").innerText = currentQuestionIdx === questions.length - 1 ? "Submit Test 🏁" : "Next ➡";
+        }
+
+        function selectOption(idx) {
+            userAnswers[currentQuestionIdx] = idx;
+            loadCurrentQuestion();
+        }
+
+        function nextQuestion() {
+            const questions = getCurrentChapterQuestions();
+            if (currentQuestionIdx < questions.length - 1) {
+                currentQuestionIdx++;
+                loadCurrentQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIdx > 0) {
+                currentQuestionIdx--;
+                loadCurrentQuestion();
+            }
+        }
+
+        function finishQuiz() {
+            const questions = getCurrentChapterQuestions();
+            let score = 0;
+            questions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.correct) score++;
+            });
+
+            const total = questions.length;
+            const percentage = Math.round((score / total) * 100);
+
+            document.getElementById("score-board").innerText = `Score: ${score} / ${total}`;
+
+            saveResultToFirebase(score, total, percentage);
+            localStorage.removeItem("fazaia_quiz_state");
+
+            let reviewHtml = "";
+            questions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = userAns === q.correct;
+                const userAnsText = userAns !== undefined ? `${String.fromCharCode(65 + userAns)}. ${q.options[userAns]}` : "Not Answered";
+                const correctAnsText = `${String.fromCharCode(65 + q.correct)}. ${q.options[q.correct]}`;
+                
+                reviewHtml += `
+                    <div class="p-2 rounded border ${isCorrect ? 'bg-emerald-50 border-emerald-300' : 'bg-red-50 border-red-300'}">
+                        <p class="font-bold text-slate-800">Q${idx + 1}: ${q.q}</p>
+                        <p class="text-slate-600">Your Answer: <span class="${isCorrect ? 'text-emerald-700 font-bold' : 'text-red-700 font-bold'}">${userAnsText}</span></p>
+                        ${!isCorrect ? `<p class="text-slate-600">Correct Answer: <span class="text-emerald-700 font-bold">${correctAnsText}</span></p>` : ''}
+                        <p class="text-slate-500 italic mt-1">Exp: ${q.exp}</p>
+                    </div>
+                `;
+            });
+
+            if (score === total) {
+                document.getElementById("cert-name").innerText = studentData.name;
+                document.getElementById("cert-class").innerText = studentData.class;
+                document.getElementById("cert-sim").innerText = studentData.sim;
+                document.getElementById("cert-score").innerText = `${score} / ${total}`;
+                document.getElementById("cert-percentage").innerText = `Percentage: ${percentage}%`;
+                document.getElementById("cert-review-list").innerHTML = reviewHtml;
+                
+                document.getElementById("quiz-container").classList.add("hidden");
+                document.getElementById("certificate-modal").classList.remove("hidden");
+            } else {
+                document.getElementById("final-std-name").innerText = studentData.name;
+                document.getElementById("final-score-text").innerText = `${score} / ${total}`;
+                document.getElementById("score-review-list").innerHTML = reviewHtml;
+
+                document.getElementById("quiz-container").classList.add("hidden");
+                document.getElementById("score-modal").classList.remove("hidden");
+            }
+        }
+
+        function saveResultToFirebase(score, total, percentage) {
+            let grade = "C";
+            if (percentage >= 80) grade = "A+";
+            else if (percentage >= 70) grade = "A";
+            else if (percentage >= 60) grade = "B";
+
+            const record = {
+                name: studentData.name,
+                class: studentData.class,
+                sim: studentData.sim,
+                score: `${score}/${total}`,
+                percentage: percentage,
+                grade: grade,
+                timestamp: Date.now()
+            };
+
+            fetch(`${FIREBASE_DB_URL}/leaderboard.json`, {
+                method: "POST",
+                body: JSON.stringify(record)
+            }).then(() => fetchLeaderboard());
+        }
+
+        function fetchLeaderboard() {
+            fetch(`${FIREBASE_DB_URL}/leaderboard.json`)
+                .then(res => res.json())
+                .then(data => {
+                    fullLeaderboardData = [];
+                    if (data) {
+                        Object.keys(data).forEach(key => fullLeaderboardData.push(data[key]));
+                    }
+                    fullLeaderboardData.sort((a, b) => b.percentage - a.percentage);
+                    renderLeaderboardTable(fullLeaderboardData);
+                    updateTeacherAnalytics(fullLeaderboardData);
+                });
+        }
+
+        function renderLeaderboardTable(data) {
+            const tbody = document.getElementById("leaderboard-body");
+            tbody.innerHTML = "";
+            if (data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-gray-500">No records found yet.</td></tr>`;
+                return;
+            }
+            data.forEach((item, idx) => {
+                tbody.innerHTML += `
+                    <tr class="border-b border-amber-200 hover:bg-amber-100">
+                        <td class="p-2 border border-amber-300 font-bold">#${idx + 1}</td>
+                        <td class="p-2 border border-amber-300 font-semibold">${item.name}</td>
+                        <td class="p-2 border border-amber-300">${item.class}</td>
+                        <td class="p-2 border border-amber-300">${item.sim}</td>
+                        <td class="p-2 border border-amber-300 font-bold text-emerald-700">${item.score}</td>
+                        <td class="p-2 border border-amber-300">${item.percentage}%</td>
+                        <td class="p-2 border border-amber-300 font-bold">${item.grade}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        function filterLeaderboard(cls) {
+            if (cls === 'ALL') renderLeaderboardTable(fullLeaderboardData);
+            else renderLeaderboardTable(fullLeaderboardData.filter(d => d.class === cls));
+        }
+
+        function updateTeacherAnalytics(data) {
+            ['11-B', '11-E'].forEach(cls => {
+                const clsRecords = data.filter(d => d.class === cls);
+                const elemId = `stats-${cls.toLowerCase().replace('-', '')}`;
+                if (clsRecords.length > 0) {
+                    const avg = Math.round(clsRecords.reduce((sum, r) => sum + r.percentage, 0) / clsRecords.length);
+                    const top = clsRecords.reduce((prev, curr) => (curr.percentage > prev.percentage) ? curr : prev);
+                    document.getElementById(elemId).innerText = `Avg: ${avg}% | Top: ${top.name} (${top.percentage}%)`;
+                } else {
+                    document.getElementById(elemId).innerText = `Avg: 0% | Top: No tests taken yet`;
+                }
+            });
+        }
+
+        function exportLeaderboardCSV() {
+            let csvContent = "data:text/csv;charset=utf-8,Rank,Name,Class,SIM ID,Score,Percentage,Grade\n";
+            fullLeaderboardData.forEach((row, idx) => {
+                csvContent += `${idx + 1},"${row.name}","${row.class}","${row.sim}","${row.score}",${row.percentage}%,${row.grade}\n`;
+            });
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "fazaia_leaderboard_report.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function checkTeacherPassword() {
+            const pwd = prompt("Enter Teacher Password (Sir Asad Shafat Ali):");
+            if (pwd === "asad123") {
+                document.getElementById("import-panel").classList.remove("hidden");
+            } else if (pwd !== null) {
+                alert("Incorrect password!");
+            }
+        }
+
+        function loadPendingStudents(clsFilter) {
+            const tbody = document.getElementById("teacher-pending-body");
+            tbody.innerHTML = "";
+            
+            const attemptedSims = fullLeaderboardData.map(d => String(d.sim));
+            let pending = masterStudentRoster.filter(s => !attemptedSims.includes(String(s.sim)));
+            
+            if (clsFilter !== 'ALL') {
+                pending = pending.filter(s => s.class === clsFilter);
+            }
+
+            if (pending.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-3 text-center text-emerald-700 font-bold">🎉 All students have attempted the test!</td></tr>`;
+                return;
+            }
+
+            pending.forEach((std, idx) => {
+                const msg = encodeURIComponent(`Assalam-o-Alaikum ${std.name}, Sir Asad Shafat Ali ki taraf se reminder hai ke aapne Math Practice Test abhi tak complete nahi kiya.`);
+                const whatsappLink = `https://wa.me/${std.phone}?text=${msg}`;
+                
+                tbody.innerHTML += `
+                    <tr class="border-b border-amber-200">
+                        <td class="p-2 border border-amber-300">${idx + 1}</td>
+                        <td class="p-2 border border-amber-300 font-bold">${std.name}</td>
+                        <td class="p-2 border border-amber-300">${std.class}</td>
+                        <td class="p-2 border border-amber-300">${std.sim}</td>
+                        <td class="p-2 border border-amber-300">${std.phone}</td>
+                        <td class="p-2 border border-amber-300 text-center">
+                            <a href="${whatsappLink}" target="_blank" class="px-2 py-1 bg-emerald-600 text-white rounded text-xs font-bold hover:bg-emerald-700">💬 Remind</a>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function toggleLeaderboard() {
+            document.getElementById("leaderboard-modal").classList.toggle("hidden");
+        }
+
+        function toggleLeaderboardFromCert() {
+            document.getElementById("certificate-modal").classList.add("hidden");
+            toggleLeaderboard();
+        }
+
+        function toggleLeaderboardFromScoreModal() {
+            document.getElementById("score-modal").classList.add("hidden");
+            toggleLeaderboard();
+        }
+
+        function closeCertificate() {
+            document.getElementById("certificate-modal").classList.add("hidden");
+            location.reload();
+        }
+
+        function closeScoreModal() {
+            document.getElementById("score-modal").classList.add("hidden");
+        }
+
+        function changeChapter() {
+            currentQuestionIdx = 0;
+            userAnswers = {};
+            if(!document.getElementById("quiz-container").classList.contains("hidden")) {
+                loadCurrentQuestion();
+            }
+        }
+    </script>
+</body>
+</html>
