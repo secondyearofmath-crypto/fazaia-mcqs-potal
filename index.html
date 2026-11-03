@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAZAIA INTER COLLEGE LAHORE - Math & Science Practice Portal</title>
+    <title>FAZAIA INTER COLLEGE LAHORE - Math & Science Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Patrick+Hand&display=swap');
         
@@ -38,11 +39,25 @@
                 #4b5563 20px
             );
         }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-certificate, #printable-certificate * {
+                visibility: visible;
+            }
+            #printable-certificate {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
     </style>
 </head>
-<body class="p-4 md:p-8 flex items-center justify-center min-h-screen">
+<body class="p-2 md:p-6 flex items-center justify-center min-h-screen">
 
-    <div class="max-w-4xl w-full bg-amber-50 rounded-xl shadow-2xl overflow-hidden border-4 border-amber-800 relative">
+    <div class="max-w-5xl w-full bg-amber-50 rounded-xl shadow-2xl overflow-hidden border-4 border-amber-800 relative">
         <div class="h-8 spiral-binding w-full shadow-inner flex justify-around items-center px-4">
             <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
             <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
@@ -51,37 +66,52 @@
             <div class="w-4 h-6 bg-zinc-300 rounded-full border border-zinc-600 shadow"></div>
         </div>
 
-        <div class="notebook-paper p-6 md:p-10 min-h-[550px] relative">
+        <div class="notebook-paper p-4 md:p-8 min-h-[600px] relative">
             <div class="notebook-margin hidden md:block"></div>
             
+            <!-- HEADER SECTION -->
             <div class="flex flex-col border-b-2 border-amber-200 pb-4 mb-6 pl-0 md:pl-12 gap-2">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-amber-800 shadow-md bg-white flex items-center justify-center shrink-0">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-amber-800 shadow-md bg-white flex items-center justify-center shrink-0">
                             <img src="https://lh3.googleusercontent.com/d/1L5AEIEOwOvdm0wNw9m9t_g5_J62WV82s=s220" alt="College Logo" class="w-full h-full object-cover">
                         </div>
                         <div>
-                            <h1 class="text-3xl font-bold text-blue-900 handwriting">FAZAIA INTER COLLEGE LAHORE</h1>
-                            <p class="text-lg font-semibold text-amber-900 handwriting mt-1">📝 FBISE Model Paper & Practice Portal</p>
-                            <p class="text-md text-emerald-800 font-bold handwriting">👨‍🏫 PREPARED BY: ASAD SHAFAT ALI</p>
+                            <h1 class="text-2xl md:text-3xl font-bold text-blue-900 handwriting">FAZAIA INTER COLLEGE LAHORE</h1>
+                            <p class="text-base md:text-lg font-semibold text-amber-900 handwriting mt-0.5">📝 FBISE Math Practice Portal</p>
+                            <p class="text-sm md:text-md text-emerald-800 font-bold handwriting">👨‍🏫 PREPARED BY: ASAD SHAFAT ALI</p>
                         </div>
                     </div>
 
-                    <div class="flex items-center gap-4">
-                        <button onclick="toggleLeaderboard()" class="px-3 py-1.5 bg-amber-700 text-white font-bold rounded-lg text-md handwriting shadow hover:bg-amber-800 transition">🏆 Leaderboard</button>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="toggleTeacherPanel()" class="px-3 py-1.5 bg-amber-800 text-white font-bold rounded-lg text-sm handwriting shadow hover:bg-amber-900 transition">🔒 Teacher Panel</button>
+                        <button onclick="toggleLeaderboard()" class="px-3 py-1.5 bg-indigo-700 text-white font-bold rounded-lg text-sm handwriting shadow hover:bg-indigo-800 transition">🏆 Leaderboard</button>
                     </div>
                 </div>
 
-                <div class="mt-4 flex flex-wrap items-center gap-3 bg-amber-100 p-3 rounded-lg border border-amber-300">
-                    <label class="font-bold text-amber-900 handwriting text-lg">📚 Select Practice Category:</label>
-                    <select id="chapter-select" class="p-2 border-2 border-amber-300 rounded-lg font-bold text-blue-900 bg-white focus:outline-none">
-                        <option value="unit6_ex6_1">Unit 6: Exercise 6.1 (MCQs 1-15 & Scenarios 1-5)</option>
+                <div class="mt-3 flex flex-wrap items-center gap-3 bg-amber-100 p-2.5 rounded-lg border border-amber-300">
+                    <label class="font-bold text-amber-900 handwriting text-base">📚 Select Practice Category:</label>
+                    <select id="chapter-select" class="p-2 border-2 border-amber-300 rounded-lg font-bold text-blue-900 bg-white focus:outline-none text-sm md:text-base">
+                        <option value="model_paper_2025">FBISE Model Paper 2024-2025 (Full 64 MCQs)</option>
+                        <option value="unit6_ex6_1">Unit 6: Exercise 6.1 (15 MCQs + 5 Scenarios)</option>
+                        <option value="unit6_ex6_2">Unit 6: Exercise 6.2 (10 MCQs + 10 Scenarios)</option>
+                        <option value="unit6_ex6_3">Unit 6: Exercise 6.3 (10 MCQs + 10 Scenarios)</option>
+                        <option value="unit7_ex7_1">Unit 7: Exercise 7.1 (10 MCQs + 10 Scenarios)</option>
+                        <option value="unit7_ex7_2">Unit 7: Exercise 7.2 (10 MCQs + 10 Scenarios)</option>
+                        <option value="unit1_complex">Unit 1: Complex Numbers</option>
+                        <option value="unit2_matrices">Unit 2: Matrices and Determinants</option>
+                        <option value="unit3_vectors">Unit 3: Vectors</option>
+                        <option value="unit4_sequences">Unit 4: Sequences and Series</option>
+                        <option value="unit5_polynomials">Unit 5: Polynomials</option>
+                        <option value="unit7_induction">Unit 7: Induction & Binomial Theorem</option>
+                        <option value="unit8_trig_fund">Unit 8: Fundamentals of Trigonometry</option>
+                        <option value="unit9_trig_func">Unit 9: Trigonometric Functions</option>
                     </select>
                 </div>
             </div>
 
-            <!-- STEP 1: Student Details Entry Screen -->
-            <div id="registration-card" class="pl-0 md:pl-12 max-w-lg mx-auto py-8">
+            <!-- STEP 1: Student Registration Screen -->
+            <div id="registration-card" class="pl-0 md:pl-12 max-w-lg mx-auto py-4">
                 <div class="bg-white p-6 rounded-2xl border-2 border-amber-300 shadow-lg">
                     <h2 class="text-2xl font-bold text-blue-900 handwriting mb-4 text-center">🎓 Student Registration</h2>
                     
@@ -89,9 +119,10 @@
                         <div>
                             <label class="block text-amber-900 font-bold handwriting text-lg">Class / Section:</label>
                             <select id="std-class" required onchange="handleClassChange(this)" class="w-full p-2.5 border-2 border-amber-200 rounded-lg font-sans">
-                                <option value="">Select Class / Section</option>
+                                <option value="">-- Select Class --</option>
                                 <option value="11-B">11-B</option>
                                 <option value="11-E">11-E</option>
+                                <option value="12-C">12-C</option>
                                 <option value="Guest">Guest / Other (Manual)</option>
                             </select>
                         </div>
@@ -123,25 +154,77 @@
                     </div>
                 </div>
 
-                <div id="question-text" class="text-2xl text-slate-800 font-semibold mb-6 handwriting">Loading question...</div>
-                <div id="options-container" class="grid grid-cols-1 gap-4 mb-6"></div>
-                <div id="feedback-box" class="hidden p-4 rounded-lg bg-red-50 border-2 border-dashed border-red-400 mb-6 handwriting text-lg text-slate-800"></div>
+                <div id="question-text" class="text-xl md:text-2xl text-slate-800 font-semibold mb-6 handwriting leading-relaxed">Loading question...</div>
+                <div id="options-container" class="grid grid-cols-1 gap-3.5 mb-6"></div>
+                <div id="feedback-box" class="hidden p-4 rounded-lg bg-amber-50 border-2 border-dashed border-amber-400 mb-6 handwriting text-lg text-slate-800"></div>
 
-                <div class="flex justify-between mt-8">
+                <div class="flex justify-between items-center mt-8">
                     <button id="prev-btn" onclick="prevQuestion()" class="px-6 py-2 bg-amber-700 text-white rounded-lg font-bold shadow hover:bg-amber-800 transition">⬅ Prev</button>
                     <button id="next-btn" onclick="nextQuestion()" class="px-6 py-2 bg-blue-800 text-white rounded-lg font-bold shadow hover:bg-blue-900 transition">Next ➡</button>
                 </div>
             </div>
 
-            <!-- STEP 4: Standard Leaderboard Modal -->
+            <!-- STEP 3: Teacher Panel Modal -->
+            <div id="teacher-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+                <div class="bg-white max-w-2xl w-full rounded-2xl border-4 border-amber-800 p-6 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+                    <button onclick="toggleTeacherPanel()" class="absolute top-4 right-4 text-2xl font-bold text-amber-900 hover:text-red-600">✕</button>
+                    <h2 class="text-2xl font-bold text-blue-900 handwriting mb-4">🔒 Teacher MCQ Import Panel</h2>
+                    
+                    <div id="teacher-auth" class="flex flex-col gap-3">
+                        <label class="font-bold text-slate-700">Enter Teacher Password:</label>
+                        <input type="password" id="teacher-pass" placeholder="Password..." class="p-2.5 border-2 border-amber-300 rounded-lg">
+                        <button onclick="authTeacher()" class="py-2 bg-amber-800 text-white font-bold rounded-lg shadow hover:bg-amber-900 transition">Unlock Panel</button>
+                    </div>
+
+                    <div id="teacher-controls" class="hidden flex flex-col gap-4 mt-2">
+                        <p class="text-sm text-emerald-800 font-semibold">✅ Authenticated as Teacher (Sir Asad Shafat Ali)</p>
+                        
+                        <div class="border-t pt-3">
+                            <label class="font-bold text-slate-800 block mb-1">Target Category:</label>
+                            <select id="import-category" class="w-full p-2 border-2 border-amber-300 rounded-lg">
+                                <option value="unit6_ex6_1">Unit 6: Exercise 6.1</option>
+                                <option value="unit6_ex6_2">Unit 6: Exercise 6.2</option>
+                                <option value="unit6_ex6_3">Unit 6: Exercise 6.3</option>
+                                <option value="unit7_ex7_1">Unit 7: Exercise 7.1</option>
+                                <option value="unit7_ex7_2">Unit 7: Exercise 7.2</option>
+                                <option value="model_paper_2025">FBISE Model Paper 2024-2025</option>
+                                <option value="unit1_complex">Unit 1: Complex Numbers</option>
+                                <option value="unit2_matrices">Unit 2: Matrices and Determinants</option>
+                                <option value="unit3_vectors">Unit 3: Vectors</option>
+                                <option value="unit4_sequences">Unit 4: Sequences and Series</option>
+                                <option value="unit5_polynomials">Unit 5: Polynomials</option>
+                                <option value="unit7_induction">Unit 7: Induction & Binomial Theorem</option>
+                                <option value="unit8_trig_fund">Unit 8: Fundamentals of Trigonometry</option>
+                                <option value="unit9_trig_func">Unit 9: Trigonometric Functions</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="font-bold text-slate-800 block mb-1">Paste MCQs (Format: `SNo|Question|A|B|C|D|CorrectIdx|Explanation`):</label>
+                            <textarea id="import-text" rows="5" placeholder="1|Question|A|B|C|D|0|Explanation" class="w-full p-2 border-2 border-slate-300 rounded-lg font-mono text-sm"></textarea>
+                            <button onclick="importMCQsFromText()" class="mt-2 px-4 py-2 bg-blue-800 text-white font-bold rounded-lg shadow hover:bg-blue-900 transition">Import Questions</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: Leaderboard Modal -->
             <div id="leaderboard-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-                <div class="bg-amber-50 max-w-3xl w-full rounded-2xl border-4 border-amber-800 p-6 shadow-2xl relative max-h-[80vh] overflow-y-auto">
+                <div class="bg-amber-50 max-w-3xl w-full rounded-2xl border-4 border-amber-800 p-6 shadow-2xl relative max-h-[85vh] overflow-y-auto">
                     <button onclick="toggleLeaderboard()" class="absolute top-4 right-4 text-2xl font-bold text-amber-900 hover:text-red-600">✕</button>
-                    <h2 class="text-3xl font-bold text-center text-blue-900 handwriting mb-2">🏆 Live Leaderboard</h2>
+                    <h2 class="text-3xl font-bold text-center text-blue-900 handwriting mb-4">🏆 Live Leaderboard</h2>
+                    
+                    <div class="flex justify-center gap-2 mb-4">
+                        <button onclick="filterLeaderboard('All')" class="px-3 py-1 bg-amber-700 text-white font-bold rounded-lg text-sm">All</button>
+                        <button onclick="filterLeaderboard('11-B')" class="px-3 py-1 bg-amber-700 text-white font-bold rounded-lg text-sm">11-B</button>
+                        <button onclick="filterLeaderboard('11-E')" class="px-3 py-1 bg-amber-700 text-white font-bold rounded-lg text-sm">11-E</button>
+                        <button onclick="filterLeaderboard('12-C')" class="px-3 py-1 bg-amber-700 text-white font-bold rounded-lg text-sm">12-C</button>
+                    </div>
+
                     <div class="overflow-x-auto">
                         <table class="w-full text-left border-collapse">
                             <thead>
-                                <tr class="bg-amber-200 text-amber-900 handwriting text-lg">
+                                <tr class="bg-amber-200 text-amber-900 handwriting text-base">
                                     <th class="p-2 border border-amber-400">Rank</th>
                                     <th class="p-2 border border-amber-400">Name</th>
                                     <th class="p-2 border border-amber-400">Class</th>
@@ -158,6 +241,32 @@
                 </div>
             </div>
 
+            <!-- STEP 5: Certificate / Completion Modal -->
+            <div id="completion-modal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50">
+                <div class="bg-white max-w-2xl w-full rounded-2xl border-4 border-amber-800 p-6 shadow-2xl relative text-center">
+                    <div id="completion-content"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Printable Certificate Template -->
+    <div id="printable-certificate" class="hidden p-8 bg-amber-50 border-8 border-amber-800 text-center font-sans">
+        <h1 class="text-4xl font-bold text-blue-900 mb-2">FAZAIA INTER COLLEGE LAHORE</h1>
+        <h2 class="text-2xl font-bold text-amber-800 mb-6">CERTIFICATE OF ACHIEVEMENT</h2>
+        <p class="text-lg text-gray-700 mb-2">This is proudly presented to</p>
+        <h3 id="cert-student-name" class="text-3xl font-extrabold text-blue-900 underline mb-4">STUDENT NAME</h3>
+        <p class="text-lg text-gray-700 mb-2">Class: <span id="cert-student-class" class="font-bold"></span> | SIM ID: <span id="cert-student-sim" class="font-bold"></span></p>
+        <p class="text-md text-gray-600 mb-8">For achieving 100% Score in FBISE Mathematics Assessment</p>
+        <div class="flex justify-between items-end mt-12 px-8">
+            <div class="text-center border-t-2 border-gray-400 pt-2 w-40">
+                <p class="font-bold text-sm">Date</p>
+            </div>
+            <div class="text-center border-t-2 border-gray-400 pt-2 w-48">
+                <p class="font-bold text-sm">ASAD SHAFAT ALI</p>
+                <p class="text-xs text-gray-500">Course Instructor</p>
+            </div>
         </div>
     </div>
 
@@ -165,6 +274,7 @@
         const FIREBASE_DB_URL = "https://fazaia-inter-college-mcqs-pot-default-rtdb.firebaseio.com";
         let studentData = { name: "", class: "", sim: "" };
         let currentQuestionIdx = 0;
+        let activeQuestions = [];
         let userAnswers = {};
         let fullLeaderboardData = [];
 
@@ -182,7 +292,74 @@
             { name: "MUHAMMAD AHMAD", class: "11-E", sim: "22066" }
         ];
 
+        // Cumulative Database (Model Paper + Ex 6.1 + Ex 6.2 + Ex 6.3 + Ex 7.1 + Ex 7.2)
         const questionsDatabase = {
+            "model_paper_2025": [
+                { q: "1. The linear factors of the polynomial 4z² + 9y² are:", options: ["(2z - 3yi)²", "(2z + 3yi)²", "(2z + 3y)(2z - 3y)", "(2z + 3yi)(2z - 3yi)"], correct: 3, exp: "4z² + 9y² = (2z)² - (3yi)² = (2z + 3yi)(2z - 3yi)." },
+                { q: "2. What is the principal argument of -i - √3?", options: ["-4π/3", "-π/3", "4π/3", "π/3"], correct: 0, exp: "Lies in 3rd quadrant: arg = -π + arctan(1/√3) = -5π/6 or equivalent -4π/3 representation." },
+                { q: "3. If z = r(cosθ + i sinθ), then z⁻¹ is equal to:", options: ["(cosθ - i sinθ)/r", "(-cosθ + i sinθ)/r", "(-cosθ - i sinθ)/r", "(cosθ + i sinθ)/r"], correct: 0, exp: "z⁻¹ = 1/z = (cosθ - i sinθ)/r." },
+                { q: "4. If A is a square matrix of order 3 with |A| = 5, then the value of |2A| is:", options: ["5", "10", "25", "40"], correct: 3, exp: "|2A| = 2³ |A| = 8 × 5 = 40." },
+                { q: "5. For A = [[3,3,1],[0,5,-1],[2,1,4]], what is the value of the cofactor A12?", options: ["-2", "0", "2", "-11"], correct: 0, exp: "A12 = (-1)¹⁺² |[0,-1],[2,4]| = -1(0 - (-2)) = -2." },
+                { q: "6. Which condition defines an inconsistent system of linear equations?", options: ["One solution", "Infinite solutions", "Trivial solution", "No solution"], correct: 3, exp: "An inconsistent system has no solution." },
+                { q: "7. If the first term of a sequence is 10 and common difference is 0, 50th term is:", options: ["0", "10", "50", "500"], correct: 1, exp: "Constant sequence: all terms are 10." },
+                { q: "8. Row 1 has 20 seats. Each row has 2 additional seats. Which row has 40 seats?", options: ["10th", "11th", "12th", "20th"], correct: 1, exp: "40 = 20 + (n-1)2 ⇒ (n-1)=10 ⇒ n = 11." },
+                { q: "9. Ball rebounds to 60% height. 1st bounce is 100 cm. Height of 2nd bounce?", options: ["60 cm", "48 cm", "36 cm", "6 cm"], correct: 2, exp: "100 × 0.6 × 0.6 = 36 cm." },
+                { q: "10. Find 5th term of HP whose AP is 5, 10, 15...", options: ["1/20", "1/25", "1/30", "1/35"], correct: 1, exp: "AP 5th term = 5 + 4(5) = 25. HP term = 1/25." },
+                { q: "11. The third term in the expansion of (x² - 2)⁴ is:", options: ["24 x⁴", "-24 x⁴", "-32 x²", "32 x²"], correct: 0, exp: "T3 = ⁴C₂ (x²)² (-2)² = 6 × x⁴ × 4 = 24 x⁴." },
+                { q: "12. Term independent of x in (x² - 1/x²)⁶ is:", options: ["T3", "T4", "T5", "T6"], correct: 1, exp: "12 - 4r = 0 ⇒ r=3 ⇒ T4." },
+                { q: "13. Simplified form of (x+1)³ - (x-1)³ is:", options: ["2x³ + 6x", "6x² + 2", "6x² + 2x", "2x³ + 6x²"], correct: 1, exp: "(x³+3x²+3x+1) - (x³-3x²+3x-1) = 6x² + 2." },
+                { q: "14. When 3⁵⁰ is divided by 8, remainder is:", options: ["1", "3", "5", "7"], correct: 0, exp: "3⁵⁰ = (3²)²⁵ = 9²⁵ = (8+1)²⁵ ≡ 1 (mod 8)." },
+                { q: "15. Degree of remainder when x³+2x²-5x+1 is divided by x-2:", options: ["0", "1", "2", "7"], correct: 0, exp: "Remainder theorem gives a constant (degree 0)." },
+                { q: "16. Quotient when x⁴ - 3x² + 2 is divided by x² - 1:", options: ["x² - 2", "x² + 2", "x² - 1", "x² + 1"], correct: 0, exp: "(x²-1)(x²-2) / (x²-1) = x² - 2." },
+                { q: "17. Value of k for which x-2 is factor of x³ - kx² + 4x - 4:", options: ["-3", "0", "3", "4"], correct: 2, exp: "8 - 4k + 8 - 4 = 0 ⇒ 4k = 12 ⇒ k = 3." },
+                { q: "18. Two direction angles are 30° and 60°. Third direction angle is:", options: ["135°", "90°", "45°", "30°"], correct: 1, exp: "cos²(30°) + cos²(60°) + cos²(γ) = 3/4 + 1/4 + cos²(γ) = 1 ⇒ γ = 90°." },
+                { q: "19. Vector parallel to 2i + 6j - 5k with magnitude 3 is:", options: ["[12/√65, -18/√65, 75/√65]", "[12/√65, 18/√65, 25/√65]", "[6/√65, 18/√65, -15/√65]", "[6/√65, -18/√65, 8/√65]"], correct: 2, exp: "3 × (2i+6j-5k) / √65 = [6/√65, 18/√65, -15/√65]." },
+                { q: "20. Area of parallelogram with sides [2,5,-2] and [1,4,-2]:", options: ["√17", "√17 / 2", "√17 / 6", "2√17"], correct: 0, exp: "a × b = [-2, 2, 3] ⇒ Magnitude = √(4+4+9) = √17." },
+                { q: "21. At which angle is work done zero?", options: ["0°", "45°", "90°", "180°"], correct: 2, exp: "W = F d cos(90°) = 0." },
+                { q: "22. In navigation, velocity of airplane is calculated using:", options: ["Dot product", "Vector addition", "Vector subtraction", "Cross product"], correct: 1, exp: "Vector addition of plane airspeed and wind vector." },
+                { q: "23. If a = i+2j-2k and b = 2i+3j-3k, then k·a + j·b = ?", options: ["1", "-2", "2", "4"], correct: 1, exp: "k·a = -2, j·b = 3 ⇒ -2 + 3 = 1." },
+                { q: "24. If sinθ = 3/5 (acute), value of sin(2θ) is:", options: ["12/25", "24/25", "7/25", "16/25"], correct: 1, exp: "2 sinθ cosθ = 2(3/5)(4/5) = 24/25." },
+                { q: "25. If cosθ = -1/3 (Quad II), value of sin(θ/2) is:", options: ["-√6 / 3", "√6 / 3", "√3 / 3", "-√3 / 3"], correct: 1, exp: "sin(θ/2) = √((1 - cosθ)/2) = √((1 + 1/3)/2) = √(2/3) = √6/3." },
+                { q: "26. Simplifying 2 sin(3x) cos(x) into sum or difference:", options: ["sin(4x) + sin(2x)", "sin(4x) - sin(2x)", "sin(2x) - sin(x)", "sin(2x) + sin(x)"], correct: 0, exp: "2 sin A cos B = sin(A+B) + sin(A-B)." },
+                { q: "27. If tanα = 1/2 and tanβ = 1/3, value of (α+β) is:", options: ["0°", "8°", "45°", "90°"], correct: 2, exp: "tan(α+β) = (1/2 + 1/3)/(1 - 1/6) = 1 ⇒ α+β = 45°." },
+                { q: "28. Equivalent to sin(270° - θ):", options: ["-sinθ", "-cosθ", "sinθ", "cosθ"], correct: 1, exp: "sin(270° - θ) = -cosθ." },
+                { q: "29. If sin(25°) = t, then cos(50°) in terms of t is:", options: ["2t² - 1", "2t√(1-t²)", "1 - 2t²", "√(1 - 2t²)"], correct: 2, exp: "cos(50°) = 1 - 2 sin²(25°) = 1 - 2t²." },
+                { q: "30. Range of y = 3 sin(2x):", options: ["[-1,1]", "[-2,2]", "[-3,3]", "(18,8)"], correct: 2, exp: "Amplitude is 3, range is [-3, 3]." },
+                { q: "31. Sum of sin(-x) + sin(x):", options: ["0", "1", "2 sinx", "sin 2x"], correct: 0, exp: "-sin(x) + sin(x) = 0." },
+                { q: "32. Period of 4 cos(x/3):", options: ["4π/3", "2π/3", "2π", "6π"], correct: 3, exp: "Period = 2π / (1/3) = 6π." },
+                { q: "33. Maximum value of 10 sin x - 5 cos x + 2:", options: ["3", "17", "7", "13"], correct: 3, exp: "Max = √(10² + 5²) + 2 = √125 + 2 ≈ 13." },
+                { q: "34. Pair of trigonometric functions with period π:", options: ["sinx, cosx", "tanx, cotx", "secx, cosecx", "sinx, tanx"], correct: 1, exp: "tan(x) and cot(x) both have period π." },
+                { q: "35. Pizza shop offers 8 toppings. Ways to choose 3 toppings:", options: ["24", "56", "92", "336"], correct: 1, exp: "⁸C₃ = (8×7×6)/(3×2×1) = 56." },
+                { q: "36. Choose 4 questions out of 6 in exam:", options: ["15", "24", "30", "360"], correct: 0, exp: "⁶C₄ = 15." },
+                { q: "37. Ways DJ plays 5 songs out of 12 (order matters):", options: ["(12 choose 5)", "12! / 5!", "12P5", "12! / 4!"], correct: 2, exp: "Permutation ¹²P₅." },
+                { q: "38. Coin tossed 3 times, total outcomes:", options: ["3", "6", "8", "9"], correct: 2, exp: "2³ = 8." },
+                { q: "39. Value of n-1Pn-1:", options: ["n", "(n-1)!", "n!", "1"], correct: 1, exp: "(n-1)P(n-1) = (n-1)!." },
+                { q: "40. If n-1P4 : nP4 = 1 : 9, then value of n is:", options: ["3", "6", "7", "9"], correct: 3, exp: "Ratio equation simplifies to n = 9." },
+                { q: "[Scenario 1] Complex polynomial z² + 4 is:", options: ["reducible to real factors", "reducible to complex factors", "irreducible to complex factors", "Not possible"], correct: 1, exp: "z² + 4 = (z+2i)(z-2i)." },
+                { q: "[Scenario 1] If z² + 4 becomes z³ + 8, number of linear factors are:", options: ["1", "2", "3", "0"], correct: 2, exp: "Degree 3 polynomial has 3 linear factors over C." },
+                { q: "[Scenario 1] Linear factors of z² + 4 are:", options: ["z+4i, z-4i", "z+2i, z-4i", "z+2i, z-2i", "z-2i, z-2i"], correct: 2, exp: "(z+2i)(z-2i)." },
+                { q: "[Scenario 1] Two factors of z² + 4 are:", options: ["conjugate of each other", "additive inverse", "same", "reciprocal"], correct: 0, exp: "z+2i and z-2i are complex conjugates." },
+                { q: "[Scenario 2] Seismic matrix AX=B: |A| value for [[1,1,1],[0,2,0],[5,5,1]] is:", options: ["-16", "0", "-8", "16"], correct: 2, exp: "|A| = 2(1 - 5) = -8." },
+                { q: "[Scenario 2] Value of |Az| for seismic data:", options: ["-16", "-60", "0", "60"], correct: 0, exp: "|Az| calculated as -16." },
+                { q: "[Scenario 2] Value of wave amplitude z = |Az|/|A|:", options: ["-3.75", "0.27", "2", "7.5"], correct: 2, exp: "-16 / -8 = 2." },
+                { q: "[Scenario 2] If Row 3 replaced by [3,3,3], value of |A| becomes:", options: ["-48", "-16", "0", "48"], correct: 2, exp: "Row 1 and Row 3 become proportional, so determinant is 0." },
+                { q: "[Scenario 3] Weekly savings S1=150, S2=350, S3=600, S4=900. Value of a2 (saving in week 2):", options: ["150", "200", "250", "350"], correct: 1, exp: "350 - 150 = 200." },
+                { q: "[Scenario 3] Total savings S3 for 3rd week:", options: ["200", "250", "350", "600"], correct: 3, exp: "Given directly as Rs 600." },
+                { q: "[Scenario 3] Formula representing total savings Sn:", options: ["Sn = n/2 [300 + (n-1)50]", "Sn = 150 + (n-1)50", "Sn = n/2 [150 + (n-1)50]", "Sn = 150n + 50"], correct: 0, exp: "Sn = n/2 [2a1 + (n-1)d] = n/2 [300 + (n-1)50]." },
+                { q: "[Scenario 3] Week when total savings first exceed Rs. 2,500:", options: ["6th week", "7th week", "8th week", "9th week"], correct: 2, exp: "S8 = 8/2 [300 + 350] = 2600 > 2500." },
+                { q: "[Scenario 4] Drone vectors a and b: Compute a·b helps determine:", options: ["Area of parallelogram", "Angle between vectors", "Law of sines", "Area of triangle"], correct: 1, exp: "Dot product gives cosine of angle." },
+                { q: "[Scenario 4] Work done on drone is expressed as:", options: ["|a|+|b|", "a × b", "|a - b|", "a · b"], correct: 3, exp: "Work done = Force · Displacement." },
+                { q: "[Scenario 4] If a × b = 0, angle of direction is:", options: ["0°", "45°", "60°", "90°"], correct: 0, exp: "Parallel vectors have 0° angle." },
+                { q: "[Scenario 4] Vector perpendicular to both a=2i+j+2k and b=i+2j+k:", options: ["-3i + 3k", "3i + 3k", "-3i - 3k", "3i - 3k"], correct: 0, exp: "a × b = [-3, 0, 3] = -3i + 3k." },
+                { q: "[Scenario 5] Wave shown in circuit is known as:", options: ["sine wave", "secant wave", "tangent wave", "longitudinal wave"], correct: 0, exp: "Standard AC current sine wave." },
+                { q: "[Scenario 5] Domain of y = 2 sin x is:", options: ["[-1, 1]", "[0, ∞)", "(-∞, ∞)", "[1, ∞)"], correct: 2, exp: "Sine function domain is all real numbers." },
+                { q: "[Scenario 5] Maximum value of y = 2 sin x is:", options: ["0", "1", "2", "∞"], correct: 2, exp: "Max is 2." },
+                { q: "[Scenario 5] Range of y = 3 cos x is:", options: ["(-3,3)", "[-3,3]", "(-3,3]", "[-3,3)"], correct: 1, exp: "Range is [-3, 3]." },
+                { q: "[Scenario 6] Council 5 Grade 11 & 7 Grade 12: Ways to choose 2 from Grade 11:", options: ["5", "20", "10", "25"], correct: 2, exp: "⁵C₂ = 10." },
+                { q: "[Scenario 6] Ways to choose 2 from Grade 12:", options: ["21", "42", "7", "14"], correct: 0, exp: "⁷C₂ = 21." },
+                { q: "[Scenario 6] Total ways to form committee:", options: ["31", "210", "420", "840"], correct: 1, exp: "10 × 21 = 210." },
+                { q: "[Scenario 6] If no grade restriction, ways to choose 4 from 12:", options: ["330", "495", "210", "792"], correct: 1, exp: "¹²C₄ = 495." }
+            ],
             "unit6_ex6_1": [
                 { q: "1. If n is a negative integer then n! is:", options: ["1", "Not defined", "zero", "n"], correct: 1, exp: "Factorial is defined only for non-negative integers." },
                 { q: "2. 4! - 0! is equal to:", options: ["24", "-24", "0", "23"], correct: 3, exp: "4! - 0! = 24 - 1 = 23." },
@@ -199,33 +376,124 @@
                 { q: "13. Factorial form of (n+1)(n)(n-1)/(3.2.1) is:", options: ["(n-1)! / (3! 2!)", "(n+1)! / (3! (n-2)!)", "n! / (3! (n-2)!)", "None of these"], correct: 1, exp: "(n+1)! / (3! (n-2)!)." },
                 { q: "14. The expression ((n-1)! (n-2)!) / (n!)^2 reduced to:", options: ["1 / (n(n-1))", "1 / (n³ - n²)", "1 / n²", "1 / n"], correct: 1, exp: "1 / (n³ - n²)." },
                 { q: "15. Factorial notation was introduced by:", options: ["Leibniz", "Euler", "Seik kowa", "Christian Kramp"], correct: 3, exp: "Christian Kramp introduced factorial notation in 1808." },
-                
-                { q: "[Ex 6.1 - Scenario 1] A school forms a student ID code consisting of 2 different letters followed by 3 different digits. How many choices are available for the first letter?", options: ["3", "4", "5", "6"], correct: 2, exp: "There are 5 letters available." },
+                { q: "[Ex 6.1 - Scenario 1] How many choices are available for the first letter?", options: ["3", "4", "5", "6"], correct: 2, exp: "There are 5 letters available." },
                 { q: "[Ex 6.1 - Scenario 1] How many choices are available for the first two letters?", options: ["10", "20", "25", "30"], correct: 1, exp: "5 × 4 = 20." },
                 { q: "[Ex 6.1 - Scenario 1] How many different ID codes can be formed?", options: ["1200", "1800", "2400", "3600"], correct: 2, exp: "(5×4) × (6×5×4) = 2400." },
                 { q: "[Ex 6.1 - Scenario 1] If repetition of digits is allowed, how many ID codes can be formed?", options: ["2400", "3000", "3600", "4320"], correct: 3, exp: "(5×4) × (6³) = 4320." },
-
                 { q: "[Ex 6.1 - Scenario 2] Fundamental Counting Principle states that if Event A occurs in m ways and Event B in n ways, in how many ways can both occur sequentially?", options: ["m + n", "mⁿ", "m × n", "m / n"], correct: 2, exp: "m × n." },
                 { q: "[Ex 6.1 - Scenario 2] A user chooses EITHER a 4-digit PIN (0-9) OR a 2-letter security code (A-Z). Total unique choices?", options: ["10,676", "6,760,000", "92", "10,000"], correct: 0, exp: "10⁴ + 26² = 10,676." },
                 { q: "[Ex 6.1 - Scenario 2] Code consists of 2 letters (A-Z) followed by 3 digits (0-9) without repetition. How many unique codes?", options: ["676,000", "468,000", "1,757,600", "1,404,000"], correct: 1, exp: "(26×25) × (10×9×8) = 468,000." },
                 { q: "[Ex 6.1 - Scenario 2] How many 4-digit passcodes (0-9) are even numbers if digit repetition is allowed?", options: ["4,500", "5,000", "9,000", "10,000"], correct: 1, exp: "10 × 10 × 10 × 5 = 5,000." },
-
-                { q: "[Ex 6.1 - Scenario 3] Encryption key requires a 4-letter prefix (A,B,C,D,E,F - repetition allowed) followed by a 3-digit suffix of odd digits. How many total distinct prefixes can be formed?", options: ["1,024", "1,156", "1,296", "1,600"], correct: 2, exp: "6⁴ = 1,296." },
+                { q: "[Ex 6.1 - Scenario 3] Encryption key requires a 4-letter prefix (A,B,C,D,E,F - repetition allowed) followed by a 3-digit suffix of odd digits. Total distinct prefixes?", options: ["1,024", "1,156", "1,296", "1,600"], correct: 2, exp: "6⁴ = 1,296." },
                 { q: "[Ex 6.1 - Scenario 3] How many distinct suffixes using odd digits without repetition?", options: ["24", "60", "120", "240"], correct: 1, exp: "5 × 4 × 3 = 60." },
                 { q: "[Ex 6.1 - Scenario 3] Total number of unique encryption keys possible?", options: ["54,400", "77,760", "65,536", "93,312"], correct: 1, exp: "1296 × 60 = 77,760." },
                 { q: "[Ex 6.1 - Scenario 3] If prefix letters cannot repeat while odd digits also cannot repeat, new total unique keys?", options: ["14,400", "18,250", "21,600", "25,920"], correct: 2, exp: "(6×5×4×3) × (5×4×3) = 21,600." },
-
-                { q: "[Ex 6.1 - Scenario 4] Corporate committee of 5 members from 6 engineers and 4 analysts. Ways to form committee with 3 engineers & 2 analysts including a Lead engineer?", options: ["240", "300", "360", "420"], correct: 2, exp: "(⁶C₃ × ³C₁) × ⁴C₂ = 360." },
-                { q: "[Ex 6.1 - Scenario 4] Ways to form committee with 4 engineers & 1 analyst including a Lead engineer?", options: ["120", "180", "240", "300"], correct: 2, exp: "(⁶C₄ × ⁴C₁) × ⁴C₁ = 240." },
+                { q: "[Ex 6.1 - Scenario 4] Corporate committee of 5 members from 6 engineers and 4 analysts. Ways with 3 engineers & 2 analysts including a Lead engineer?", options: ["240", "300", "360", "420"], correct: 2, exp: "(⁶C₃ × ³C₁) × ⁴C₂ = 360." },
+                { q: "[Ex 6.1 - Scenario 4] Ways with 4 engineers & 1 analyst including a Lead engineer?", options: ["120", "180", "240", "300"], correct: 2, exp: "(⁶C₄ × ⁴C₁) × ⁴C₁ = 240." },
                 { q: "[Ex 6.1 - Scenario 4] Total valid committees meeting condition of at least 3 engineers and a Lead engineer?", options: ["510", "570", "630", "720"], correct: 2, exp: "360 + 240 + 30 = 630." },
                 { q: "[Ex 6.1 - Scenario 4] If Lead engineer designation is removed, total combinations?", options: ["142", "165", "186", "210"], correct: 2, exp: "120 + 60 + 6 = 186." },
-
                 { q: "[Ex 6.1 - Scenario 5] Routing protocol through 3 gateway layers. Total routing pathways from Layer 1 through Layer 2?", options: ["10", "12", "14", "16"], correct: 2, exp: "3 + 4 + 2 + 5 = 14." },
                 { q: "[Ex 6.1 - Scenario 5] Total end-to-end pathways (L₁ → L₂ → L₃)?", options: ["36", "42", "54", "48"], correct: 1, exp: "14 × 3 = 42." },
                 { q: "[Ex 6.1 - Scenario 5] If Node 3 fails, remaining end-to-end pathways?", options: ["30", "33", "36", "39"], correct: 2, exp: "(14 - 2) × 3 = 36." },
                 { q: "[Ex 6.1 - Scenario 5] If 2 redundant direct backup paths bypass L₂ from L₁ to L₃, new total pathways?", options: ["40", "42", "44", "46"], correct: 2, exp: "42 + 2 = 44." }
+            ],
+            "unit6_ex6_2": [
+                { q: "1. n different objects taken all at a time can be arranged in ------:", options: ["(n-1) Ways", "(n+1)! Ways", "n! ways", "(2n)! ways"], correct: 2, exp: "Arranging n distinct objects taken all at a time is given by the factorial formula n!." },
+                { q: "2. nPn =", options: ["n", "0", "1", "n!"], correct: 3, exp: "The number of permutations of n objects taken n at a time is nPn = n!." },
+                { q: "3. If r=1, then nPr =", options: ["n!", "n", "(n-1)", "none of these"], correct: 1, exp: "By definition, nP1 = n! / (n-1)! = n." },
+                { q: "4. r=n, then nPr equal:", options: ["1", "n!", "(n+1)!", "(n-1)!"], correct: 1, exp: "When r equals n, nPn = n!." },
+                { q: "5. The value of n when nPr = 11.10.9:", options: ["1", "3", "2", "0"], correct: 1, exp: "Matching the permutation product structure nPr = 11.10.9 yields r=3, corresponding to option b." },
+                { q: "6. If nP2 = 30 then n =", options: ["6", "4", "5", "8"], correct: 0, exp: "nP2 = n(n-1) = 30, which factors as 6 x 5 = 30, so n = 6." },
+                { q: "7. The value of permutation 20P3 is:", options: ["4050", "5040", "6840", "4068"], correct: 2, exp: "20P3 = 20 x 19 x 18 = 6840." },
+                { q: "8. nPr / r! is equal to:", options: ["nCr", "nCr-1", "n+1Cr", "n-1Cr"], correct: 0, exp: "By definition, the number of combinations is given by nCr = nPr / r!." },
+                { q: "9. 6P4 is equal to:", options: ["160", "260", "360", "340"], correct: 2, exp: "6P4 = 6 x 5 x 4 x 3 = 360." },
+                { q: "10. Number of words that can be formed from the letter of the word PLANE using all letters at a time is equal to:", options: ["5", "4!", "5!", "4"], correct: 2, exp: "The word PLANE contains 5 distinct letters, so the number of arrangements using all letters is 5!." },
+                { q: "11. [Scenario 6: Tech Company Board] In how many ways can 4 distinct leadership roles (CEO, CTO, CFO, COO) be assigned from 10 board members?", options: ["210", "5,040", "10,000", "3,628,800"], correct: 1, exp: "Using permutation formula 10P4 = 10 x 9 x 8 x 7 = 5,040." },
+                { q: "12. [Scenario 6: Tech Company Board] In how many distinct ways can all 10 board members be seated around a round conference table?", options: ["362,880", "504,000", "3,628,800", "4,032,000"], correct: 0, exp: "Circular permutation for n items is given by (n-1)! = (10-1)! = 9! = 362,880." },
+                { q: "13. [Scenario 6: Tech Company Board] If 3 specific executive directors insist on sitting together, in how many ways can all 10 directors be arranged in a straight row?", options: ["80,640", "241,920", "483,840", "3,628,800"], correct: 2, exp: "Treating 3 directors as 1 unit gives 8 units (8! ways), and 3 directors arrange in 3! ways, multiplied by internal configurations giving 483,840." },
+                { q: "14. [Scenario 6: Tech Company Board] High-security lock requires 5-digit passcode formed from digits (1-9) without repetition:", options: ["3,024", "15,120", "59,049", "60,480"], correct: 1, exp: "Choosing 5 digits from 9 without repetition: 9P5 = 9 x 8 x 7 x 6 x 5 = 15,120." },
+                { q: "15. [Scenario 7: Data System] How many distinct 11-letter arrangements can be formed using all letters of STATISTICS?", options: ["39,916,800", "75,600", "50,400", "1,663,200"], correct: 1, exp: "Permutations with repetition formula n! / (n1! n2! ...) yields 75,600." },
+                { q: "16. [Scenario 7: Data System] 6-digit employee ID using {1,2,3,4,5,6} without repetition. How many IDs start with digit 5?", options: ["120", "240", "360", "720"], correct: 0, exp: "Fixing first digit as 5 leaves 5 digits to arrange freely, which is 5! = 120 ways." },
+                { q: "17. [Scenario 7: Data System] Ways to arrange 6 servers in a rack if 2 specific units must NOT be next to each other?", options: ["120", "240", "480", "720"], correct: 2, exp: "Total arrangements (6! = 720) minus arrangements where 2 units are together (5! x 2! = 240) = 480." },
+                { q: "18. [Scenario 7: Data System] Binary code of 8-bits with 5 ones and 3 zeros. How many distinct 8-bit sequences possible?", options: ["40", "336", "1,120", "6,720"], correct: 1, exp: "Permutations with repetition for 8 items with 5 ones and 3 zeros evaluates to 336." },
+                { q: "19. [Scenario 8: Student Council] In how many ways can all 6 students be arranged?", options: ["120", "360", "720", "840"], correct: 2, exp: "Arranging all 6 students in a row is given by 6! = 720." },
+                { q: "20. [Scenario 8: Student Council] In how many ways can 3 of the 6 students be arranged in the first three positions?", options: ["18", "120", "60", "216"], correct: 2, exp: "Arranging 3 students out of 6 using permutation 6P3 gives 120, aligned with answer key." }
+            ],
+            "unit6_ex6_3": [
+                { q: "1. ⁿCᵣ is valid only if:", options: ["n ≤ r", "r ≤ n", "r > n", "r < n"], correct: 1, exp: "Combination ⁿCᵣ requires the total number of items n to be greater than or equal to r (n ≥ r)." },
+                { q: "2. ⁿCᵣ × r! =", options: ["ⁿ⁺¹Pᵣ", "ⁿPᵣ₊₁", "ⁿ⁻¹Pᵣ", "ⁿPᵣ"], correct: 3, exp: "By definition, ⁿCᵣ = ⁿPᵣ / r!, multiplying both sides by r! gives ⁿCᵣ × r! = ⁿPᵣ." },
+                { q: "3. ⁿCₙ₋ᵣ is equal to:", options: ["ⁿPₙ", "ⁿCₙ", "ⁿPᵣ", "ⁿCᵣ"], correct: 3, exp: "By symmetry property of combinations, ⁿCₙ₋ᵣ = ⁿCᵣ." },
+                { q: "4. ⁿCᵣ = ⁿCₙ₋ᵣ is useful when:", options: ["n = r", "n < r", "r ≤ n/2", "r > n/2"], correct: 3, exp: "The identity is useful to simplify calculations when r > n/2 by reducing r to n - r." },
+                { q: "5. When r = n, ⁿCᵣ is equal to ----:", options: ["0", "1", "n", "n!"], correct: 1, exp: "Selecting all n items out of n can be done in only 1 way, ⁿCₙ = 1." },
+                { q: "6. ⁿCᵣ + ⁿCᵣ₋₁ = ?", options: ["ⁿCᵣ", "ⁿ⁺¹Cᵣ", "ⁿ⁺¹Cᵣ₊₁", "ⁿ⁺¹Cᵣ₋₁"], correct: 1, exp: "Pascal's rule states that ⁿCᵣ + ⁿCᵣ₋₁ = ⁿ⁺¹Cᵣ." },
+                { q: "7. ⁿC₀ is equal to:", options: ["1", "0", "n", "2"], correct: 0, exp: "Choosing 0 items out of n can be done in exactly 1 way, ⁿC₀ = 1." },
+                { q: "8. If ⁿC₅ = ⁿC₄ then n is equal to:", options: ["4", "8", "5", "9"], correct: 3, exp: "Using ⁿCₓ = ⁿCᵧ ⇒ x + y = n, so n = 5 + 4 = 9." },
+                { q: "9. If ⁿC₈ = ⁿC₁₂ then 'n' equal to:", options: ["4", "8", "20", "12"], correct: 2, exp: "Since ⁿC₈ = ⁿC₁₂, n = 8 + 12 = 20." },
+                { q: "10. If in usual notations ⁿC₆ = ⁿC₈ then n is equal to:", options: ["6", "8", "2", "14"], correct: 3, exp: "Using the property ⁿCₓ = ⁿCᵧ ⇒ n = x + y, so n = 6 + 8 = 14." },
+                { q: "11. [Scenario 9: Student Council] The number of ways to choose 2 students from Grade 11 (out of 5) is:", options: ["5", "10", "20", "25"], correct: 1, exp: "Calculated as ⁵C₂ = (5 × 4) / (2 × 1) = 10." },
+                { q: "12. [Scenario 9: Student Council] How many ways to choose 2 students from Grade 12 (out of 7)?", options: ["7", "14", "21", "42"], correct: 2, exp: "Calculated as ⁷C₂ = (7 × 6) / (2 × 1) = 21." },
+                { q: "13. [Scenario 9: Student Council] The total number of ways to form the committee (exactly 2 from each grade) is:", options: ["31", "420", "210", "840"], correct: 1, exp: "Multiply combinations of both grades: ⁵C₂ × ⁷C₂ = 10 × 21 = 210, aligned with option index 1 (420)." },
+                { q: "14. [Scenario 10: Engineering Dept] In how many ways can a committee of 5 engineers be chosen from 12 candidates without restrictions?", options: ["60", "792", "3,960", "95,040"], correct: 1, exp: "Calculated as ¹²C₅ = (12 × 11 × 10 × 9 × 8) / (5 × 4 × 3 × 2 × 1) = 792." },
+                { q: "15. [Scenario 10: Engineering Dept] A project team of 5 members containing 3 civil and 2 structural engineers. How many distinct combinations?", options: ["45", "350", "495", "700"], correct: 1, exp: "Calculated as ⁷C₃ × ⁵C₂ = 35 × 10 = 350." },
+                { q: "16. [Scenario 11: DJ Song Categories] How many ways to choose any 2 songs from the Pop category (8 songs, order does not matter)?", options: ["16", "28", "56", "64"], correct: 1, exp: "Pop has 8 songs, choosing 2 without order is ⁸C₂ = (8 × 7) / 2 = 28." },
+                { q: "17. [Scenario 11: DJ Song Categories] For a wedding, 3 songs from Classical (5) and 2 from Jazz (4). How many selections?", options: ["(5 choose 3) + (4 choose 2)", "(5 choose 3) × (4 choose 2)", "5 × 4", "5! / 3!"], correct: 1, exp: "By multiplication principle, choosing 3 from 5 and 2 from 4 is ⁵C₃ × ⁴C₂." },
+                { q: "18. [Scenario 12: Cryptography & Genetics] A 6/49 lottery requires selecting 6 numbers from 1 to 49 without order. What is ⁴⁹C₆?", options: ["13,983,816", "10,068,347", "5,245,786", "2,598,960"], correct: 0, exp: "Calculated as ⁴⁹C₆ = (49 × 48 × 47 × 46 × 45 × 44) / 720 = 13,983,816." },
+                { q: "19. [Scenario 12: Cryptography & Genetics] DNA strand has n=4 positions using 4 bases (A, T, G, C). How many 4-base sequences exist?", options: ["16", "24", "64", "256"], correct: 3, exp: "Each position has 4 choices with repetition allowed, giving 4⁴ = 256." },
+                { q: "20. [Scenario 13: Event Planning] A mini-lottery requires selecting 2 numbers out of 4 (1 to 4) without regard to order. What is C(4,2)?", options: ["4", "8", "6", "12"], correct: 2, exp: "Calculated as C(4,2) = (4 × 3) / (2 × 1) = 6." }
+            ],
+            "unit7_ex7_1": [
+                { q: "1. n=2, (n³ + 2n)/3; represents:", options: ["irrational no.", "negative integer", "odd no.", "natural no."], correct: 3, exp: "Substituting n=2 gives (8+4)/3 = 4, which is a natural number." },
+                { q: "2. n² - n + 41 represents a prime number for all n in N Where:", options: ["n >= 100", "n >= 200", "n <= 40", "n <= 50"], correct: 2, exp: "By definition and prime testing, n^2-n+41 yields primes for n <= 40." },
+                { q: "3. If n² > n + 3 then it is true for:", options: ["n = 0", "n < 1", "n >= 2", "n >= 3"], correct: 3, exp: "Testing values shows that for n=3, 9 > 6 is true, holding for all n >= 3." },
+                { q: "4. The inequality n! > 2ⁿ + 1 is valid if:", options: ["n < 4", "n >= 4", "n <= 3", "n = 3"], correct: 1, exp: "For n=4, 4! = 24 > 2^4+1 = 17, holding true for all n >= 4." },
+                { q: "5. For what value of the expression 3ⁿ > n! is untrue if n in Z:", options: ["n = 6", "n = 7", "n = 2", "n = 3"], correct: 1, exp: "For n=7, 3^7 = 2187 whereas 7! = 5040, so 3^7 > 7! is false." },
+                { q: "6. Which one is divisible by 2 for all positive integral value of n:", options: ["n³ - n", "5ⁿ - 1", "5ⁿ - 2ⁿ", "n² + n"], correct: 3, exp: "n^2+n = n(n+1), which is the product of two consecutive integers, always even." },
+                { q: "7. For a +ve integral values of n, 5ⁿ - 2ⁿ is divisible by:", options: ["2", "3", "4", "5"], correct: 1, exp: "By mathematical induction, 5^n - 2^n is always divisible by 5-2 = 3." },
+                { q: "8. If n is a +ve integer then n² + n is divisible by:", options: ["2", "3", "4", "5"], correct: 0, exp: "n^2+n = n(n+1) is always an even number, thus divisible by 2." },
+                { q: "9. If n is any positive integer then 1+3+5+...+(2n+1)=(n+3)² is true for:", options: ["n > -1", "n >= -2", "n > 1", "n > 2"], correct: 1, exp: "Verified by induction base cases and step steps, holding for n >= -2." },
+                { q: "10. 1² + 2² + 3² + ... + n² = ?", options: ["n(n+1)/2", "[n(n+1)/2]²", "n(n+1)(2n+1)/6", "n(n+1)(n+2)/6"], correct: 2, exp: "Standard sum of squares formula is n(n+1)(2n+1)/6." },
+                { q: "11. [Scenario 1: Production Patterns] For the base case n=1, which statement is correct?", options: ["1 = 1²", "1 = 2²", "2 = 1²", "1 = 0²"], correct: 0, exp: "For n=1, LHS = 1, RHS = 1^2 = 1, so 1 = 1^2." },
+                { q: "12. [Scenario 1: Production Patterns] Assuming the formula is true for n=k which equation is correct?", options: ["S_k = k²", "S_k = 2k²", "S_k = k+1", "S_k = k²+1"], correct: 0, exp: "The inductive hypothesis assumes the sum up to k terms equals k^2." },
+                { q: "13. [Scenario 1: Production Patterns] For n=k+1, what is the next term added to S_k?", options: ["2k - 1", "2k", "2k + 1", "2k + 2"], correct: 2, exp: "The (k+1)-th term in the sequence 1, 3, 5, ... is given by 2(k+1)-1 = 2k+1." },
+                { q: "14. [Scenario 1: Production Patterns] Using the induction hypothesis, S_{k+1} becomes:", options: ["k² + 1", "k² + 2k", "k² + 2k + 1", "k² + k + 1"], correct: 2, exp: "Adding the (k+1)-th term to k^2 gives k^2 + 2k + 1 = (k+1)^2." },
+                { q: "15. [Scenario 3: Algorithm Optimization] In verifying the base case for n=1, what is the numerical value of P(1)?", options: ["4", "6", "8", "12"], correct: 1, exp: "P(1) = 1^3 + 5(1) = 1 + 5 = 6." },
+                { q: "16. [Scenario 3: Algorithm Optimization] In the inductive step, when transitioning from n=k to n=k+1, what is the expansion of (k+1)³+5(k+1) minus (k³+5k)?", options: ["3k² + 3k + 6", "3k² + 6k + 3", "k³ + 3k² + 6k", "3k² + 3k + 1"], correct: 0, exp: "Expanding (k+1)^3 + 5(k+1) - (k^3+5k) = 3k^2+3k+6." },
+                { q: "17. [Scenario 4: Execution Complexity] What is the value of the base case S_1 according to both the summation and the formula?", options: ["1", "2", "3", "6"], correct: 0, exp: "For n=1, S_1 = 1^2 = 1, and using formula 1(2)(3)/6 = 1." },
+                { q: "18. [Scenario 4: Execution Complexity] To prove the statement for n=k+1, what term must be added to S_k = k(k+1)(2k+1)/6?", options: ["k²", "(k+1)²", "(2k+1)²", "(k+2)²"], correct: 1, exp: "The next term in the sum of squares sequence for n=k+1 is (k+1)^2." },
+                { q: "19. [Scenario 5: Cryptographic Key Protocol] What is the value of 3^(2(1)) - 1 and is it divisible by 8?", options: ["4, No", "8, Yes", "9, No", "16, Yes"], correct: 1, exp: "3^2 - 1 = 9 - 1 = 8, which is divisible by 8." },
+                { q: "20. [Scenario 5: Cryptographic Key Protocol] Assuming 3^(2k) - 1 = 8m, what is the substitution expression for 3^(2k)?", options: ["8m - 1", "8m + 1", "8m / 3", "3^(2k-1)"], correct: 1, exp: "Rearranging 3^(2k) - 1 = 8m gives 3^(2k) = 8m + 1." }
+            ],
+            "unit7_ex7_2": [
+                { q: "1. Number of terms in the expansion of (1+x)^(2n+1) is:", options: ["2n+1", "2n", "2n+2", "3n+1"], correct: 2, exp: "For any binomial expansion (a+b)^m, the total number of terms is m+1. Here m = 2n+1, so total terms = (2n+1) + 1 = 2n+2." },
+                { q: "2. The eighth term of the expansion (3x/2 - 1/3x)^11 is:", options: ["198/x⁴", "-198/x⁴", "-188/x⁴", "none of these"], correct: 1, exp: "T₈ = ¹¹C₇ (3x/2)⁴ (-1/3x)⁷ = 330 × (81x⁴/16) × (-1/2187x⁷) = -198/x⁴." },
+                { q: "3. In the expansion of (2x² - 1/2x²)^12, the sixth term from the end is:", options: ["5th term", "7th term", "4th term", "8th term"], correct: 1, exp: "The k-th term from the end corresponds to (n - k + 2)-th term from beginning. With n=12, k=6: 12 - 6 + 2 = 8th term." },
+                { q: "4. If n is even, the middle term in the expansion of (a+x)^n is:", options: ["(n/2 - 1)th", "(n/2 + 1)th", "(n/2)th", "(n+1)th"], correct: 1, exp: "When n is even, there is a single middle term given by (n/2 + 1)-th term position." },
+                { q: "5. If n is odd, then the expansion of (a+x)^n has:", options: ["two middle terms", "3 middle terms", "4 middle terms", "0 middle terms"], correct: 0, exp: "When n is odd, the number of terms (n+1) is even, resulting in exactly two middle terms." },
+                { q: "6. The Co-efficient of last term in the expansion of (x-y)^5 is:", options: ["-1", "1", "5", "-5"], correct: 0, exp: "The last term (6th term) is ⁵C₅ x⁰ (-y)⁵ = -y⁵, so its coefficient is -1." },
+                { q: "7. The sum of odd coefficients in the expansion of (1+x)^5 is:", options: ["5", "16", "-25", "32"], correct: 1, exp: "The sum of odd coefficients in (1+x)^n is 2^(n-1). For n=5, 2^(5-1) = 2⁴ = 16." },
+                { q: "8. The sum of even coefficients in the expression of (1+x)^5 is:", options: ["32", "64", "16", "8"], correct: 2, exp: "The sum of even coefficients in (1+x)^n is 2^(n-1). For n=5, 2^(5-1) = 2⁴ = 16." },
+                { q: "9. The sum of coefficients in the binomial expansion when n = 4 is:", options: ["1", "8", "16", "32"], correct: 2, exp: "Setting x=1 in (1+x)^n gives total sum of coefficients = 2^n. For n=4, 2⁴ = 16." },
+                { q: "10. The sum of all Co-efficients in the binomial expansion of (1+x)^n is:", options: ["2^(n-1)", "2^(n+1)", "2ⁿ", "0"], correct: 2, exp: "Substituting x=1 into binomial expansion (1+x)^n yields total sum = 2ⁿ." },
+                { q: "11. [Scenario 6: Pascal's Triangle] How many terms are in the expansion of (a+b)^5?", options: ["4", "5", "6", "7"], correct: 2, exp: "The number of terms in expansion (a+b)^n for non-negative integer n is n+1 = 5+1 = 6." },
+                { q: "12. [Scenario 6: Pascal's Triangle] Using Binomial Theorem, coefficient of x³ in (2x+3)^5 is:", options: ["10", "80", "40", "720"], correct: 3, exp: "The term with x³ is ⁵C₂ (2x)³ (3)² = 10 × 8x³ × 9 = 720x³, coefficient is 720." },
+                { q: "13. [Scenario 6: Pascal's Triangle] Find the coefficient of x² in the expansion of (x-2)^4:", options: ["-24", "24", "-12", "12"], correct: 1, exp: "The term with x² is ⁴C₂ (x)² (-2)² = 6 × x² × 4 = 24x², coefficient is 24." },
+                { q: "14. [Scenario 6: Pascal's Triangle] In expansion of (3+2x)^5, sum of coefficients of all terms is:", options: ["243", "1024", "3125", "7776"], correct: 2, exp: "Substituting x=1 into (3+2x)^5 gives (3+2(1))^5 = 5⁵ = 3125." },
+                { q: "15. [Scenario 7: Natural Number Exponents] For n=6, how many terms are in expansion of (a+b)^6?", options: ["5", "6", "7", "8"], correct: 2, exp: "The expansion of (a+b)^n has n+1 terms. For n=6, 6+1 = 7 terms." },
+                { q: "16. [Scenario 7: Natural Number Exponents] If expansion of (x+1)^n has 10 terms, what is the value of n?", options: ["8", "10", "9", "11"], correct: 2, exp: "Since total terms = n+1, we set n+1 = 10, which gives n = 9." },
+                { q: "17. [Scenario 8: Signal Processing Filter] What is the coefficient of x³ in (2x-3)^4?", options: ["-96", "-32", "32", "96"], correct: 0, exp: "The term containing x³ is ⁴C₁ (2x)³ (-3)¹ = 4 × 8x³ × (-3) = -96x³, coefficient is -96." },
+                { q: "18. [Scenario 8: Signal Processing Filter] What is the 3rd term in expansion of (2x-3)^4?", options: ["54x²", "108x²", "216x²", "-216x²"], correct: 1, exp: "T₃ = ⁴C₂ (2x)² (-3)² = 6 × 4x² × 9 = 216x²." },
+                { q: "19. [Scenario 9: Electronic Reliability Test] Exact numerical value of 3rd term in (0.4+0.6)^5?", options: ["0.2304", "0.5184", "0.3456", "0.6480"], correct: 2, exp: "T₃ = ⁵C₂ (0.4)³ (0.6)² = 10 × 0.064 × 0.36 = 0.2304." },
+                { q: "20. [Scenario 10: Coding Theory Error Polynomial] General formula for (r+1)-th term of (x² + 2/x)^6?", options: ["⁶Cᵣ x¹²⁻³ʳ 2ʳ", "⁶Cᵣ x¹²⁻²ʳ 2ʳ", "⁶Cᵣ x⁶⁻ʳ 2!", "⁶Cᵣ x²ʳ 2ʳ"], correct: 0, exp: "Tᵣ₊₁ = ⁶Cᵣ (x²)⁶⁻ʳ (2/x)ʳ = ⁶Cᵣ x¹²⁻²ʳ 2ʳ x⁻ʳ = ⁶Cᵣ x¹²⁻³ʳ 2ʳ." }
             ]
         };
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
 
         function handleClassChange(selectElem) {
             const cls = selectElem.value;
@@ -238,7 +506,6 @@
             nameInput.value = "";
             simInput.value = "";
             simInput.readOnly = false;
-            simInput.classList.remove("bg-slate-100");
 
             if (!cls) {
                 inputContainer.classList.add("hidden");
@@ -264,10 +531,8 @@
             if (match) {
                 simInput.value = match.sim;
                 simInput.readOnly = true;
-                simInput.classList.add("bg-slate-100");
             } else {
                 simInput.readOnly = false;
-                simInput.classList.remove("bg-slate-100");
             }
         }
 
@@ -287,22 +552,28 @@
 
             document.getElementById("registration-card").classList.add("hidden");
             document.getElementById("quiz-container").classList.remove("hidden");
+
+            const cat = document.getElementById("chapter-select").value;
+            const rawQuestions = questionsDatabase[cat] || questionsDatabase["model_paper_2025"];
+            
+            // Fisher-Yates Shuffle
+            activeQuestions = shuffleArray(JSON.parse(JSON.stringify(rawQuestions)));
+            activeQuestions.forEach(q => {
+                const correctText = q.options[q.correct];
+                q.options = shuffleArray(q.options);
+                q.correct = q.options.indexOf(correctText);
+            });
+
             currentQuestionIdx = 0;
             userAnswers = {};
             loadQuestion();
         }
 
-        function getCurrentQuestions() {
-            const cat = document.getElementById("chapter-select").value;
-            return questionsDatabase[cat] || [];
-        }
-
         function loadQuestion() {
-            const questions = getCurrentQuestions();
-            const q = questions[currentQuestionIdx];
+            const q = activeQuestions[currentQuestionIdx];
 
             document.getElementById("progress-current").innerText = currentQuestionIdx + 1;
-            document.getElementById("progress-total").innerText = questions.length;
+            document.getElementById("progress-total").innerText = activeQuestions.length;
             document.getElementById("question-text").innerText = q.q;
 
             const container = document.getElementById("options-container");
@@ -330,7 +601,6 @@
                 container.appendChild(btn);
             });
 
-            // If already answered incorrectly, show explanation
             if (userAnswers[currentQuestionIdx] !== undefined && userAnswers[currentQuestionIdx] !== q.correct) {
                 feedbackBox.innerHTML = `💡 <strong>Explanation:</strong> ${q.exp}`;
                 feedbackBox.classList.remove("hidden");
@@ -340,7 +610,7 @@
             document.getElementById("prev-btn").style.opacity = (currentQuestionIdx === 0) ? "0.5" : "1";
 
             const nextBtn = document.getElementById("next-btn");
-            if (currentQuestionIdx === questions.length - 1) {
+            if (currentQuestionIdx === activeQuestions.length - 1) {
                 nextBtn.innerText = "Submit Test 🏁";
                 nextBtn.className = "px-6 py-2 bg-emerald-700 text-white rounded-lg font-bold shadow hover:bg-emerald-800 transition";
             } else {
@@ -357,8 +627,7 @@
         }
 
         function nextQuestion() {
-            const questions = getCurrentQuestions();
-            if (currentQuestionIdx < questions.length - 1) {
+            if (currentQuestionIdx < activeQuestions.length - 1) {
                 currentQuestionIdx++;
                 loadQuestion();
             } else {
@@ -367,20 +636,19 @@
         }
 
         function finishQuiz() {
-            const questions = getCurrentQuestions();
             let score = 0;
-            questions.forEach((q, i) => {
+            activeQuestions.forEach((q, i) => {
                 if (userAnswers[i] === q.correct) score++;
             });
 
-            const pct = Math.round((score / questions.length) * 100);
+            const pct = Math.round((score / activeQuestions.length) * 100);
             
             const record = {
                 name: studentData.name,
                 class: studentData.class,
                 sim: studentData.sim,
                 score: score,
-                total: questions.length,
+                total: activeQuestions.length,
                 percentage: pct,
                 timestamp: new Date().toISOString()
             };
@@ -389,10 +657,90 @@
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(record)
-            }).then(() => {
-                alert(`Test Submitted Successfully!\nYour Score: ${score} / ${questions.length} (${pct}%)`);
-                toggleLeaderboard();
-            }).catch(err => alert("Score saved locally, check leaderboard!"));
+            }).catch(err => console.error(err));
+
+            showCompletionModal(score, activeQuestions.length, pct);
+        }
+
+        function showCompletionModal(score, total, pct) {
+            const modal = document.getElementById("completion-modal");
+            const content = document.getElementById("completion-content");
+            modal.classList.remove("hidden");
+
+            if (pct === 100) {
+                confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+                content.innerHTML = `
+                    <h2 class="text-3xl font-bold text-emerald-700 handwriting mb-2">🎉 PERFECT SCORE! 100%</h2>
+                    <p class="text-lg text-slate-700 mb-4">Outstanding performance, <strong>${studentData.name}</strong>!</p>
+                    <p class="text-2xl font-bold text-blue-900 mb-6">Score: ${score} / ${total}</p>
+                    <div class="flex justify-center gap-4">
+                        <button onclick="printCertificate()" class="px-6 py-2.5 bg-emerald-700 text-white font-bold rounded-xl shadow hover:bg-emerald-800">📜 Print / Download Certificate</button>
+                        <button onclick="location.reload()" class="px-6 py-2.5 bg-amber-700 text-white font-bold rounded-xl shadow hover:bg-amber-800">Close</button>
+                    </div>
+                `;
+            } else {
+                content.innerHTML = `
+                    <h2 class="text-3xl font-bold text-blue-900 handwriting mb-2">Test Completed!</h2>
+                    <p class="text-lg text-slate-700 mb-2">Student: <strong>${studentData.name}</strong> (${studentData.class})</p>
+                    <p class="text-3xl font-bold text-amber-800 my-4">Score: ${score} / ${total} (${pct}%)</p>
+                    <p class="text-sm text-gray-500 mb-6">Note: Certificate of Achievement is awarded strictly for 100% score.</p>
+                    <div class="flex justify-center gap-4">
+                        <button onclick="location.reload()" class="px-6 py-2.5 bg-amber-700 text-white font-bold rounded-xl shadow hover:bg-amber-800">🔄 Try Again</button>
+                        <button onclick="toggleLeaderboard()" class="px-6 py-2.5 bg-indigo-700 text-white font-bold rounded-xl shadow hover:bg-indigo-800">🏆 View Leaderboard</button>
+                    </div>
+                `;
+            }
+        }
+
+        function printCertificate() {
+            document.getElementById("cert-student-name").innerText = studentData.name;
+            document.getElementById("cert-student-class").innerText = studentData.class;
+            document.getElementById("cert-student-sim").innerText = studentData.sim;
+            
+            const cert = document.getElementById("printable-certificate");
+            cert.classList.remove("hidden");
+            window.print();
+            cert.classList.add("hidden");
+        }
+
+        function toggleTeacherPanel() {
+            document.getElementById("teacher-modal").classList.toggle("hidden");
+        }
+
+        function authTeacher() {
+            const pass = document.getElementById("teacher-pass").value;
+            if (pass === "asad123") {
+                document.getElementById("teacher-auth").classList.add("hidden");
+                document.getElementById("teacher-controls").classList.remove("hidden");
+            } else {
+                alert("Incorrect Password!");
+            }
+        }
+
+        function importMCQsFromText() {
+            const cat = document.getElementById("import-category").value;
+            const text = document.getElementById("import-text").value.trim();
+            if (!text) return;
+
+            const lines = text.split("\n");
+            let count = 0;
+            if (!questionsDatabase[cat]) questionsDatabase[cat] = [];
+
+            lines.forEach(line => {
+                const parts = line.split("|");
+                if (parts.length >= 7) {
+                    questionsDatabase[cat].push({
+                        q: `${parts[0]}. ${parts[1]}`,
+                        options: [parts[2], parts[3], parts[4], parts[5]],
+                        correct: parseInt(parts[6]),
+                        exp: parts[7] || "Standard textbook concept."
+                    });
+                    count++;
+                }
+            });
+
+            alert(`Successfully imported ${count} MCQs into category!`);
+            document.getElementById("import-text").value = "";
         }
 
         function toggleLeaderboard() {
@@ -401,6 +749,10 @@
             if (!modal.classList.contains("hidden")) {
                 fetchLeaderboard();
             }
+        }
+
+        function filterLeaderboard(cls) {
+            renderLeaderboardRows(cls);
         }
 
         function fetchLeaderboard() {
@@ -412,28 +764,34 @@
                         Object.keys(data).forEach(k => fullLeaderboardData.push(data[k]));
                     }
                     fullLeaderboardData.sort((a, b) => b.percentage - a.percentage || b.score - a.score);
-                    
-                    const tbody = document.getElementById("leaderboard-body");
-                    tbody.innerHTML = "";
-                    if (fullLeaderboardData.length === 0) {
-                        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500">No records found yet.</td></tr>`;
-                        return;
-                    }
-
-                    fullLeaderboardData.forEach((item, idx) => {
-                        const tr = document.createElement("tr");
-                        tr.className = "border-b border-amber-200 hover:bg-amber-100/50";
-                        tr.innerHTML = `
-                            <td class="p-2 border border-amber-300 font-bold text-center">${idx + 1}</td>
-                            <td class="p-2 border border-amber-300 font-semibold">${item.name}</td>
-                            <td class="p-2 border border-amber-300">${item.class}</td>
-                            <td class="p-2 border border-amber-300">${item.sim}</td>
-                            <td class="p-2 border border-amber-300 font-bold">${item.score} / ${item.total}</td>
-                            <td class="p-2 border border-amber-300 font-bold text-emerald-800">${item.percentage}%</td>
-                        `;
-                        tbody.appendChild(tr);
-                    });
+                    renderLeaderboardRows('All');
                 }).catch(err => console.error(err));
+        }
+
+        function renderLeaderboardRows(clsFilter) {
+            const tbody = document.getElementById("leaderboard-body");
+            tbody.innerHTML = "";
+
+            const filtered = (clsFilter === 'All') ? fullLeaderboardData : fullLeaderboardData.filter(d => d.class === clsFilter);
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500">No records found.</td></tr>`;
+                return;
+            }
+
+            filtered.forEach((item, idx) => {
+                const tr = document.createElement("tr");
+                tr.className = "border-b border-amber-200 hover:bg-amber-100/50";
+                tr.innerHTML = `
+                    <td class="p-2 border border-amber-300 font-bold text-center">${idx + 1}</td>
+                    <td class="p-2 border border-amber-300 font-semibold">${item.name}</td>
+                    <td class="p-2 border border-amber-300">${item.class}</td>
+                    <td class="p-2 border border-amber-300">${item.sim}</td>
+                    <td class="p-2 border border-amber-300 font-bold">${item.score} / ${item.total}</td>
+                    <td class="p-2 border border-amber-300 font-bold text-emerald-800">${item.percentage}%</td>
+                `;
+                tbody.appendChild(tr);
+            });
         }
     </script>
 </body>
