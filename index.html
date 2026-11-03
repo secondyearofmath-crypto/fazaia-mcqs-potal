@@ -291,67 +291,122 @@
             { name: "YASHWA NASAR", class: "12-C", sim: "22530" }
         ];
 
-        // Database
+        // Complete Database for all Units & Exercises
         const questionsDatabase = {
             "model_paper_2025": [
                 { q: "1. The linear factors of the polynomial 4z² + 9y² are:", options: ["(2z - 3yi)²", "(2z + 3yi)²", "(2z + 3y)(2z - 3y)", "(2z + 3yi)(2z - 3yi)"], correct: 3, exp: "4z² + 9y² = (2z)² - (3yi)² = (2z + 3yi)(2z - 3yi)." },
                 { q: "2. What is the principal argument of -i - √3?", options: ["-4π/3", "-π/3", "4π/3", "π/3"], correct: 0, exp: "Lies in 3rd quadrant: arg = -π + arctan(1/√3) = -5π/6 or equivalent -4π/3 representation." },
-                { q: "3. If z = r(cosθ + i sinθ), then z⁻¹ is equal to:", options: ["(cosθ - i sinθ)/r", "(-cosθ + i sinθ)/r", "(-cosθ - i sinθ)/r", "(cosθ + i sinθ)/r"], correct: 0, exp: "z⁻¹ = 1/z = (cosθ - i sinθ)/r." }
+                { q: "3. If z = r(cosθ + i sinθ), then z⁻¹ is equal to:", options: ["(cosθ - i sinθ)/r", "(-cosθ + i sinθ)/r", "(-cosθ - i sinθ)/r", "(cosθ + i sinθ)/r"], correct: 0, exp: "z⁻¹ = 1/z = (cosθ - i sinθ)/r." },
+                { q: "4. If A is a square matrix of order 3 with |A| = 5, then the value of |2A| is:", options: ["5", "10", "25", "40"], correct: 3, exp: "|2A| = 2³ |A| = 8 × 5 = 40." },
+                { q: "5. For A = [[3,3,1],[0,5,-1],[2,1,4]], what is the value of the cofactor A12?", options: ["-2", "0", "2", "-11"], correct: 0, exp: "A12 = (-1)¹⁺² |[0,-1],[2,4]| = -1(0 - (-2)) = -2." },
+                { q: "6. Which condition defines an inconsistent system of linear equations?", options: ["One solution", "Infinite solutions", "Trivial solution", "No solution"], correct: 3, exp: "An inconsistent system has no solution." },
+                { q: "7. If the first term of a sequence is 10 and common difference is 0, 50th term is:", options: ["0", "10", "50", "500"], correct: 1, exp: "Constant sequence: all terms are 10." },
+                { q: "8. Row 1 has 20 seats. Each row has 2 additional seats. Which row has 40 seats?", options: ["10th", "11th", "12th", "20th"], correct: 1, exp: "40 = 20 + (n-1)2 ⇒ (n-1)=10 ⇒ n = 11." },
+                { q: "9. Ball rebounds to 60% height. 1st bounce is 100 cm. Height of 2nd bounce?", options: ["60 cm", "48 cm", "36 cm", "6 cm"], correct: 2, exp: "100 × 0.6 × 0.6 = 36 cm." },
+                { q: "10. Find 5th term of HP whose AP is 5, 10, 15...", options: ["1/20", "1/25", "1/30", "1/35"], correct: 1, exp: "AP 5th term = 5 + 4(5) = 25. HP term = 1/25." },
+                { q: "11. The third term in the expansion of (x² - 2)⁴ is:", options: ["24 x⁴", "-24 x⁴", "-32 x²", "32 x²"], correct: 0, exp: "T3 = ⁴C₂ (x²)² (-2)² = 6 × x⁴ × 4 = 24 x⁴." },
+                { q: "12. Term independent of x in (x² - 1/x²)⁶ is:", options: ["T3", "T4", "T5", "T6"], correct: 1, exp: "12 - 4r = 0 ⇒ r=3 ⇒ T4." },
+                { q: "13. Simplified form of (x+1)³ - (x-1)³ is:", options: ["2x³ + 6x", "6x² + 2", "6x² + 2x", "2x³ + 6x²"], correct: 1, exp: "(x³+3x²+3x+1) - (x³-3x²+3x-1) = 6x² + 2." },
+                { q: "14. When 3⁵⁰ is divided by 8, remainder is:", options: ["1", "3", "5", "7"], correct: 0, exp: "3⁵⁰ = (3²)²⁵ = 9²⁵ = (8+1)²⁵ ≡ 1 (mod 8)." },
+                { q: "15. Degree of remainder when x³+2x²-5x+1 is divided by x-2:", options: ["0", "1", "2", "7"], correct: 0, exp: "Remainder theorem gives a constant (degree 0)." },
+                { q: "16. Quotient when x⁴ - 3x² + 2 is divided by x² - 1:", options: ["x² - 2", "x² + 2", "x² - 1", "x² + 1"], correct: 0, exp: "(x²-1)(x²-2) / (x²-1) = x² - 2." },
+                { q: "17. Value of k for which x-2 is factor of x³ - kx² + 4x - 4:", options: ["-3", "0", "3", "4"], correct: 2, exp: "8 - 4k + 8 - 4 = 0 ⇒ 4k = 12 ⇒ k = 3." },
+                { q: "18. Two direction angles are 30° and 60°. Third direction angle is:", options: ["135°", "90°", "45°", "30°"], correct: 1, exp: "cos²(30°) + cos²(60°) + cos²(γ) = 3/4 + 1/4 + cos²(γ) = 1 ⇒ γ = 90°." },
+                { q: "19. Vector parallel to 2i + 6j - 5k with magnitude 3 is:", options: ["[12/√65, -18/√65, 75/√65]", "[12/√65, 18/√65, 25/√65]", "[6/√65, 18/√65, -15/√65]", "[6/√65, -18/√65, 8/√65]"], correct: 2, exp: "3 × (2i+6j-5k) / √65 = [6/√65, 18/√65, -15/√65]." },
+                { q: "20. Area of parallelogram with sides [2,5,-2] and [1,4,-2]:", options: ["√17", "√17 / 2", "√17 / 6", "2√17"], correct: 0, exp: "a × b = [-2, 2, 3] ⇒ Magnitude = √(4+4+9) = √17." }
             ],
             "unit6_ex6_1": [
-                { q: "1. Exercise 6.1: Which sequence is an Arithmetic Progression?", options: ["2, 4, 8, 16", "3, 6, 9, 12", "1, 4, 9, 16", "2, 3, 5, 7"], correct: 1, exp: "Common difference is constant (3)." }
+                { q: "1. Which sequence is an Arithmetic Progression?", options: ["2, 4, 8, 16", "3, 6, 9, 12", "1, 4, 9, 16", "2, 3, 5, 7"], correct: 1, exp: "Common difference is constant (3)." },
+                { q: "2. The common difference of AP: 5, 9, 13, 17... is:", options: ["2", "3", "4", "5"], correct: 2, exp: "9 - 5 = 4." },
+                { q: "3. If a₁ = 3 and d = 4, the 5th term of AP is:", options: ["15", "19", "23", "27"], correct: 1, exp: "a₅ = a₁ + 4d = 3 + 4(4) = 19." },
+                { q: "4. The nth term of an arithmetic sequence is given by:", options: ["a + (n-1)d", "a + nd", "arⁿ⁻¹", "a + (n+1)d"], correct: 0, exp: "Standard formula for nth term of AP." },
+                { q: "5. Arithmetic mean between a and b is:", options: ["ab", "(a+b)/2", "√(ab)", "2ab/(a+b)"], correct: 1, exp: "AM = (a+b)/2." }
             ],
             "unit6_ex6_2": [
-                { q: "1. Exercise 6.2: In a Geometric Progression, consecutive terms share a common:", options: ["Difference", "Sum", "Ratio", "Product"], correct: 2, exp: "GP terms share a common ratio r." }
+                { q: "1. In a Geometric Progression, consecutive terms share a common:", options: ["Difference", "Sum", "Ratio", "Product"], correct: 2, exp: "GP terms share a common ratio r." },
+                { q: "2. The common ratio of GP: 2, 6, 18, 54... is:", options: ["2", "3", "4", "6"], correct: 1, exp: "6 / 2 = 3." },
+                { q: "3. The nth term of a Geometric Progression is:", options: ["a + (n-1)d", "arⁿ⁻¹", "arⁿ", "a + nd"], correct: 1, exp: "Standard formula for nth term of GP." },
+                { q: "4. Geometric mean between 2 and 8 is:", options: ["4", "5", "±4", "±5"], correct: 2, exp: "GM = ±√(2×8) = ±4." }
             ],
             "unit6_ex6_3": [
-                { q: "1. Exercise 6.3: Harmonic Progression terms are reciprocals of terms in:", options: ["AP", "GP", "AGP", "Fibonacci"], correct: 0, exp: "An HP is formed by the reciprocals of an Arithmetic Progression." }
+                { q: "1. Harmonic Progression terms are reciprocals of terms in:", options: ["AP", "GP", "AGP", "Fibonacci"], correct: 0, exp: "An HP is formed by reciprocals of AP terms." },
+                { q: "2. If the corresponding AP has terms 2, 4, 6, 8, the HP terms are:", options: ["1/2, 1/4, 1/6, 1/8", "2, 4, 6, 8", "1, 2, 3, 4", "none"], correct: 0, exp: "Reciprocals of AP give HP." }
             ],
             "unit7_ex7_1": [
-                { q: "1. Exercise 7.1: The number of permutations of n distinct objects taken r at a time is:", options: ["n! / (n-r)!", "n! / r!(n-r)!", "r! / (n-r)!", "n! / r!"], correct: 0, exp: "nPr = n! / (n-r)!." }
+                { q: "1. The number of permutations of n distinct objects taken r at a time is:", options: ["n! / (n-r)!", "n! / r!(n-r)!", "r! / (n-r)!", "n! / r!"], correct: 0, exp: "nPr = n! / (n-r)!." },
+                { q: "2. Evaluate 5P2:", options: ["10", "20", "30", "60"], correct: 1, exp: "5! / (5-2)! = 120 / 6 = 20." }
             ],
             "unit7_ex7_2": [
-                { q: "1. Exercise 7.2 (New Added!): The number of combinations of n distinct items taken r at a time is given by:", options: ["nPr", "nCr = n! / r!(n-r)!", "r!", "n! / r!"], correct: 1, exp: "Combinations account for cases where order does not matter." }
+                { q: "1. The number of combinations of n distinct items taken r at a time is given by:", options: ["nPr", "nCr = n! / r!(n-r)!", "r!", "n! / r!"], correct: 1, exp: "Combinations account for cases where order does not matter." },
+                { q: "2. Evaluate 5C2:", options: ["5", "10", "20", "60"], correct: 1, exp: "5! / (2!3!) = 10." }
             ],
             "unit7_ex7_3": [
-                { q: "1. Exercise 7.3: If nPr = 30 and nCr = 5, the value of r is:", options: ["2", "3", "4", "5"], correct: 1, exp: "nPr = r! × nCr ⇒ 30 = r! × 5 ⇒ r! = 6 ⇒ r = 3." }
+                { q: "1. If nPr = 30 and nCr = 5, the value of r is:", options: ["2", "3", "4", "5"], correct: 1, exp: "nPr = r! × nCr ⇒ 30 = r! × 5 ⇒ r! = 6 ⇒ r = 3." }
             ],
             "unit7_ex7_4": [
-                { q: "1. Exercise 7.4: Probability of an impossible event is:", options: ["0", "1", "0.5", "Undefined"], correct: 0, exp: "An impossible event has a probability of 0." }
+                { q: "1. Probability of an impossible event is:", options: ["0", "1", "0.5", "Undefined"], correct: 0, exp: "An impossible event has a probability of 0." }
             ],
             "unit8_ex8_1": [
-                { q: "1. 3π/2 + θ lies in which quadrant?", options: ["1st quadrant", "2nd quadrant", "3rd quadrant", "4th quadrant"], correct: 3, exp: "3π/2 is 270°. Adding an acute angle θ pushes the angle past 270° into the fourth quadrant." }
+                { q: "1. 3π/2 + θ lies in which quadrant?", options: ["1st quadrant", "2nd quadrant", "3rd quadrant", "4th quadrant"], correct: 3, exp: "3π/2 is 270°. Adding acute angle θ pushes angle past 270° into fourth quadrant." },
+                { q: "2. Sin 390° is equal to:", options: ["sin 30°", "cos 30°", "zero", "sin 60°"], correct: 0, exp: "sin(390°) = sin(360° + 30°) = sin(30°)." },
+                { q: "3. cos 315° = ?", options: ["0", "1", "√3 / 2", "1 / √2"], correct: 3, exp: "cos(315°) = cos(360° - 45°) = 1 / √2." },
+                { q: "4. sin 196° = ?", options: ["sin 16°", "cos 33°", "cos 16°", "-sin 16°"], correct: 3, exp: "sin(180° + 16°) = -sin(16°)." },
+                { q: "5. cos(-60°) = ?", options: ["1/2", "-1/2", "√3 / 2", "0"], correct: 0, exp: "Cosine is even function, so cos(-60°) = cos(60°) = 1/2." }
             ],
             "unit8_ex8_2": [
-                { q: "1. The expression (1 - tan² x) / (1 + tan² x) is equal to:", options: ["sin 2x", "cos 2x", "tan 2x", "cot 2x"], correct: 1, exp: "Using double angle formulas, cos 2x = (1 - tan² x) / (1 + tan² x)." }
+                { q: "1. The expression (1 - tan² x) / (1 + tan² x) is equal to:", options: ["sin 2x", "cos 2x", "tan 2x", "cot 2x"], correct: 1, exp: "Using double angle formulas, cos 2x = (1 - tan² x) / (1 + tan² x)." },
+                { q: "2. tan 2θ is equal to:", options: ["(2 tan θ) / (1 - tan² θ)", "tan θ / (1 + tan² θ)", "(2 tan² θ) / (1 - tan² θ)", "(1 - tan² θ) / (1 + tan² θ)"], correct: 0, exp: "By double angle identity, tan 2θ = 2 tan θ / (1 - tan² θ)." },
+                { q: "3. cos 2θ is equal to:", options: ["(2 tan θ) / (1 - tan² θ)", "cos² θ - sin² θ", "(1 - tan² θ) / (1 + tan² θ)", "2 cos² θ + 1"], correct: 1, exp: "By definition, double-angle identity for cosine is cos 2θ = cos² θ - sin² θ." },
+                { q: "4. (cos 2θ)² + (sin 2θ)² is equal to:", options: ["0", "2", "4", "1"], correct: 3, exp: "By fundamental Pythagorean identity, cos²(ϕ) + sin²(ϕ) = 1." }
             ],
             "unit8_ex8_3": [
-                { q: "1. sin 3θ - sin 5θ equals:", options: ["2 sin 4θ cos θ", "2 cos 4θ sin θ", "-2 cos 4θ sin θ", "2 sin 4θ cos θ"], correct: 2, exp: "Using sum-to-product formula, sin 3θ - sin 5θ = -2 cos 4θ sin θ." }
+                { q: "1. sin 3θ - sin 5θ equals:", options: ["2 sin 4θ cos θ", "2 cos 4θ sin θ", "-2 cos 4θ sin θ", "2 sin 4θ cos θ"], correct: 2, exp: "Using sum-to-product formula, sin 3θ - sin 5θ = -2 cos 4θ sin θ." },
+                { q: "2. sin 5θ + sin 3θ is equal to:", options: ["2 cos 2θ sin θ", "-2 cos 4θ sin θ", "-2 cos 4θ cos θ", "2 sin 4θ cos θ"], correct: 3, exp: "Using sum-to-product formula, sin 5θ + sin 3θ = 2 sin 4θ cos θ." },
+                { q: "3. cos 48° + cos 12° = ?", options: ["2 cos 18°", "3 cos 18°", "√3 cos 18°", "√2 cos 18°"], correct: 2, exp: "Using sum-to-product formula, we get √3 cos 18°." }
             ],
             "unit9_ex9_1": [
-                { q: "1. The Period of 3 cos 2x is:", options: ["π", "π/2", "3π", "2π/3"], correct: 0, exp: "The period of cos(kx) is 2π/k. For 3 cos(2x), k = 2, so period is π." }
+                { q: "1. The Period of 3 cos 2x is:", options: ["π", "π/2", "3π", "2π/3"], correct: 0, exp: "The period of cos(kx) is 2π/k. For 3 cos(2x), k = 2, so period is π." },
+                { q: "2. The Period of sin 2x is:", options: ["π/3", "π/2", "5π", "π"], correct: 3, exp: "The period of sin(kx) is 2π/k. For sin(2x), k = 2, so period is π." },
+                { q: "3. The Period of 5 tan 2x is:", options: ["π", "2π", "π/2", "π/5"], correct: 2, exp: "The period of tan(kx) is π/k. For 5 tan(2x), k = 2, so period is π/2." },
+                { q: "4. The Period of cosec 10x is:", options: ["π/10", "2π/5", "π/5", "4π/5"], correct: 2, exp: "The period of csc(kx) is 2π/k. For csc(10x), k = 10, so period is π/5." },
+                { q: "5. The Period of sin(x/3) is:", options: ["π", "3π", "2π/3", "6π"], correct: 3, exp: "The period of sin(kx) is 2π/k. Here k = 1/3, so period is 6π." },
+                { q: "6. The period of cot 8x is:", options: ["π/2", "8π", "π/8", "2π"], correct: 2, exp: "The period of cot(kx) is π/k. For cot(8x), k = 8, so period is π/8." },
+                { q: "7. Period of 3tan 3x is equal to:", options: ["π/2", "π", "2π/3", "π/3"], correct: 3, exp: "The period of tan(kx) is π/k. For 3 tan(3x), k = 3, so period is π/3." },
+                { q: "8. The Period of 3sin 3x is:", options: ["π/3", "π/2", "2π/3", "π"], correct: 2, exp: "The period of sin(kx) is 2π/k. For 3 sin(3x), k = 3, so period is 2π/3." },
+                { q: "9. Period of 3 cos(x/5) is:", options: ["2π", "10π", "π/10", "π/5"], correct: 1, exp: "The period of cos(kx) is 2π/k. For 3 cos(x/5), k = 1/5, so period is 10π." },
+                { q: "10. Range of y = 3 sin 2x is:", options: ["[-1, 1]", "[-3, 3]", "[-5, 5]", "[-6, 6]"], correct: 1, exp: "Since range of sin(2x) is [-1, 1], multiplying by 3 gives [-3, 3]." },
+                { q: "[Scenario 1] If the function y = 2 sin x represents the wave, then what is the domain of the function?", options: ["(-∞, ∞)", "(-200, 200)", "(-1, 1)", "[-1, 1]"], correct: 0, exp: "The domain of sine function y = 2 sin x is all real numbers, (-∞, ∞)." },
+                { q: "[Scenario 1] What is the maximum value of the function y = 2 sin x?", options: ["0", "1", "∞", "2"], correct: 3, exp: "Since maximum value of sin x is 1, maximum value of y = 2 sin x is 2 × 1 = 2." },
+                { q: "[Scenario 2] What is the domain of the function y = tan x?", options: ["R", "{x ∈ ℝ | x ≠ (2k+1)π/2, k ∈ ℤ}", "sin α cos β + cos α sin β", "sin α cos β - cos α sin β"], correct: 1, exp: "tan x = sin x / cos x is undefined where cos x = 0, which occurs at odd multiples of π/2." },
+                { q: "[Scenario 2] What is the range of the function y = 3 sin x - 2?", options: ["[-1, 1]", "[-3, 3]", "[-5, 1]", "[-5, 5]"], correct: 2, exp: "Since -1 ≤ sin x ≤ 1, range is [-5, 1]." },
+                { q: "[Scenario 3] The period of cosine function y = cos x is:", options: ["-π", "π", "-2π", "2π"], correct: 3, exp: "Basic cosine function y = cos x has a standard fundamental period of 2π." },
+                { q: "[Scenario 3] The function y = cos x is:", options: ["odd", "even", "both even and odd", "neither even nor odd"], correct: 1, exp: "Since cos(-x) = cos x, y = cos x is an even function." },
+                { q: "[Scenario 5] For which value of angle x, function y = 4 + 3 cos x attains maximum value?", options: ["0°", "90°", "180°", "270°"], correct: 0, exp: "y = 4 + 3 cos x attains maximum when cos x = 1, which occurs at x = 0°." },
+                { q: "[Scenario 5] What is the maximum value of the function y = 4 + 3 cos x?", options: ["3", "1", "4", "7"], correct: 3, exp: "Maximum value of cos x is 1, so max value is 4 + 3(1) = 7." },
+                { q: "[Scenario 6] What is maximum elevation angle of Sun according to model E(t) = 30° + 25° sin(15° t)?", options: ["25°", "30°", "55°", "60°"], correct: 2, exp: "Sine function reaches maximum of 1, so E(t)max = 30° + 25°(1) = 55°." },
+                { q: "[Scenario 6] What is the period of the function E(t) = 30° + 25° sin(15° t)?", options: ["12h", "24h", "30h", "360h"], correct: 1, exp: "Period T = 360° / (15°/h) = 24h." }
             ],
             "unit9_ex9_2": [
                 { q: "1. Trigonometric functions are -------", options: ["discontinuous", "no circular function", "not periodic", "periodic"], correct: 3, exp: "Trigonometric functions repeat their values in regular intervals, so they are periodic functions." },
-                { q: "2. The trigonometric functions are periodic so their curves repeat after a", options: ["fixed interval", "not fixed interval", "both a & b", "none of these"], correct: 0, exp: "By definition, periodic functions repeat their outputs after a constant fixed interval called the period." },
-                { q: "3. At which θ coordinate on interval [0, π] does the graph of f(θ)=sin(θ) reach its maximum point?", options: ["π/4", "π/2", "3π/4", "π"], correct: 1, exp: "The sine function reaches its maximum value of 1 at θ = π/2 within the interval [0, π]." },
-                { q: "4. Graph of f(θ)=cos(θ - π/2) is a horizontal shift of y=cos(θ) by how many units to the right?", options: ["π/4", "π/2", "π", "2π"], correct: 1, exp: "Subtracting π/2 inside the argument of the function causes a horizontal shift of π/2 units to the right." },
-                { q: "5. What is the equation of the midline (horizontal axis of symmetry) for f(θ)=sin(θ)-3?", options: ["y = -3", "y = -1", "y = 1", "y = 3"], correct: 0, exp: "The midline of y = sin(θ) is y = 0. Subtracting 3 shifts the midline downward to y = -3." },
-                { q: "6. On interval [0, 2π], at how many coordinate points do graphs of f(θ)=sin(θ) and g(θ)=cos(θ) intersect?", options: ["1", "2", "3", "4"], correct: 1, exp: "sin(θ) = cos(θ) implies tan(θ) = 1, which occurs at θ = π/4 and θ = 5π/4 on [0, 2π], giving 2 intersection points." },
-                { q: "7. For f(θ)=tan(θ), what is second positive vertical asymptote position moving right from origin?", options: ["π/2", "π", "3π/2", "2π"], correct: 2, exp: "The vertical asymptotes of tan(θ) occur at odd multiples of π/2. First is at π/2 and second positive one is at 3π/2." },
-                { q: "8. If f(θ)=sin(θ) is reflected across x-axis and shifted upward by 2, what is new maximum point y-coordinate?", options: ["1", "2", "3", "4"], correct: 2, exp: "Reflecting sin(θ) gives -sin(θ) with max 1 (at θ = 3π/2). Shifting up by 2 units gives 1 + 2 = 3." },
-                { q: "9. At what positive value of θ does the graph of f(θ)=tan(θ) first have a vertical asymptote?", options: ["π/4", "π/3", "π/2", "π"], correct: 2, exp: "The tangent function is undefined when cos(θ) = 0, which first occurs at positive value θ = π/2." },
-                { q: "10. How many x-intercepts does the graph of f(θ)=cos(θ) have on the interval [0, 2π]?", options: ["1", "2", "3", "4"], correct: 1, exp: "cos(θ) = 0 on [0, 2π] at θ = π/2 and θ = 3π/2, which gives 2 x-intercepts." },
-                { q: "[Scenario 7] What is the period of the function y = 3 cos(2x - π) + 1?", options: ["π", "2π", "π/2", "3π"], correct: 0, exp: "The period of cos(bx - c) is 2π / b. Here b = 2, so the period is 2π / 2 = π." },
-                { q: "[Scenario 7] Where do vertical asymptotes of transformed tangent function y = tan(x/2) occur?", options: ["x = (2k+1)π/2, k∈ℤ", "x = kπ, k∈ℤ", "x = (2k+1)π, k∈ℤ", "x = 2kπ, k∈ℤ"], correct: 2, exp: "Asymptotes of tan(u) occur at u = (2k+1)π/2. Setting x/2 = (2k+1)π/2 gives x = (2k+1)π." },
-                { q: "[Scenario 7] What are the maximum and minimum values of the function y = -2 sin(3x) + 4?", options: ["Max=2, Min=-2", "Max=6, Min=2", "Max=4, Min=2", "Max=6, Min=-2"], correct: 1, exp: "Since -1 ≤ sin(3x) ≤ 1, the range of -2 sin(3x) is [-2, 2]. Adding 4 gives Min = -2 + 4 = 2 and Max = 2 + 4 = 6." },
-                { q: "[Scenario 7] Water depth is h(t) = 4 sin(π/6 t) + 7 (hours). How many hours between consecutive high tides?", options: ["6 hours", "12 hours", "24 hours", "3 hours"], correct: 1, exp: "The time between consecutive high tides is period T = 2π / b = 2π / (π/6) = 12 hours." },
-                { q: "[Scenario 8] What is the period of alternating current wave modelled by f(x) = 3 sin(4x - π) + 2?", options: ["π", "2π", "π/2", "π/4"], correct: 2, exp: "The period of sin(bx - c) is 2π / b. For b = 4, the period is 2π / 4 = π/2." },
-                { q: "[Scenario 8] Which transformation maps y = cos(x) onto y = cos(2x - π/3)?", options: ["Scale 1/2, Shift right π/6", "Scale 2, Shift right π/3", "Scale 1/2, Shift left π/6", "Scale 2, Shift right π/6"], correct: 0, exp: "Writing cos(2(x - π/6)) shows horizontal compression by factor 1/2 and right shift of π/6." },
-                { q: "[Scenario 9] Which trigonometric function is symmetric with respect to y-axis (even function)?", options: ["y = sin x", "y = cos x", "y = tan x", "y = csc x"], correct: 1, exp: "Cosine satisfies cos(-x) = cos(x), making it an even function symmetric about y-axis." },
+                { q: "2. The trigonometric functions are periodic so their curves repeat after a", options: ["fixed interval", "not fixed interval", "both a & b", "none of these"], correct: 0, exp: "By definition, periodic functions repeat outputs after a constant fixed interval called period." },
+                { q: "3. At which θ coordinate on interval [0, π] does the graph of f(θ)=sin(θ) reach its maximum point?", options: ["π/4", "π/2", "3π/4", "π"], correct: 1, exp: "Sine function reaches maximum value of 1 at θ = π/2 within interval [0, π]." },
+                { q: "4. Graph of f(θ)=cos(θ - π/2) is a horizontal shift of y=cos(θ) by how many units to the right?", options: ["π/4", "π/2", "π", "2π"], correct: 1, exp: "Subtracting π/2 inside argument causes horizontal shift of π/2 units to the right." },
+                { q: "5. What is the equation of the midline (horizontal axis of symmetry) for f(θ)=sin(θ)-3?", options: ["y = -3", "y = -1", "y = 1", "y = 3"], correct: 0, exp: "Midline of y = sin(θ) is y = 0. Subtracting 3 shifts midline downward to y = -3." },
+                { q: "6. On interval [0, 2π], at how many coordinate points do graphs of f(θ)=sin(θ) and g(θ)=cos(θ) intersect?", options: ["1", "2", "3", "4"], correct: 1, exp: "sin(θ) = cos(θ) implies tan(θ) = 1, occurring at θ = π/4 and θ = 5π/4." },
+                { q: "7. For f(θ)=tan(θ), what is second positive vertical asymptote position moving right from origin?", options: ["π/2", "π", "3π/2", "2π"], correct: 2, exp: "Vertical asymptotes of tan(θ) occur at odd multiples of π/2. Second positive is at 3π/2." },
+                { q: "8. If f(θ)=sin(θ) is reflected across x-axis and shifted upward by 2, what is new maximum point y-coordinate?", options: ["1", "2", "3", "4"], correct: 2, exp: "Reflecting sin(θ) gives -sin(θ) with max 1. Shifting up by 2 units gives 1 + 2 = 3." },
+                { q: "9. At what positive value of θ does the graph of f(θ)=tan(θ) first have a vertical asymptote?", options: ["π/4", "π/3", "π/2", "π"], correct: 2, exp: "Tangent function is undefined when cos(θ) = 0, first occurring at θ = π/2." },
+                { q: "10. How many x-intercepts does the graph of f(θ)=cos(θ) have on the interval [0, 2π]?", options: ["1", "2", "3", "4"], correct: 1, exp: "cos(θ) = 0 on [0, 2π] at θ = π/2 and θ = 3π/2 (2 intercepts)." },
+                { q: "[Scenario 7] What is the period of the function y = 3 cos(2x - π) + 1?", options: ["π", "2π", "π/2", "3π"], correct: 0, exp: "Period of cos(bx - c) is 2π / b = 2π / 2 = π." },
+                { q: "[Scenario 7] Where do vertical asymptotes of transformed tangent function y = tan(x/2) occur?", options: ["x = (2k+1)π/2, k∈ℤ", "x = kπ, k∈ℤ", "x = (2k+1)π, k∈ℤ", "x = 2kπ, k∈ℤ"], correct: 2, exp: "Setting x/2 = (2k+1)π/2 gives x = (2k+1)π." },
+                { q: "[Scenario 7] What are maximum and minimum values of the function y = -2 sin(3x) + 4?", options: ["Max=2, Min=-2", "Max=6, Min=2", "Max=4, Min=2", "Max=6, Min=-2"], correct: 1, exp: "Range of -2 sin(3x) is [-2, 2]. Adding 4 gives Min = 2 and Max = 6." },
+                { q: "[Scenario 7] Water depth is h(t) = 4 sin(π/6 t) + 7 (hours). How many hours between consecutive high tides?", options: ["6 hours", "12 hours", "24 hours", "3 hours"], correct: 1, exp: "Period T = 2π / (π/6) = 12 hours." },
+                { q: "[Scenario 8] What is the period of alternating current wave modelled by f(x) = 3 sin(4x - π) + 2?", options: ["π", "2π", "π/2", "π/4"], correct: 2, exp: "Period is 2π / 4 = π/2." },
+                { q: "[Scenario 8] Which transformation maps y = cos(x) onto y = cos(2x - π/3)?", options: ["Scale 1/2, Shift right π/6", "Scale 2, Shift right π/3", "Scale 1/2, Shift left π/6", "Scale 2, Shift right π/6"], correct: 0, exp: "Writing cos(2(x - π/6)) shows horizontal compression by 1/2 and right shift of π/6." },
+                { q: "[Scenario 9] Which trigonometric function is symmetric with respect to y-axis (even function)?", options: ["y = sin x", "y = cos x", "y = tan x", "y = csc x"], correct: 1, exp: "Cosine satisfies cos(-x) = cos(x), making it even." },
                 { q: "[Scenario 9] At what values in [0, 2π] does y = sin x cross the x-axis (y = 0)?", options: ["x = 0, π, 2π", "x = π/2, 3π/2", "x = 0, π/2, π", "x = π/4, 5π/4"], correct: 0, exp: "sin(x) = 0 on [0, 2π] at x = 0, π, and 2π." },
-                { q: "[Scenario 10] Tower height 50 m. Angle of elevation θ=60°. What is exact length of shadow?", options: ["50 / √3 m", "50√3 m", "25 m", "100 m"], correct: 0, exp: "tan(60°) = height / shadow ⇒ √3 = 50 / s ⇒ s = 50 / √3 m." },
-                { q: "[Scenario 10] Force F(θ) = 100 cos(-θ). Using even/odd property of cosine, this force equals:", options: ["-100 cos θ", "100 cos θ", "100 sin θ", "-100 sin θ"], correct: 1, exp: "Because cosine is an even function, cos(-θ) = cos(θ), so F(θ) = 100 cos θ." }
+                { q: "[Scenario 10] Tower height 50 m. Angle of elevation θ=60°. What is exact length of shadow?", options: ["50 / √3 m", "50√3 m", "25 m", "100 m"], correct: 0, exp: "tan(60°) = 50 / s ⇒ s = 50 / √3 m." },
+                { q: "[Scenario 10] Force F(θ) = 100 cos(-θ). Using even/odd property of cosine, this force equals:", options: ["-100 cos θ", "100 cos θ", "100 sin θ", "-100 sin θ"], correct: 1, exp: "cos(-θ) = cos(θ), so F(θ) = 100 cos θ." }
             ]
         };
 
