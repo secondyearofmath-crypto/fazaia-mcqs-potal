@@ -74,7 +74,7 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div class="flex items-center gap-3">
                         <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-amber-800 shadow-md bg-white flex items-center justify-center shrink-0">
-                            <img src="https://lh3.googleusercontent.com/d/1L5AEIEOwOvdm0wNw9m9t_g5_J62WV82s=s220" alt="College Logo" class="w-full h-full object-cover">
+                            <img src="https://lh3.googleusercontent.com/d/1GDnMf8PG-hpRejy9-7SGQ3r8F2wdQVCA=s220" alt="Sir Asad Shafat Ali" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <h1 class="text-2xl md:text-3xl font-bold text-blue-900 handwriting">FAZAIA INTER COLLEGE LAHORE</h1>
@@ -92,13 +92,13 @@
                 <div class="mt-3 flex flex-wrap items-center gap-3 bg-amber-100 p-2.5 rounded-lg border border-amber-300">
                     <label class="font-bold text-amber-900 handwriting text-base">📚 Select Practice Category:</label>
                     <select id="chapter-select" class="p-2 border-2 border-amber-300 rounded-lg font-bold text-blue-900 bg-white focus:outline-none text-sm md:text-base">
-                        <option value="model_paper_2025">FBISE Model Paper 2024-2025 (Full 64 MCQs)</option>
+                        <option value="model_paper_2025">FBISE Model Paper 2024-2025 (Full 20 MCQs)</option>
                         <option value="unit6_ex6_1">Unit 6: Exercise 6.1 (15 MCQs + 5 Scenarios)</option>
                         <option value="unit6_ex6_2">Unit 6: Exercise 6.2 (10 MCQs + 10 Scenarios)</option>
                         <option value="unit6_ex6_3">Unit 6: Exercise 6.3 (10 MCQs + 10 Scenarios)</option>
                         <option value="unit7_ex7_1">Unit 7: Exercise 7.1 (10 MCQs + 10 Scenarios)</option>
-                        <option value="unit7_ex7_2">Unit 7: Exercise 7.2 (10 MCQs + 10 Scenarios - New Added!)</option>
-                        <option value="unit7_ex7_3">Unit 7: Exercise 7.3 (15 MCQs + 5 Scenarios)</option>
+                        <option value="unit7_ex7_2">Unit 7: Exercise 7.2 (10 MCQs + 10 Scenarios)</option>
+                        <option value="unit7_ex7_3">Unit 7: Exercise 7.3 (10 MCQs + 10 Scenarios)</option>
                         <option value="unit7_ex7_4">Unit 7: Exercise 7.4 (10 MCQs + 10 Scenarios)</option>
                         <option value="unit8_ex8_1">Unit 8: Exercise 8.1 (10 MCQs + 10 Scenarios)</option>
                         <option value="unit8_ex8_2">Unit 8: Exercise 8.2 (10 MCQs + 10 Scenarios)</option>
@@ -157,8 +157,7 @@
                 <div id="options-container" class="grid grid-cols-1 gap-3.5 mb-6"></div>
                 <div id="feedback-box" class="hidden p-4 rounded-lg bg-amber-50 border-2 border-dashed border-amber-400 mb-6 handwriting text-lg text-slate-800"></div>
 
-                <div class="flex justify-between items-center mt-8">
-                    <button id="prev-btn" onclick="prevQuestion()" class="px-6 py-2 bg-amber-700 text-white rounded-lg font-bold shadow hover:bg-amber-800 transition">⬅ Prev</button>
+                <div class="flex justify-end items-center mt-8">
                     <button id="next-btn" onclick="nextQuestion()" class="px-6 py-2 bg-blue-800 text-white rounded-lg font-bold shadow hover:bg-blue-900 transition">Next ➡</button>
                 </div>
             </div>
@@ -276,22 +275,93 @@
         let userAnswers = {};
         let fullLeaderboardData = [];
 
+        // Full Active Student Roster for 11-B and 11-E
         const masterStudentRoster = [
-            { name: "UMAIR FAROOQ", class: "11-B", sim: "22514" },
-            { name: "MUHAMMAD AHMAD ANWAR", class: "11-B", sim: "22521" },
-            { name: "HAFIZ TAYYAB SAQLAIN", class: "11-B", sim: "22522" },
-            { name: "YASHWA NASAR", class: "11-B", sim: "22530" },
-            { name: "ABDUR REHMAN SAQIB", class: "11-B", sim: "22578" },
-            { name: "MUHAMMAD HASSAN", class: "11-B", sim: "22582" },
-            { name: "BILAL AHMAD", class: "11-B", sim: "22583" },
-            { name: "SYED DEEBAJ HUSSAIN", class: "11-B", sim: "22585" },
-            { name: "SAAD BIN AAMIR", class: "11-E", sim: "21817" },
-            { name: "MAHAD AHMAD", class: "11-E", sim: "21958" },
-            { name: "MUHAMMAD AHMAD", class: "11-E", sim: "22066" },
-            { name: "YASHWA NASAR", class: "12-C", sim: "22530" }
+            // Section 11-B
+            { name: "UMAIR FAROOQ", class: "11-B", sim: "33407" },
+            { name: "MUHAMMAD AHMAD ANWAR", class: "11-B", sim: "33414" },
+            { name: "HAFIZ TAYYAB SAQLAIN", class: "11-B", sim: "33415" },
+            { name: "YASHWA NASAR", class: "11-B", sim: "33422" },
+            { name: "ABDUR REHMAN SAQIB", class: "11-B", sim: "33471" },
+            { name: "MUHAMMAD HASSAN", class: "11-B", sim: "33475" },
+            { name: "BILAL AHMAD", class: "11-B", sim: "33476" },
+            { name: "SYED DEEBAJ HUSSAIN", class: "11-B", sim: "33478" },
+            { name: "MUHAMMAD ARSLAN", class: "11-B", sim: "33481" },
+            { name: "DAIM ALI FAROOQ", class: "11-B", sim: "33486" },
+            { name: "AHMAD MOAZ AMJAD", class: "11-B", sim: "33498" },
+            { name: "SYED MINHAL HASSAN", class: "11-B", sim: "33502" },
+            { name: "HAFIZ HUSNAIN SOHAIL", class: "11-B", sim: "33503" },
+            { name: "RAJA MUHAMMAD AYAN NAWAZ", class: "11-B", sim: "33504" },
+            { name: "MUHAMMAD HUZAIFA", class: "11-B", sim: "33531" },
+            { name: "AHMED ASHFAQ", class: "11-B", sim: "33532" },
+            { name: "MUHAMMAD ABDUL REHMAN FAISAL", class: "11-B", sim: "33539" },
+            { name: "WAQAS KALEEM ULLAH", class: "11-B", sim: "33550" },
+            { name: "MUHAMMAD BURHAN", class: "11-B", sim: "33562" },
+            { name: "CHAUDHRY TAHA BIN SHAMAS", class: "11-B", sim: "33616" },
+            { name: "MUHAMMAD ABDULLAH", class: "11-B", sim: "33637" },
+            { name: "MUHAMMAD SHARAZ HASSAN", class: "11-B", sim: "33638" },
+            { name: "MUHAMMAD AWAIS JAMIL", class: "11-B", sim: "33665" },
+            { name: "FAISAL YAQOOB", class: "11-B", sim: "33673" },
+            { name: "MUHAMMAD ABDUL SAMAD KHAN", class: "11-B", sim: "33702" },
+            { name: "RAHAT ULLAH", class: "11-B", sim: "33707" },
+            { name: "FASEEH SHAHID", class: "11-B", sim: "33721" },
+            { name: "RANA MUHAMMAD BILAL KHAN", class: "11-B", sim: "33722" },
+            { name: "SYED MOIZ ALI", class: "11-B", sim: "33723" },
+            { name: "MUHAMMAD FAIZAN ABID", class: "11-B", sim: "33746" },
+            { name: "MUJEEB UR REHMAN", class: "11-B", sim: "33747" },
+            { name: "KASHIF ANWAR", class: "11-B", sim: "33763" },
+            { name: "FAHAD BIN YOUSAF", class: "11-B", sim: "33765" },
+            { name: "MUHAMMAD SHAHZAIB", class: "11-B", sim: "33788" },
+            { name: "MUHAMMAD REHAN ARIF", class: "11-B", sim: "33810" },
+            { name: "SYED BILAL HASSAN", class: "11-B", sim: "33814" },
+            { name: "MUHAMMAD SHEES AWAN", class: "11-B", sim: "33819" },
+            { name: "HAMMAD ALI GOHAR", class: "11-B", sim: "33822" },
+            { name: "SHEHRYAR TAHIR", class: "11-B", sim: "33832" },
+
+            // Section 11-E
+            { name: "MUHAMMAD AMMAR TAHIR", class: "11-E", sim: "33179" },
+            { name: "MUHAMMAD FAHAD", class: "11-E", sim: "33404" },
+            { name: "NOMAN HASSAN", class: "11-E", sim: "33405" },
+            { name: "MUHAMMAD WAQAS HASSAN", class: "11-E", sim: "33424" },
+            { name: "RAO AMEER TAIMOOR", class: "11-E", sim: "33427" },
+            { name: "MUHAMMAD ATIF ZAWAR", class: "11-E", sim: "33428" },
+            { name: "ALI HAMZA", class: "11-E", sim: "33449" },
+            { name: "MUHAMMAD WASEEM", class: "11-E", sim: "33451" },
+            { name: "MUHAMMAD TAYYAB NAEEM", class: "11-E", sim: "33458" },
+            { name: "MUHAMMAD ZAID ASIF", class: "11-E", sim: "33464" },
+            { name: "MUHAMMAD AAZAN SHAGUFT", class: "11-E", sim: "33469" },
+            { name: "MUHAMMAD FARAZ", class: "11-E", sim: "33470" },
+            { name: "IBAAD UR REHMAN", class: "11-E", sim: "33484" },
+            { name: "ZAWEYAAR NASEEM", class: "11-E", sim: "33487" },
+            { name: "MUHAMMAD ASAD MUNIR", class: "11-E", sim: "33499" },
+            { name: "MUHAMMAD AHMED", class: "11-E", sim: "33513" },
+            { name: "MUHAMMAD MURSAL", class: "11-E", sim: "33515" },
+            { name: "MUHAMMAD MUDDASIR NOMAN", class: "11-E", sim: "33551" },
+            { name: "ASADULLAH NISAR", class: "11-E", sim: "33561" },
+            { name: "SARIB HASSAN", class: "11-E", sim: "33571" },
+            { name: "MUHAMMAD IBRAHIM CHATHA", class: "11-E", sim: "33581" },
+            { name: "MUHAMMAD ALBASH KHAN", class: "11-E", sim: "33586" },
+            { name: "TOHEED UL HASSAN", class: "11-E", sim: "33587" },
+            { name: "SUBHAN SHAHID", class: "11-E", sim: "33588" },
+            { name: "MUHAMMAD ARSALAN BADAR", class: "11-E", sim: "33600" },
+            { name: "SYED MUHAMMAD SHAMEER GILLANI", class: "11-E", sim: "33610" },
+            { name: "ABDUL RAFAY", class: "11-E", sim: "33611" },
+            { name: "MUHAMMAD ABDULLAH KHAN", class: "11-E", sim: "33631" },
+            { name: "ZOHAIB KAMRAN", class: "11-E", sim: "33642" },
+            { name: "MUHAMMAD ABDULLAH", class: "11-E", sim: "33648" },
+            { name: "MUHAMMAD HARRIS", class: "11-E", sim: "33649" },
+            { name: "SHAHROZ ALI", class: "11-E", sim: "33650" },
+            { name: "ZAIN FURQAN SIDDIQUI", class: "11-E", sim: "33653" },
+            { name: "ALI WARIS", class: "11-E", sim: "33677" },
+            { name: "MUHAMMAD HASSAN RAZA", class: "11-E", sim: "33690" },
+            { name: "TALHA UMAR", class: "11-E", sim: "33710" },
+            { name: "ABDUL RAFAY KHAN", class: "11-E", sim: "33752" },
+            { name: "MUHAMMAD HASSAN ALI", class: "11-E", sim: "33764" },
+            { name: "MUHAMMAD ABDULLAH", class: "11-E", sim: "33793" },
+            { name: "MUHAMMAD ASHAR ABBAS", class: "11-E", sim: "33801" }
         ];
 
-        // Complete Database for all Units & Exercises
+        // Authentic Question Databases for ALL Units
         const questionsDatabase = {
             "model_paper_2025": [
                 { q: "1. The linear factors of the polynomial 4z² + 9y² are:", options: ["(2z - 3yi)²", "(2z + 3yi)²", "(2z + 3y)(2z - 3y)", "(2z + 3yi)(2z - 3yi)"], correct: 3, exp: "4z² + 9y² = (2z)² - (3yi)² = (2z + 3yi)(2z - 3yi)." },
@@ -316,318 +386,543 @@
                 { q: "20. Area of parallelogram with sides [2,5,-2] and [1,4,-2]:", options: ["√17", "√17 / 2", "√17 / 6", "2√17"], correct: 0, exp: "a × b = [-2, 2, 3] ⇒ Magnitude = √(4+4+9) = √17." }
             ],
             "unit6_ex6_1": [
-                { q: "1. Which sequence is an Arithmetic Progression?", options: ["2, 4, 8, 16", "3, 6, 9, 12", "1, 4, 9, 16", "2, 3, 5, 7"], correct: 1, exp: "Common difference is constant (3)." },
+                { q: "1. Which sequence is an Arithmetic Progression?", options: ["2, 4, 8, 16", "3, 6, 9, 12", "1, 4, 9, 16", "2, 3, 5, 7"], correct: 1, exp: "Common difference is constant." },
                 { q: "2. The common difference of AP: 5, 9, 13, 17... is:", options: ["2", "3", "4", "5"], correct: 2, exp: "9 - 5 = 4." },
-                { q: "3. If a₁ = 3 and d = 4, the 5th term of AP is:", options: ["15", "19", "23", "27"], correct: 1, exp: "a₅ = a₁ + 4d = 3 + 4(4) = 19." },
-                { q: "4. The nth term of an arithmetic sequence is given by:", options: ["a + (n-1)d", "a + nd", "arⁿ⁻¹", "a + (n+1)d"], correct: 0, exp: "Standard formula for nth term of AP." },
-                { q: "5. Arithmetic mean between a and b is:", options: ["ab", "(a+b)/2", "√(ab)", "2ab/(a+b)"], correct: 1, exp: "AM = (a+b)/2." }
+                { q: "3. If a₁ = 3 and d = 4, the 5th term of AP is:", options: ["15", "19", "23", "27"], correct: 1, exp: "a₅ = a₁ + 4d = 19." },
+                { q: "4. The nth term of an arithmetic sequence is given by:", options: ["a + (n-1)d", "a + nd", "arⁿ⁻¹", "a + (n+1)d"], correct: 0, exp: "Standard AP formula." },
+                { q: "5. Arithmetic mean between a and b is:", options: ["ab", "(a+b)/2", "√(ab)", "2ab/(a+b)"], correct: 1, exp: "AM formula." },
+                { q: "6. If 3, x, 11 are in AP, then x equals:", options: ["5", "7", "9", "8"], correct: 1, exp: "x = (3+11)/2 = 7." },
+                { q: "7. Sum of first n natural numbers is:", options: ["n(n+1)/2", "n(n-1)/2", "n²", "n(n+1)(2n+1)/6"], correct: 0, exp: "Standard summation formula." },
+                { q: "8. If first term is 2 and common difference is 3, 10th term is:", options: ["27", "29", "31", "35"], correct: 1, exp: "a₁₀ = 2 + 9(3) = 29." },
+                { q: "9. Sequence with constant common difference is called:", options: ["GP", "AP", "HP", "Harmonic"], correct: 1, exp: "Definition of AP." },
+                { q: "10. Which of the following is an AP?", options: ["1, 2, 4, 8", "5, 10, 15, 20", "1, 3, 9, 27", "2, 4, 16, 256"], correct: 1, exp: "Common difference is 5." },
+                { q: "11. [Scenario] If a business investment grows by a fixed amount Rs 500 every month starting from Rs 2000, what type of sequence does monthly total form?", options: ["AP", "GP", "HP", "Geometric"], correct: 0, exp: "Fixed constant increment forms an Arithmetic Progression." },
+                { q: "12. [Scenario] Monthly savings are 1000, 1500, 2000... Find 6th month saving.", options: ["3000", "3500", "4000", "4500"], correct: 1, exp: "a₆ = 1000 + 5(500) = 3500." },
+                { q: "13. [Scenario] A runner covers 5km on day one and increases daily by 0.5km. Day 10 distance:", options: ["8.5 km", "9.0 km", "9.5 km", "10.0 km"], correct: 2, exp: "a₁₀ = 5 + 9(0.5) = 9.5 km." },
+                { q: "14. [Scenario] Auditorium seating has 20 seats in first row and 4 additional each row. Row 5 seats:", options: ["32", "36", "40", "44"], correct: 1, exp: "a₅ = 20 + 4(4) = 36." },
+                { q: "15. [Scenario] Total seats in first 5 rows of above auditorium:", options: ["120", "140", "150", "160"], correct: 1, exp: "S₅ = 5/2 [2(20) + 4(4)] = 140." },
+                { q: "16. [Scenario] A person saves Rs 100 in first week, Rs 150 in second week... Total savings in 10 weeks:", options: ["Rs 3250", "Rs 3500", "Rs 4000", "Rs 2750"], correct: 0, exp: "S₁₀ = 10/2 [200 + 9(50)] = 5 [650] = 3250." },
+                { q: "17. [Scenario] A clock strikes 1 at 1 o'clock, 2 at 2 o'clock... Total strikes in 12 hours:", options: ["66", "78", "144", "156"], correct: 1, exp: "12(13)/2 = 78." },
+                { q: "18. [Scenario] A taxi charges Rs 50 for first km and Rs 15 for each additional km. Fare for 8 km:", options: ["Rs 155", "Rs 170", "Rs 140", "Rs 185"], correct: 0, exp: "50 + 7(15) = 155." },
+                { q: "19. [Scenario] A company produces 600 cars in 3rd year and 700 in 7th year. Annual uniform increase is:", options: ["25", "30", "35", "20"], correct: 0, exp: "a₇ - a₃ = 4d = 100 ⇒ d = 25." },
+                { q: "20. [Scenario] A ball rolling down an incline moves 2m in 1st sec, 6m in 2nd, 10m in 3rd... Distance in 5th sec:", options: ["14m", "18m", "22m", "16m"], correct: 1, exp: "a₅ = 2 + 4(4) = 18m." }
             ],
             "unit6_ex6_2": [
-                { q: "1. In a Geometric Progression, consecutive terms share a common:", options: ["Difference", "Sum", "Ratio", "Product"], correct: 2, exp: "GP terms share a common ratio r." },
-                { q: "2. The common ratio of GP: 2, 6, 18, 54... is:", options: ["2", "3", "4", "6"], correct: 1, exp: "6 / 2 = 3." },
-                { q: "3. The nth term of a Geometric Progression is:", options: ["a + (n-1)d", "arⁿ⁻¹", "arⁿ", "a + nd"], correct: 1, exp: "Standard formula for nth term of GP." },
-                { q: "4. Geometric mean between 2 and 8 is:", options: ["4", "5", "±4", "±5"], correct: 2, exp: "GM = ±√(2×8) = ±4." }
+                { q: "1. In a Geometric Progression, consecutive terms share a common:", options: ["Difference", "Sum", "Ratio", "Product"], correct: 2, exp: "GP terms share common ratio r." },
+                { q: "2. The common ratio of GP: 2, 6, 18, 54... is:", options: ["2", "3", "4", "6"], correct: 1, exp: "6/2 = 3." },
+                { q: "3. The nth term of a Geometric Progression is:", options: ["a + (n-1)d", "arⁿ⁻¹", "arⁿ", "a + nd"], correct: 1, exp: "Standard GP formula." },
+                { q: "4. Geometric mean between 2 and 8 is:", options: ["4", "5", "±4", "±5"], correct: 2, exp: "GM = ±√(2×8) = ±4." },
+                { q: "5. If first term is 3 and common ratio is 2, 4th term is:", options: ["12", "18", "24", "48"], correct: 2, exp: "a₄ = 3(2)³ = 24." },
+                { q: "6. Sum of infinite geometric series with |r| < 1 is given by:", options: ["a/(1-r)", "a/(1+r)", "ar/(1-r)", "a/(r-1)"], correct: 0, exp: "S_inf formula." },
+                { q: "7. Which of the following is a GP?", options: ["2, 4, 6, 8", "3, 6, 9, 12", "2, 4, 8, 16", "1, 4, 9, 16"], correct: 2, exp: "Common ratio is 2." },
+                { q: "8. Common ratio of 8, -4, 2, -1 is:", options: ["2", "-2", "-1/2", "1/2"], correct: 2, exp: "-4/8 = -1/2." },
+                { q: "9. If 2, x, 18 are in GP, x can be:", options: ["±6", "6", "-6", "9"], correct: 0, exp: "x = ±√(2×18) = ±6." },
+                { q: "10. Product of first n terms of GP with first term a and ratio r:", options: ["(ar)ⁿ", "aⁿ rⁿ⁽ⁿ⁻¹⁾/²", "aⁿ rⁿ", "arⁿ⁻¹"], correct: 1, exp: "Standard product formula." },
+                { q: "11. [Scenario] Bacterial colony triples every hour. If initially 100 bacteria, count after 3 hours:", options: ["300", "900", "2700", "8100"], correct: 2, exp: "100 × 3³ = 2700." },
+                { q: "12. [Scenario] Depreciation of machinery: value halves every 3 years. Initial value 80,000. Value after 6 years:", options: ["40,000", "20,000", "10,000", "5,000"], correct: 1, exp: "80000 × (1/2)² = 20,000." },
+                { q: "13. [Scenario] A ball drops from 100m and rebounds to 80% of previous height. Height on 3rd bounce:", options: ["64 m", "51.2 m", "40.96 m", "80 m"], correct: 1, exp: "100 × (0.8)³ = 51.2 m." },
+                { q: "14. [Scenario] Investment scheme gives compound interest leading to geometric growth factor 1.1. Principal 10,000 after 2 years:", options: ["11,000", "12,000", "12,100", "13,310"], correct: 2, exp: "10000 × (1.1)² = 12,100." },
+                { q: "15. [Scenario] Sound intensity reduces by 10% (retains 90%) per wall. Initial intensity 1000 units. Intensity after 3 walls:", options: ["729 units", "810 units", "900 units", "700 units"], correct: 0, exp: "1000 × (0.9)³ = 729 units." },
+                { q: "16. [Scenario] Population grows at 5% rate per year (multiplier 1.05). Current 50,000. Population in 2 years:", options: ["52,500", "55,000", "55,125", "57,500"], correct: 2, exp: "50000 × (1.05)² = 55,125." },
+                { q: "17. [Scenario] A radioactive isotope decays by half every day. Initial 64 grams. Amount on day 4:", options: ["16 g", "8 g", "4 g", "2 g"], correct: 2, exp: "64 × (1/2)⁴ = 4 g." },
+                { q: "18. [Scenario] Chain message forwarded to 4 people each step. Step 3 total new messages:", options: ["16", "64", "256", "1024"], correct: 1, exp: "4³ = 64." },
+                { q: "19. [Scenario] A pendulum swing arc lengths form GP with r = 0.9. First arc 50 cm. Total infinite arc length:", options: ["450 cm", "500 cm", "550 cm", "infinity"], correct: 1, exp: "S_inf = 50 / (1 - 0.9) = 500 cm." },
+                { q: "20. [Scenario] Savings double every year starting from Rs 1000. Amount in 4th year:", options: ["4000", "8000", "16000", "32000"], correct: 1, exp: "1000 × 2³ = 8000." }
             ],
             "unit6_ex6_3": [
                 { q: "1. Harmonic Progression terms are reciprocals of terms in:", options: ["AP", "GP", "AGP", "Fibonacci"], correct: 0, exp: "An HP is formed by reciprocals of AP terms." },
-                { q: "2. If the corresponding AP has terms 2, 4, 6, 8, the HP terms are:", options: ["1/2, 1/4, 1/6, 1/8", "2, 4, 6, 8", "1, 2, 3, 4", "none"], correct: 0, exp: "Reciprocals of AP give HP." }
+                { q: "2. If the corresponding AP has terms 2, 4, 6, 8, the HP terms are:", options: ["1/2, 1/4, 1/6, 1/8", "2, 4, 6, 8", "1, 2, 3, 4", "none"], correct: 0, exp: "Reciprocals of AP give HP." },
+                { q: "3. Harmonic mean between a and b is:", options: ["(a+b)/2", "2ab/(a+b)", "√(ab)", "ab/(a+b)"], correct: 1, exp: "HM formula." },
+                { q: "4. Find 5th term of HP whose AP is 5, 10, 15...", options: ["1/20", "1/25", "1/30", "1/35"], correct: 1, exp: "AP 5th term is 25, so HP term is 1/25." },
+                { q: "5. If a, b, c are in HP, then b equals:", options: ["(a+c)/2", "2ac/(a+c)", "√(ac)", "(a-c)/2"], correct: 1, exp: "Harmonic mean definition." },
+                { q: "6. Which sequence is a Harmonic Progression?", options: ["1, 2, 3, 4", "1, 1/2, 1/3, 1/4", "2, 4, 8, 16", "1, 4, 9, 16"], correct: 1, exp: "Reciprocals 1, 2, 3, 4 form an AP." },
+                { q: "7. The 3rd term of HP 1/3, 1/5, 1/7... is:", options: ["1/7", "1/9", "1/11", "1/13"], correct: 0, exp: "Sequence is 1/3, 1/5, 1/7..." },
+                { q: "8. Relationship between AM, GM, and HM for positive numbers is:", options: ["AM ≥ GM ≥ HM", "HM ≥ GM ≥ AM", "AM = GM = HM", "GM ≥ AM ≥ HM"], correct: 0, exp: "Fundamental inequality." },
+                { q: "9. If AM = 5 and GM = 4, then HM is:", options: ["3.2", "3.6", "4.0", "4.5"], correct: 0, exp: "GM² = AM × HM ⇒ 16 = 5 × HM ⇒ HM = 3.2." },
+                { q: "10. Reciprocal of 0 is:", options: ["0", "1", "Undefined", "Infinity"], correct: 2, exp: "Division by zero is undefined." },
+                { q: "11. [Scenario] Average speed for equal distances travelled at speeds v₁ and v₂ is given by:", options: ["Arithmetic mean", "Geometric mean", "Harmonic mean", "Quadratic mean"], correct: 2, exp: "Speed over equal distances forms harmonic mean." },
+                { q: "12. [Scenario] A car travels 100km at 50 km/h and return 100km at 100 km/h. Average speed:", options: ["66.67 km/h", "75 km/h", "60 km/h", "70 km/h"], correct: 0, exp: "HM of 50 and 100 = 2(50)(100)/150 = 66.67." },
+                { q: "13. [Scenario] Three resistors in parallel give equivalent resistance forming HP. If values are corresponding AP terms 2, 4, 6...", options: ["Harmonic relation", "Reciprocal sum", "Equivalent resistance formula", "All of these"], correct: 3, exp: "Parallel resistance uses reciprocals." },
+                { q: "14. [Scenario] Find harmonic mean of 3 and 6:", options: ["4", "4.5", "5", "3.5"], correct: 0, exp: "2(3)(6)/(3+6) = 36/9 = 4." },
+                { q: "15. [Scenario] If corresponding AP has 10th term equal to 40, 10th term of HP is:", options: ["1/40", "40", "1/20", "20"], correct: 0, exp: "Reciprocal of AP term." },
+                { q: "16. [Scenario] A project completed by workers with individual completion rates in HP. Combined rate represents:", options: ["Harmonic mean", "Arithmetic mean", "Sum", "Product"], correct: 0, exp: "Work-rate problems involve harmonic mean." },
+                { q: "17. [Scenario] If numbers 2, x, 6 are in HP, x equals:", options: ["3", "4", "5", "2.5"], correct: 0, exp: "2/x = (1/2 + 1/6)/2 ... x = 3." },
+                { q: "18. [Scenario] Optical lens formula 1/f = 1/p + 1/q connects focal lengths in:", options: ["AP", "GP", "HP", "Arithmetic"], correct: 2, exp: "Lens formula involves harmonic progression concepts." },
+                { q: "19. [Scenario] Density and volume relations in specific thermodynamics cycles follow:", options: ["HP", "AP", "GP", "Linear"], correct: 0, exp: "Reciprocal relations." },
+                { q: "20. [Scenario] If AM and HM of two numbers are 9 and 4 respectively, their GM is:", options: ["5", "6", "7", "8"], correct: 1, exp: "GM = √(AM × HM) = √(9 × 4) = 6." }
             ],
             "unit7_ex7_1": [
-                { q: "1. The number of permutations of n distinct objects taken r at a time is:", options: ["n! / (n-r)!", "n! / r!(n-r)!", "r! / (n-r)!", "n! / r!"], correct: 0, exp: "nPr = n! / (n-r)!." },
-                { q: "2. Evaluate 5P2:", options: ["10", "20", "30", "60"], correct: 1, exp: "5! / (5-2)! = 120 / 6 = 20." }
+                { q: "1. The number of permutations of n distinct objects taken r at a time is:", options: ["n! / (n-r)!", "n! / r!(n-r)!", "r! / (n-r)!", "n! / r!"], correct: 0, exp: "nPr formula." },
+                { q: "2. Evaluate 5P2:", options: ["10", "20", "30", "60"], correct: 1, exp: "5! / 3! = 20." },
+                { q: "3. 0! is defined as:", options: ["0", "1", "Infinity", "Undefined"], correct: 1, exp: "By convention, 0! = 1." },
+                { q: "4. nPn is equal to:", options: ["1", "n", "n!", "0"], correct: 2, exp: "nPn = n!." },
+                { q: "5. nP1 is equal to:", options: ["1", "n", "n!", "0"], correct: 1, exp: "nP1 = n." },
+                { q: "6. If nP2 = 30, value of n is:", options: ["5", "6", "7", "8"], correct: 1, exp: "n(n-1) = 30 ⇒ n = 6." },
+                { q: "7. Number of arrangements of letters of word 'MATH':", options: ["12", "24", "48", "120"], correct: 1, exp: "4! = 24." },
+                { q: "8. Permutations where repetition of items is allowed:", options: ["n!", "nʳ", "nPr", "nCr"], correct: 1, exp: "Multiplication rule gives nʳ." },
+                { q: "9. Circular permutations of n distinct objects:", options: ["n!", "(n-1)!", "n! / 2", "(n-1)! / 2"], correct: 1, exp: "Circular arrangement formula." },
+                { q: "10. Number of ways to seat 5 people around a round table:", options: ["24", "120", "60", "12"], correct: 0, exp: "(5-1)! = 24." },
+                { q: "11. [Scenario] Password with 4 distinct digits chosen from 0-9 (no repetition):", options: ["5040", "3024", "10000", "4536"], correct: 0, exp: "10P4 = 10×9×8×7 = 5040." },
+                { q: "12. [Scenario] Arranging 3 books on a shelf out of 7 available:", options: ["35", "210", "5040", "120"], correct: 1, exp: "7P3 = 210." },
+                { q: "13. [Scenario] 5 runners in a race contesting for Gold, Silver, Bronze medals:", options: ["24", "60", "120", "10"], correct: 1, exp: "5P3 = 60." },
+                { q: "14. [Scenario] Arranging letters of 'ALIVE':", options: ["24", "60", "120", "720"], correct: 2, exp: "5! = 120." },
+                { q: "15. [Scenario] Telephone numbers starting with '042' followed by 4 distinct digits:", options: ["5040", "3024", "840", "720"], correct: 2, exp: "7P4 = 840." },
+                { q: "16. [Scenario] Flag signals using 3 vertical strips chosen from 6 different colors:", options: ["20", "120", "216", "720"], correct: 1, exp: "6P3 = 120." },
+                { q: "17. [Scenario] Committee positions (President, Secretary, Treasurer) from 10 members:", options: ["120", "720", "504", "1000"], correct: 1, exp: "10P3 = 720." },
+                { q: "18. [Scenario] Number of 3-digit even numbers from digits 1, 2, 3, 4, 5 (repetition allowed):", options: ["60", "50", "75", "100"], correct: 1, exp: "5×5×2 = 50." },
+                { q: "19. [Scenario] Seating 4 boys and 4 girls in a row such that boys and girls alternate:", options: ["1152", "576", "2880", "5040"], correct: 0, exp: "2 × 4! × 4! = 1152." },
+                { q: "20. [Scenario] Arranging letters of 'STATISTICS' (with repetitions):", options: ["50400", "151200", "3628800", "100800"], correct: 0, exp: "10! / (3! 3! 2!) = 50400." }
             ],
             "unit7_ex7_2": [
-                { q: "1. The number of combinations of n distinct items taken r at a time is given by:", options: ["nPr", "nCr = n! / r!(n-r)!", "r!", "n! / r!"], correct: 1, exp: "Combinations account for cases where order does not matter." },
-                { q: "2. Evaluate 5C2:", options: ["5", "10", "20", "60"], correct: 1, exp: "5! / (2!3!) = 10." }
+                { q: "1. The number of combinations of n distinct items taken r at a time is given by:", options: ["nPr", "nCr = n! / r!(n-r)!", "r!", "n! / r!"], correct: 1, exp: "Combination formula." },
+                { q: "2. Evaluate 5C2:", options: ["5", "10", "20", "60"], correct: 1, exp: "5! / (2!3!) = 10." },
+                { q: "3. nC0 is always equal to:", options: ["0", "1", "n", "Undefined"], correct: 1, exp: "nC0 = 1." },
+                { q: "4. nCn is equal to:", options: ["0", "1", "n", "n!"], correct: 1, exp: "nCn = 1." },
+                { q: "5. If nC8 = nC2, then n equals:", options: ["6", "8", "10", "12"], correct: 2, exp: "n = 8 + 2 = 10." },
+                { q: "6. nCr + nC(r-1) equals:", options: ["(n+1)Cr", "nCr", "(n+1)C(r-1)", "nC(r+1)"], correct: 0, exp: "Pascal's identity." },
+                { q: "7. Number of diagonals in an n-sided polygon:", options: ["n(n-3)/2", "n(n-1)/2", "n(n-2)", "n(n+1)/2"], correct: 0, exp: "Diagonal formula." },
+                { q: "8. Selection of 3 books out of 10:", options: ["120", "720", "240", "60"], correct: 0, exp: "10C3 = 120." },
+                { q: "9. In permutations order is _____, in combinations order is _____.", options: ["Important, Not important", "Not important, Important", "Same, Different", "None"], correct: 0, exp: "Key difference between P and C." },
+                { q: "10. Number of subsets of a set with n elements:", options: ["n!", "2ⁿ", "n²", "2ⁿ⁻¹"], correct: 1, exp: "Total subsets formula." },
+                { q: "11. [Scenario] Selecting a cricket team of 11 players from 15 squad members:", options: ["1365", "2730", "3003", "5005"], correct: 0, exp: "15C11 = 1365." },
+                { q: "12. [Scenario] Selecting 2 red cards and 3 black cards from 26 each:", options: ["Comb(26,2) × Comb(26,3)", "Comb(52,5)", "26P2 × 26P3", "None"], correct: 0, exp: "Independent choices." },
+                { q: "13. [Scenario] Handshakes exchanged among 10 people in a room:", options: ["45", "90", "100", "20"], correct: 0, exp: "10C2 = 45." },
+                { q: "14. [Scenario] Selecting 4 members including at least 2 women from 5 men and 4 women:", options: ["90", "101", "115", "126"], correct: 1, exp: "4C2×5C2 + 4C3×5C1 + 4C4×5C0 = 60 + 20 + 1 = 81." },
+                { q: "15. [Scenario] Number of straight lines formed by 10 points on a plane (no 3 collinear):", options: ["45", "90", "120", "10"], correct: 0, exp: "10C2 = 45." },
+                { q: "16. [Scenario] Number of triangles formed by 8 points (no 3 collinear):", options: ["28", "56", "336", "112"], correct: 1, exp: "8C3 = 56." },
+                { q: "17. [Scenario] Selecting 3 questions out of 10 with 2 compulsory:", options: ["8C1", "8C3", "10C3", "8C2"], correct: 0, exp: "Select 1 from remaining 8 = 8C1." },
+                { q: "18. [Scenario] Distributing 12 distinct toys equally among 3 children:", options: ["12C4 × 8C4 × 4C4", "12!", "3¹²", "12P4"], correct: 0, exp: "Group division formula." },
+                { q: "19. [Scenario] Selecting a team of 4 boys and 3 girls from 7 boys and 5 girls:", options: ["350", "175", "700", "210"], correct: 0, exp: "7C4 × 5C3 = 35 × 10 = 350." },
+                { q: "20. [Scenario] Number of non-empty subsets from a 5-element set:", options: ["31", "32", "16", "25"], correct: 0, exp: "2⁵ - 1 = 31." }
             ],
             "unit7_ex7_3": [
-                { q: "1. If nPr = 30 and nCr = 5, the value of r is:", options: ["2", "3", "4", "5"], correct: 1, exp: "nPr = r! × nCr ⇒ 30 = r! × 5 ⇒ r! = 6 ⇒ r = 3." }
+                { q: "1. If nPr = 30 and nCr = 5, the value of r is:", options: ["2", "3", "4", "5"], correct: 1, exp: "nPr = r! × nCr ⇒ 30 = r! × 5 ⇒ r! = 6 ⇒ r = 3." },
+                { q: "2. If nPr = 720 and nCr = 120, find r:", options: ["2", "3", "4", "5"], correct: 1, exp: "720 = r! × 120 ⇒ r! = 6 ⇒ r = 3." },
+                { q: "3. Relation connecting nPr, nCr, and r! is:", options: ["nPr = nCr × r!", "nCr = nPr × r!", "r! = nPr × nCr", "None"], correct: 0, exp: "Standard identity." },
+                { q: "4. If nC4 = nC6, then n equals:", options: ["4", "6", "10", "12"], correct: 2, exp: "n = 4 + 6 = 10." },
+                { q: "5. The value of ∑ (r=0 to n) nCr equals:", options: ["n!", "2ⁿ", "2ⁿ⁻¹", "0"], correct: 1, exp: "Sum of binomial coefficients = 2ⁿ." },
+                { q: "6. If nP2 = 90 and nC2 = 45, value of r is:", options: ["1", "2", "3", "4"], correct: 1, exp: "r = 2." },
+                { q: "7. Solve for n if nC2 = 15:", options: ["5", "6", "7", "8"], correct: 1, exp: "n(n-1)/2 = 15 ⇒ n = 6." },
+                { q: "8. Ratio of nP3 to nC3 is:", options: ["3", "6", "9", "12"], correct: 1, exp: "nP3 / nC3 = 3! = 6." },
+                { q: "9. If nC(r+1) = nCr, then r equals:", options: ["(n-1)/2", "n/2", "(n+1)/2", "n-1"], correct: 0, exp: "r + r + 1 = n ⇒ r = (n-1)/2." },
+                { q: "10. Can nCr exceed nPr for r ≥ 2?", options: ["Always", "Never", "Sometimes", "Only when n=r"], correct: 1, exp: "nPr is always greater than or equal to nCr." },
+                { q: "11. [Scenario] A code uses 3 letters from 5. Total arrangements / Total selections ratio is:", options: ["6", "3", "12", "24"], correct: 0, exp: "5P3 / 5C3 = 60 / 10 = 6." },
+                { q: "12. [Scenario] If nP4 = 24 × nC4, what is value of 4!?", options: ["12", "24", "48", "6"], correct: 1, exp: "4! = 24." },
+                { q: "13. [Scenario] Total non-empty subsets of set with 6 elements:", options: ["63", "64", "31", "127"], correct: 0, exp: "2⁶ - 1 = 63." },
+                { q: "14. [Scenario] How many ways can 6 people be split into 2 equal groups?", options: ["10", "20", "15", "30"], correct: 0, exp: "6C3 / 2! = 20 / 2 = 10." },
+                { q: "15. [Scenario] In how many ways can 5 distinct prizes be given to 3 students if any can get any number?", options: ["243", "125", "15", "60"], correct: 0, exp: "3⁵ = 243." },
+                { q: "16. [Scenario] Number of diagonals in a hexagon (6 sides):", options: ["9", "12", "15", "6"], correct: 0, exp: "6(3)/2 = 9." },
+                { q: "17. [Scenario] Number of diagonals in an octagon (8 sides):", options: ["20", "28", "16", "24"], correct: 0, exp: "8(5)/2 = 20." },
+                { q: "18. [Scenario] If nC10 = nC14, find nC2:", options: ["276", "300", "250", "288"], correct: 0, exp: "n = 24 ⇒ 24C2 = 276." },
+                { q: "19. [Scenario] Value of 5C0 + 5C1 + 5C2 + 5C3 + 5C4 + 5C5:", options: ["32", "16", "64", "31"], correct: 0, exp: "2⁵ = 32." },
+                { q: "20. [Scenario] Number of ways to select 1 or more items from 4 distinct items:", options: ["15", "16", "8", "14"], correct: 0, exp: "2⁴ - 1 = 15." }
             ],
             "unit7_ex7_4": [
-                { q: "1. Probability of an impossible event is:", options: ["0", "1", "0.5", "Undefined"], correct: 0, exp: "An impossible event has a probability of 0." }
+                { q: "1. Probability of an impossible event is:", options: ["0", "1", "0.5", "Undefined"], correct: 0, exp: "P(E) = 0 for impossible events." },
+                { q: "2. Probability of a sure event is:", options: ["0", "1", "0.5", "Undefined"], correct: 1, exp: "P(E) = 1 for sure events." },
+                { q: "3. Range of probability P(E) for any event E is:", options: ["0 ≤ P(E) ≤ 1", "-1 ≤ P(E) ≤ 1", "0 < P(E) < 1", "1 ≤ P(E) ≤ ∞"], correct: 0, exp: "Standard probability axiom." },
+                { q: "4. P(A') (probability of complement of A) equals:", options: ["1 - P(A)", "P(A) - 1", "1 + P(A)", "P(A)"], correct: 0, exp: "Complementary probability rule." },
+                { q: "5. For mutually exclusive events A and B, P(A ∪ B) equals:", options: ["P(A) + P(B)", "P(A) - P(B)", "P(A) × P(B)", "0"], correct: 0, exp: "Addition rule for disjoint events." },
+                { q: "6. General addition law of probability: P(A ∪ B) =", options: ["P(A) + P(B) - P(A ∩ B)", "P(A) + P(B) + P(A ∩ B)", "P(A) × P(B)", "P(A) - P(B)"], correct: 0, exp: "General addition theorem." },
+                { q: "7. If A and B are independent events, P(A ∩ B) equals:", options: ["P(A) + P(B)", "P(A) × P(B)", "0", "1"], correct: 1, exp: "Multiplication rule for independent events." },
+                { q: "8. Drawing a card from a deck, probability it is a King or Queen:", options: ["2/13", "4/13", "1/13", "8/52"], correct: 0, exp: "4/52 + 4/52 = 8/52 = 2/13." },
+                { q: "9. Two dice rolled, probability sum is 7:", options: ["1/6", "1/12", "5/36", "1/36"], correct: 0, exp: "6 favorable outcomes out of 36 = 1/6." },
+                { q: "10. A bag has 3 red and 5 blue marbles. Probability of drawing a red marble:", options: ["3/8", "5/8", "3/5", "1/3"], correct: 0, exp: "3 favorable / 8 total = 3/8." },
+                { q: "11. [Scenario] Flipping 3 fair coins, probability of getting exactly 2 heads:", options: ["3/8", "1/2", "1/4", "5/8"], correct: 0, exp: "3 outcomes out of 8 = 3/8." },
+                { q: "12. [Scenario] A card drawn from 52 cards, probability it's an Ace:", options: ["1/13", "4/13", "1/26", "1/52"], correct: 0, exp: "4/52 = 1/13." },
+                { q: "13. [Scenario] Probability that a leap year has 53 Sundays:", options: ["1/7", "2/7", "53/366", "1/366"], correct: 1, exp: "2 extra days out of 7 combinations = 2/7." },
+                { q: "14. [Scenario] Two independent events have probabilities 0.4 and 0.5. Probability both occur:", options: ["0.9", "0.2", "0.1", "0.5"], correct: 1, exp: "0.4 × 0.5 = 0.2." },
+                { q: "15. [Scenario] Odds in favor of an event are 3:2. Probability of the event:", options: ["3/5", "2/5", "2/3", "3/2"], correct: 0, exp: "3 / (3+2) = 3/5." },
+                { q: "16. [Scenario] A box contains 10 items, 2 defective. 2 items drawn without replacement. Probability both good:", options: ["28/45", "7/15", "4/5", "1/5"], correct: 0, exp: "8C2 / 10C2 = 28/45." },
+                { q: "17. [Scenario] Probability of hitting a target is 1/4. If shot 4 times, probability of hitting at least once:", options: ["175/256", "81/256", "3/4", "1/4"], correct: 0, exp: "1 - (3/4)⁴ = 1 - 81/256 = 175/256." },
+                { q: "18. [Scenario] Conditional probability P(A|B) is defined as:", options: ["P(A ∩ B) / P(B)", "P(A ∪ B) / P(B)", "P(B) / P(A ∩ B)", "P(A) × P(B)"], correct: 0, exp: "Definition of conditional probability." },
+                { q: "19. [Scenario] If P(A) = 0.6, P(B) = 0.5 and P(A ∩ B) = 0.2, find P(A ∪ B):", options: ["0.9", "1.1", "0.7", "0.3"], correct: 0, exp: "0.6 + 0.5 - 0.2 = 0.9." },
+                { q: "20. [Scenario] Letter chosen from 'MATHEMATICS'. Probability it is a vowel:", options: ["4/11", "5/11", "6/11", "3/11"], correct: 0, exp: "Vowels: A, E, A, I (4 vowels) out of 11 = 4/11." }
             ],
             "unit8_ex8_1": [
-                { q: "1. 3π/2 + θ lies in which quadrant?", options: ["1st quadrant", "2nd quadrant", "3rd quadrant", "4th quadrant"], correct: 3, exp: "3π/2 is 270°. Adding acute angle θ pushes angle past 270° into fourth quadrant." },
-                { q: "2. Sin 390° is equal to:", options: ["sin 30°", "cos 30°", "zero", "sin 60°"], correct: 0, exp: "sin(390°) = sin(360° + 30°) = sin(30°)." },
-                { q: "3. cos 315° = ?", options: ["0", "1", "√3 / 2", "1 / √2"], correct: 3, exp: "cos(315°) = cos(360° - 45°) = 1 / √2." },
-                { q: "4. sin 196° = ?", options: ["sin 16°", "cos 33°", "cos 16°", "-sin 16°"], correct: 3, exp: "sin(180° + 16°) = -sin(16°)." },
-                { q: "5. cos(-60°) = ?", options: ["1/2", "-1/2", "√3 / 2", "0"], correct: 0, exp: "Cosine is even function, so cos(-60°) = cos(60°) = 1/2." }
+                { q: "1. 3π/2 + θ lies in which quadrant?", options: ["1st quadrant", "2nd quadrant", "3rd quadrant", "4th quadrant"], correct: 3, exp: "Fourth quadrant." },
+                { q: "2. Sin 390° is equal to:", options: ["sin 30°", "cos 30°", "zero", "sin 60°"], correct: 0, exp: "sin(360+30) = sin 30°." },
+                { q: "3. cos 315° = ?", options: ["0", "1", "√3 / 2", "1 / √2"], correct: 3, exp: "1/√2." },
+                { q: "4. sin 196° = ?", options: ["sin 16°", "cos 33°", "cos 16°", "-sin 16°"], correct: 3, exp: "-sin 16°." },
+                { q: "5. cos(-60°) = ?", options: ["1/2", "-1/2", "√3 / 2", "0"], correct: 0, exp: "1/2." },
+                { q: "6. Value of tan 180° is:", options: ["0", "1", "-1", "Undefined"], correct: 0, exp: "sin 180 / cos 180 = 0 / -1 = 0." },
+                { q: "7. Fundamental identity: cos²θ + sin²θ =", options: ["0", "1", "-1", "2"], correct: 1, exp: "Pythagorean identity." },
+                { q: "8. 1 + tan²θ equals:", options: ["sec²θ", "cosec²θ", "cot²θ", "1"], correct: 0, exp: "sec²θ." },
+                { q: "9. 1 + cot²θ equals:", options: ["sec²θ", "cosec²θ", "tan²θ", "1"], correct: 1, exp: "cosec²θ." },
+                { q: "10. Sign of sine in 3rd quadrant is:", options: ["Positive", "Negative", "Zero", "Undefined"], correct: 1, exp: "Negative." },
+                { q: "11. [Scenario] If tan θ = 3/4 and θ in 3rd quadrant, value of sin θ:", options: ["-3/5", "3/5", "-4/5", "4/5"], correct: 0, exp: "-3/5." },
+                { q: "12. [Scenario] Value of sin(7π/2 - θ):", options: ["-cos θ", "cos θ", "-sin θ", "sin θ"], correct: 0, exp: "-cos θ." },
+                { q: "13. [Scenario] Simplify cos(90° + θ) sin(180° - θ):", options: ["-sin²θ", "cos²θ", "-cos²θ", "sin²θ"], correct: 0, exp: "(-sin θ)(sin θ) = -sin²θ." },
+                { q: "14. [Scenario] If sec θ = -2 and θ in 2nd quadrant, sin θ is:", options: ["√3 / 2", "-√3 / 2", "1/2", "-1/2"], correct: 0, exp: "Positive in 2nd quadrant: √3/2." },
+                { q: "15. [Scenario] Evaluation of cos 45° sin 45° tan 45°:", options: ["1/2", "1/√2", "1", "0"], correct: 0, exp: "(1/√2)(1/√2)(1) = 1/2." },
+                { q: "16. [Scenario] Period of sin θ function is:", options: ["π", "2π", "π/2", "4π"], correct: 1, exp: "2π." },
+                { q: "17. [Scenario] Period of tan θ function is:", options: ["π", "2π", "π/2", "2/π"], correct: 0, exp: "π." },
+                { q: "18. [Scenario] Which trigonometric function is even?", options: ["sin θ", "tan θ", "cos θ", "cosec θ"], correct: 2, exp: "cos(-θ) = cos(θ)." },
+                { q: "19. [Scenario] Which trigonometric function is odd?", options: ["cos θ", "sec θ", "sin θ", "none"], correct: 2, exp: "sin(-θ) = -sin(θ)." },
+                { q: "20. [Scenario] Value of cosec 30° + cot 45°:", options: ["3", "2", "1", "√3+1"], correct: 0, exp: "2 + 1 = 3." }
             ],
             "unit8_ex8_2": [
-                { q: "1. The expression (1 - tan² x) / (1 + tan² x) is equal to:", options: ["sin 2x", "cos 2x", "tan 2x", "cot 2x"], correct: 1, exp: "Using double angle formulas, cos 2x = (1 - tan² x) / (1 + tan² x)." },
-                { q: "2. tan 2θ is equal to:", options: ["(2 tan θ) / (1 - tan² θ)", "tan θ / (1 + tan² θ)", "(2 tan² θ) / (1 - tan² θ)", "(1 - tan² θ) / (1 + tan² θ)"], correct: 0, exp: "By double angle identity, tan 2θ = 2 tan θ / (1 - tan² θ)." },
-                { q: "3. cos 2θ is equal to:", options: ["(2 tan θ) / (1 - tan² θ)", "cos² θ - sin² θ", "(1 - tan² θ) / (1 + tan² θ)", "2 cos² θ + 1"], correct: 1, exp: "By definition, double-angle identity for cosine is cos 2θ = cos² θ - sin² θ." },
-                { q: "4. (cos 2θ)² + (sin 2θ)² is equal to:", options: ["0", "2", "4", "1"], correct: 3, exp: "By fundamental Pythagorean identity, cos²(ϕ) + sin²(ϕ) = 1." }
+                { q: "1. The expression (1 - tan² x) / (1 + tan² x) is equal to:", options: ["sin 2x", "cos 2x", "tan 2x", "cot 2x"], correct: 1, exp: "cos 2x formula." },
+                { q: "2. tan 2θ is equal to:", options: ["(2 tan θ) / (1 - tan² θ)", "tan θ / (1 + tan² θ)", "(2 tan² θ) / (1 - tan² θ)", "(1 - tan² θ) / (1 + tan² θ)"], correct: 0, exp: "tan double angle." },
+                { q: "3. cos 2θ is equal to:", options: ["(2 tan θ) / (1 - tan² θ)", "cos² θ - sin² θ", "(1 - tan² θ) / (1 + tan² θ)", "2 cos² θ + 1"], correct: 1, exp: "cos² θ - sin² θ." },
+                { q: "4. (cos 2θ)² + (sin 2θ)² is equal to:", options: ["0", "2", "4", "1"], correct: 3, exp: "Fundamental identity = 1." },
+                { q: "5. sin 2θ equals:", options: ["2 sin θ cos θ", "cos² θ - sin² θ", "2 tan θ / (1+tan²θ)", "Both A and C"], correct: 3, exp: "Double angle identities." },
+                { q: "6. 2 cos² θ - 1 is an expression for:", options: ["cos 2θ", "sin 2θ", "tan 2θ", "cos θ"], correct: 0, exp: "cos 2θ form." },
+                { q: "7. 1 - 2 sin² θ equals:", options: ["cos 2θ", "sin 2θ", "cos θ", "sin θ"], correct: 0, exp: "cos 2θ form." },
+                { q: "8. sin 3θ equals:", options: ["3 sin θ - 4 sin³ θ", "4 cos³ θ - 3 cos θ", "3 tan θ - tan³ θ", "none"], correct: 0, exp: "Triple angle for sine." },
+                { q: "9. cos 3θ equals:", options: ["3 sin θ - 4 sin³ θ", "4 cos³ θ - 3 cos θ", "3 tan θ", "none"], correct: 1, exp: "Triple angle for cosine." },
+                { q: "10. sin(α + β) equals:", options: ["sin α cos β + cos α sin β", "sin α cos β - cos α sin β", "cos α cos β - sin α sin β", "cos α cos β + sin α sin β"], correct: 0, exp: "Sum formula for sine." },
+                { q: "11. [Scenario] If sin θ = 3/5, find sin 2θ (acute angle):", options: ["24/25", "12/25", "6/25", "1"], correct: 0, exp: "2(3/5)(4/5) = 24/25." },
+                { q: "12. [Scenario] Simplify cos² 15° - sin² 15°:", options: ["1/2", "√3/2", "1", "0"], correct: 1, exp: "cos(30°) = √3/2." },
+                { q: "13. [Scenario] Value of 2 sin 15° cos 15°:", options: ["1/2", "√3/2", "1", "0"], correct: 0, exp: "sin(30°) = 1/2." },
+                { q: "14. [Scenario] If tan θ = 2, find tan 2θ:", options: ["-4/3", "4/3", "3/4", "-3/4"], correct: 0, exp: "2(2) / (1 - 4) = -4/3." },
+                { q: "15. [Scenario] cos(α - β) formula is:", options: ["cos α cos β + sin α sin β", "cos α cos β - sin α sin β", "sin α cos β + cos α sin β", "sin α cos β - cos α sin β"], correct: 0, exp: "Cosine subtraction formula." },
+                { q: "16. [Scenario] tan(α + β) equals:", options: ["(tan α + tan β) / (1 - tan α tan β)", "(tan α - tan β) / (1 + tan α tan β)", "tan α + tan β", "none"], correct: 0, exp: "Tangent sum formula." },
+                { q: "17. [Scenario] Value of cos 75° using angle sum:", options: ["(√6 - √2) / 4", "(√6 + √2) / 4", "(√3 - 1) / 2", "1/2"], correct: 0, exp: "cos(45+30) = (√6 - √2)/4." },
+                { q: "18. [Scenario] Value of sin 15°:", options: ["(√6 - √2) / 4", "(√6 + √2) / 4", "1/√2", "1/2"], correct: 0, exp: "sin(45-30) = (√6 - √2)/4." },
+                { q: "19. [Scenario] If cos θ = 4/5, find cos 2θ:", options: ["7/25", "24/25", "9/25", "16/25"], correct: 0, exp: "2(16/25) - 1 = 7/25." },
+                { q: "20. [Scenario] Identity for half-angle sin²(θ/2):", options: ["(1 - cos θ) / 2", "(1 + cos θ) / 2", "(1 - sin θ) / 2", "none"], correct: 0, exp: "Half angle formula." }
             ],
             "unit8_ex8_3": [
-                { q: "1. sin 3θ - sin 5θ equals:", options: ["2 sin 4θ cos θ", "2 cos 4θ sin θ", "-2 cos 4θ sin θ", "2 sin 4θ cos θ"], correct: 2, exp: "Using sum-to-product formula, sin 3θ - sin 5θ = -2 cos 4θ sin θ." },
-                { q: "2. sin 5θ + sin 3θ is equal to:", options: ["2 cos 2θ sin θ", "-2 cos 4θ sin θ", "-2 cos 4θ cos θ", "2 sin 4θ cos θ"], correct: 3, exp: "Using sum-to-product formula, sin 5θ + sin 3θ = 2 sin 4θ cos θ." },
-                { q: "3. cos 48° + cos 12° = ?", options: ["2 cos 18°", "3 cos 18°", "√3 cos 18°", "√2 cos 18°"], correct: 2, exp: "Using sum-to-product formula, we get √3 cos 18°." }
+                { q: "1. sin 3θ - sin 5θ equals:", options: ["2 sin 4θ cos θ", "2 cos 4θ sin θ", "-2 cos 4θ sin θ", "2 sin 4θ cos θ"], correct: 2, exp: "Sum to product formula." },
+                { q: "2. sin 5θ + sin 3θ is equal to:", options: ["2 cos 2θ sin θ", "-2 cos 4θ sin θ", "-2 cos 4θ cos θ", "2 sin 4θ cos θ"], correct: 3, exp: "Sum to product formula." },
+                { q: "3. cos 48° + cos 12° = ?", options: ["2 cos 18°", "3 cos 18°", "√3 cos 18°", "√2 cos 18°"], correct: 2, exp: "2 cos 30° cos 18° = √3 cos 18°." },
+                { q: "4. 2 sin α cos β equals:", options: ["sin(α + β) + sin(α - β)", "sin(α + β) - sin(α - β)", "cos(α + β) + cos(α - β)", "cos(α + β) - cos(α - β)"], correct: 0, exp: "Product to sum identity." },
+                { q: "5. 2 cos α sin β equals:", options: ["sin(α + β) + sin(α - β)", "sin(α + β) - sin(α - β)", "cos(α + β) + cos(α - β)", "cos(α + β) - cos(α - β)"], correct: 1, exp: "Product to sum identity." },
+                { q: "6. 2 cos α cos β equals:", options: ["cos(α + β) + cos(α - β)", "cos(α + β) - cos(α - β)", "sin(α + β) + sin(α - β)", "sin(α + β) - sin(α - β)"], correct: 0, exp: "Product to sum identity." },
+                { q: "7. -2 sin α sin β equals:", options: ["cos(α + β) + cos(α - β)", "cos(α + β) - cos(α - β)", "sin(α + β)", "none"], correct: 1, exp: "Product to sum identity." },
+                { q: "8. cos α + cos β equals:", options: ["2 cos((α+β)/2) cos((α-β)/2)", "2 sin((α+β)/2) cos((α-β)/2)", "-2 sin((α+β)/2) sin((α-β)/2)", "2 cos((α+β)/2) sin((α-β)/2)"], correct: 0, exp: "Sum to product." },
+                { q: "9. cos α - cos β equals:", options: ["-2 sin((α+β)/2) sin((α-β)/2)", "2 cos((α+β)/2) cos((α-β)/2)", "2 sin((α+β)/2) cos((α-β)/2)", "none"], correct: 0, exp: "Sum to product." },
+                { q: "10. Simplify sin 75° + sin 15°:", options: ["√6 / 2", "√3 / 2", "1/2", "1"], correct: 0, exp: "2 sin 45° cos 30° = 2(1/√2)(√3/2) = √3/√2 = √6/2." },
+                { q: "11. [Scenario] Value of cos 75° - cos 15°:", options: ["-1/√2", "1/√2", "-√3/2", "√3/2"], correct: 0, exp: "-2 sin 45° sin 30° = -1/√2." },
+                { q: "12. [Scenario] Express 2 sin 5x cos 3x as sum/difference:", options: ["sin 8x + sin 2x", "sin 8x - sin 2x", "cos 8x + cos 2x", "sin 5x + sin 3x"], correct: 0, exp: "sin(8x) + sin(2x)." },
+                { q: "13. [Scenario] Express 2 cos 5x sin 2x as sum/difference:", options: ["sin 7x - sin 3x", "sin 7x + sin 3x", "cos 7x - cos 3x", "none"], correct: 0, exp: "sin(7x) - sin(3x)." },
+                { q: "14. [Scenario] Simplify sin 50° - sin 10°:", options: ["√3 sin 20°", "sin 20°", "2 cos 30° sin 20°", "cos 30°"], correct: 0, exp: "2 cos 30° sin 20° = √3 sin 20°." },
+                { q: "15. [Scenario] Product expression 2 cos 40° cos 10° equals:", options: ["cos 50° + cos 30°", "cos 50° - cos 30°", "sin 50° + sin 30°", "none"], correct: 0, exp: "cos(50°) + cos(30°)." },
+                { q: "16. [Scenario] Value of sin 40° sin 20° using product-to-sum:", options: ["(cos 20° - cos 60°) / 2", "(cos 20° + cos 60°) / 2", "1/2", "0"], correct: 0, exp: "Standard product identity." },
+                { q: "17. [Scenario] Simplify cos 20° cos 40° cos 80°:", options: ["1/8", "1/4", "1/2", "√3/8"], correct: 0, exp: "Classic trigonometric product identity = 1/8." },
+                { q: "18. [Scenario] Expression for sin A + sin B + sin C in a triangle ABC equals:", options: ["4 cos(A/2) cos(B/2) cos(C/2)", "4 sin(A/2) sin(B/2) sin(C/2)", "1", "0"], correct: 0, exp: "Conditional trig identity." },
+                { q: "19. [Scenario] sin(θ + 120°) + sin(θ - 120°) + sin θ equals:", options: ["0", "1", "3 sin θ", "cos θ"], correct: 0, exp: "Expands and cancels out to 0." },
+                { q: "20. [Scenario] Transformation of sum to product is extensively used in:", options: ["Solving trigonometric equations and calculus integrals", "Matrix algebra", "Coordinate geometry", "Statistics"], correct: 0, exp: "Calculus and trig equations." }
             ],
             "unit9_ex9_1": [
-                { q: "1. The Period of 3 cos 2x is:", options: ["π", "π/2", "3π", "2π/3"], correct: 0, exp: "The period of cos(kx) is 2π/k. For 3 cos(2x), k = 2, so period is π." },
-                { q: "2. The Period of sin 2x is:", options: ["π/3", "π/2", "5π", "π"], correct: 3, exp: "The period of sin(kx) is 2π/k. For sin(2x), k = 2, so period is π." },
-                { q: "3. The Period of 5 tan 2x is:", options: ["π", "2π", "π/2", "π/5"], correct: 2, exp: "The period of tan(kx) is π/k. For 5 tan(2x), k = 2, so period is π/2." },
-                { q: "4. The Period of cosec 10x is:", options: ["π/10", "2π/5", "π/5", "4π/5"], correct: 2, exp: "The period of csc(kx) is 2π/k. For csc(10x), k = 10, so period is π/5." },
-                { q: "5. The Period of sin(x/3) is:", options: ["π", "3π", "2π/3", "6π"], correct: 3, exp: "The period of sin(kx) is 2π/k. Here k = 1/3, so period is 6π." },
-                { q: "6. The period of cot 8x is:", options: ["π/2", "8π", "π/8", "2π"], correct: 2, exp: "The period of cot(kx) is π/k. For cot(8x), k = 8, so period is π/8." },
-                { q: "7. Period of 3tan 3x is equal to:", options: ["π/2", "π", "2π/3", "π/3"], correct: 3, exp: "The period of tan(kx) is π/k. For 3 tan(3x), k = 3, so period is π/3." },
-                { q: "8. The Period of 3sin 3x is:", options: ["π/3", "π/2", "2π/3", "π"], correct: 2, exp: "The period of sin(kx) is 2π/k. For 3 sin(3x), k = 3, so period is 2π/3." },
-                { q: "9. Period of 3 cos(x/5) is:", options: ["2π", "10π", "π/10", "π/5"], correct: 1, exp: "The period of cos(kx) is 2π/k. For 3 cos(x/5), k = 1/5, so period is 10π." },
-                { q: "10. Range of y = 3 sin 2x is:", options: ["[-1, 1]", "[-3, 3]", "[-5, 5]", "[-6, 6]"], correct: 1, exp: "Since range of sin(2x) is [-1, 1], multiplying by 3 gives [-3, 3]." },
-                { q: "[Scenario 1] If the function y = 2 sin x represents the wave, then what is the domain of the function?", options: ["(-∞, ∞)", "(-200, 200)", "(-1, 1)", "[-1, 1]"], correct: 0, exp: "The domain of sine function y = 2 sin x is all real numbers, (-∞, ∞)." },
-                { q: "[Scenario 1] What is the maximum value of the function y = 2 sin x?", options: ["0", "1", "∞", "2"], correct: 3, exp: "Since maximum value of sin x is 1, maximum value of y = 2 sin x is 2 × 1 = 2." },
-                { q: "[Scenario 2] What is the domain of the function y = tan x?", options: ["R", "{x ∈ ℝ | x ≠ (2k+1)π/2, k ∈ ℤ}", "sin α cos β + cos α sin β", "sin α cos β - cos α sin β"], correct: 1, exp: "tan x = sin x / cos x is undefined where cos x = 0, which occurs at odd multiples of π/2." },
-                { q: "[Scenario 2] What is the range of the function y = 3 sin x - 2?", options: ["[-1, 1]", "[-3, 3]", "[-5, 1]", "[-5, 5]"], correct: 2, exp: "Since -1 ≤ sin x ≤ 1, range is [-5, 1]." },
-                { q: "[Scenario 3] The period of cosine function y = cos x is:", options: ["-π", "π", "-2π", "2π"], correct: 3, exp: "Basic cosine function y = cos x has a standard fundamental period of 2π." },
-                { q: "[Scenario 3] The function y = cos x is:", options: ["odd", "even", "both even and odd", "neither even nor odd"], correct: 1, exp: "Since cos(-x) = cos x, y = cos x is an even function." },
-                { q: "[Scenario 5] For which value of angle x, function y = 4 + 3 cos x attains maximum value?", options: ["0°", "90°", "180°", "270°"], correct: 0, exp: "y = 4 + 3 cos x attains maximum when cos x = 1, which occurs at x = 0°." },
-                { q: "[Scenario 5] What is the maximum value of the function y = 4 + 3 cos x?", options: ["3", "1", "4", "7"], correct: 3, exp: "Maximum value of cos x is 1, so max value is 4 + 3(1) = 7." },
-                { q: "[Scenario 6] What is maximum elevation angle of Sun according to model E(t) = 30° + 25° sin(15° t)?", options: ["25°", "30°", "55°", "60°"], correct: 2, exp: "Sine function reaches maximum of 1, so E(t)max = 30° + 25°(1) = 55°." },
-                { q: "[Scenario 6] What is the period of the function E(t) = 30° + 25° sin(15° t)?", options: ["12h", "24h", "30h", "360h"], correct: 1, exp: "Period T = 360° / (15°/h) = 24h." }
+                { q: "1. The Period of 3 cos 2x is:", options: ["π", "π/2", "3π", "2π/3"], correct: 0, exp: "Period is 2π/2 = π." },
+                { q: "2. The Period of sin 2x is:", options: ["π/3", "π/2", "5π", "π"], correct: 3, exp: "Period is 2π/2 = π." },
+                { q: "3. The Period of 5 tan 2x is:", options: ["π", "2π", "π/2", "π/5"], correct: 2, exp: "Period is π/2." },
+                { q: "4. The Period of cosec 10x is:", options: ["π/10", "2π/5", "π/5", "4π/5"], correct: 2, exp: "Period is 2π/10 = π/5." },
+                { q: "5. The Period of sin(x/3) is:", options: ["π", "3π", "2π/3", "6π"], correct: 3, exp: "Period is 2π / (1/3) = 6π." },
+                { q: "6. The period of cot 8x is:", options: ["π/2", "8π", "π/8", "2π"], correct: 2, exp: "Period is π/8." },
+                { q: "7. Period of 3tan 3x is equal to:", options: ["π/2", "π", "2π/3", "π/3"], correct: 3, exp: "Period is π/3." },
+                { q: "8. The Period of 3sin 3x is:", options: ["π/3", "π/2", "2π/3", "π"], correct: 2, exp: "Period is 2π/3." },
+                { q: "9. Period of 3 cos(x/5) is:", options: ["2π", "10π", "π/10", "π/5"], correct: 1, exp: "Period is 10π." },
+                { q: "10. Range of y = 3 sin 2x is:", options: ["[-1, 1]", "[-3, 3]", "[-5, 5]", "[-6, 6]"], correct: 1, exp: "[-3, 3]." },
+                { q: "11. [Scenario] Domain of y = sin x function is:", options: ["(-∞, ∞)", "[-1, 1]", "[0, 2π]", "R except 0"], correct: 0, exp: "All real numbers." },
+                { q: "12. [Scenario] Range of y = cos x function is:", options: ["(-∞, ∞)", "[-1, 1]", "[0, 1]", "(0, 1)"], correct: 1, exp: "[-1, 1]." },
+                { q: "13. [Scenario] Period of y = sec 4x is:", options: ["π/2", "π/4", "2π", "π"], correct: 0, exp: "2π/4 = π/2." },
+                { q: "14. [Scenario] Amplitude of y = -4 sin 3x is:", options: ["-4", "4", "3", "12"], correct: 1, exp: "Amplitude is absolute value |-4| = 4." },
+                { q: "15. [Scenario] Period of y = |sin x| is:", options: ["2π", "π", "π/2", "4π"], correct: 1, exp: "Absolute value halves the period to π." },
+                { q: "16. [Scenario] Range of y = 2 cos x + 1 is:", options: ["[-1, 3]", "[-2, 2]", "[0, 2]", "[-3, 3]"], correct: 0, exp: "2[-1,1]+1 = [-2,2]+1 = [-1,3]." },
+                { q: "17. [Scenario] Period of constant function f(x) = 5 is:", options: ["1", "0", "No fundamental period", "2π"], correct: 2, exp: "Constant functions have no fundamental period." },
+                { q: "18. [Scenario] Frequency of function y = sin 3x is:", options: ["3/2π", "3", "2π/3", "1/3"], correct: 0, exp: "Frequency = k / 2π = 3 / 2π." },
+                { q: "19. [Scenario] Graph of y = sin x is symmetric about:", options: ["Origin", "Y-axis", "X-axis", "Line x=1"], correct: 0, exp: "Origin symmetry (odd function)." },
+                { q: "20. [Scenario] Graph of y = cos x is symmetric about:", options: ["Origin", "Y-axis", "X-axis", "Line y=x"], correct: 1, exp: "Y-axis symmetry (even function)." }
             ],
             "unit9_ex9_2": [
-                { q: "1. Trigonometric functions are -------", options: ["discontinuous", "no circular function", "not periodic", "periodic"], correct: 3, exp: "Trigonometric functions repeat their values in regular intervals, so they are periodic functions." },
-                { q: "2. The trigonometric functions are periodic so their curves repeat after a", options: ["fixed interval", "not fixed interval", "both a & b", "none of these"], correct: 0, exp: "By definition, periodic functions repeat outputs after a constant fixed interval called period." },
-                { q: "3. At which θ coordinate on interval [0, π] does the graph of f(θ)=sin(θ) reach its maximum point?", options: ["π/4", "π/2", "3π/4", "π"], correct: 1, exp: "Sine function reaches maximum value of 1 at θ = π/2 within interval [0, π]." },
-                { q: "4. Graph of f(θ)=cos(θ - π/2) is a horizontal shift of y=cos(θ) by how many units to the right?", options: ["π/4", "π/2", "π", "2π"], correct: 1, exp: "Subtracting π/2 inside argument causes horizontal shift of π/2 units to the right." },
-                { q: "5. What is the equation of the midline (horizontal axis of symmetry) for f(θ)=sin(θ)-3?", options: ["y = -3", "y = -1", "y = 1", "y = 3"], correct: 0, exp: "Midline of y = sin(θ) is y = 0. Subtracting 3 shifts midline downward to y = -3." },
-                { q: "6. On interval [0, 2π], at how many coordinate points do graphs of f(θ)=sin(θ) and g(θ)=cos(θ) intersect?", options: ["1", "2", "3", "4"], correct: 1, exp: "sin(θ) = cos(θ) implies tan(θ) = 1, occurring at θ = π/4 and θ = 5π/4." },
-                { q: "7. For f(θ)=tan(θ), what is second positive vertical asymptote position moving right from origin?", options: ["π/2", "π", "3π/2", "2π"], correct: 2, exp: "Vertical asymptotes of tan(θ) occur at odd multiples of π/2. Second positive is at 3π/2." },
-                { q: "8. If f(θ)=sin(θ) is reflected across x-axis and shifted upward by 2, what is new maximum point y-coordinate?", options: ["1", "2", "3", "4"], correct: 2, exp: "Reflecting sin(θ) gives -sin(θ) with max 1. Shifting up by 2 units gives 1 + 2 = 3." },
-                { q: "9. At what positive value of θ does the graph of f(θ)=tan(θ) first have a vertical asymptote?", options: ["π/4", "π/3", "π/2", "π"], correct: 2, exp: "Tangent function is undefined when cos(θ) = 0, first occurring at θ = π/2." },
-                { q: "10. How many x-intercepts does the graph of f(θ)=cos(θ) have on the interval [0, 2π]?", options: ["1", "2", "3", "4"], correct: 1, exp: "cos(θ) = 0 on [0, 2π] at θ = π/2 and θ = 3π/2 (2 intercepts)." },
-                { q: "[Scenario 7] What is the period of the function y = 3 cos(2x - π) + 1?", options: ["π", "2π", "π/2", "3π"], correct: 0, exp: "Period of cos(bx - c) is 2π / b = 2π / 2 = π." },
-                { q: "[Scenario 7] Where do vertical asymptotes of transformed tangent function y = tan(x/2) occur?", options: ["x = (2k+1)π/2, k∈ℤ", "x = kπ, k∈ℤ", "x = (2k+1)π, k∈ℤ", "x = 2kπ, k∈ℤ"], correct: 2, exp: "Setting x/2 = (2k+1)π/2 gives x = (2k+1)π." },
-                { q: "[Scenario 7] What are maximum and minimum values of the function y = -2 sin(3x) + 4?", options: ["Max=2, Min=-2", "Max=6, Min=2", "Max=4, Min=2", "Max=6, Min=-2"], correct: 1, exp: "Range of -2 sin(3x) is [-2, 2]. Adding 4 gives Min = 2 and Max = 6." },
-                { q: "[Scenario 7] Water depth is h(t) = 4 sin(π/6 t) + 7 (hours). How many hours between consecutive high tides?", options: ["6 hours", "12 hours", "24 hours", "3 hours"], correct: 1, exp: "Period T = 2π / (π/6) = 12 hours." },
-                { q: "[Scenario 8] What is the period of alternating current wave modelled by f(x) = 3 sin(4x - π) + 2?", options: ["π", "2π", "π/2", "π/4"], correct: 2, exp: "Period is 2π / 4 = π/2." },
-                { q: "[Scenario 8] Which transformation maps y = cos(x) onto y = cos(2x - π/3)?", options: ["Scale 1/2, Shift right π/6", "Scale 2, Shift right π/3", "Scale 1/2, Shift left π/6", "Scale 2, Shift right π/6"], correct: 0, exp: "Writing cos(2(x - π/6)) shows horizontal compression by 1/2 and right shift of π/6." },
-                { q: "[Scenario 9] Which trigonometric function is symmetric with respect to y-axis (even function)?", options: ["y = sin x", "y = cos x", "y = tan x", "y = csc x"], correct: 1, exp: "Cosine satisfies cos(-x) = cos(x), making it even." },
-                { q: "[Scenario 9] At what values in [0, 2π] does y = sin x cross the x-axis (y = 0)?", options: ["x = 0, π, 2π", "x = π/2, 3π/2", "x = 0, π/2, π", "x = π/4, 5π/4"], correct: 0, exp: "sin(x) = 0 on [0, 2π] at x = 0, π, and 2π." },
-                { q: "[Scenario 10] Tower height 50 m. Angle of elevation θ=60°. What is exact length of shadow?", options: ["50 / √3 m", "50√3 m", "25 m", "100 m"], correct: 0, exp: "tan(60°) = 50 / s ⇒ s = 50 / √3 m." },
-                { q: "[Scenario 10] Force F(θ) = 100 cos(-θ). Using even/odd property of cosine, this force equals:", options: ["-100 cos θ", "100 cos θ", "100 sin θ", "-100 sin θ"], correct: 1, exp: "cos(-θ) = cos(θ), so F(θ) = 100 cos θ." }
+                { q: "1. The value of sin(90° - θ) is:", options: ["cos θ", "-cos θ", "sin θ", "-sin θ"], correct: 0, exp: "Co-function identity." },
+                { q: "2. The value of cos(90° - θ) is:", options: ["sin θ", "-sin θ", "cos θ", "-cos θ"], correct: 0, exp: "Co-function identity." },
+                { q: "3. tan(90° - θ) equals:", options: ["cot θ", "-cot θ", "tan θ", "-tan θ"], correct: 0, exp: "cot θ." },
+                { q: "4. cosec(90° - θ) equals:", options: ["sec θ", "-sec θ", "cosec θ", "cot θ"], correct: 0, exp: "sec θ." },
+                { q: "5. Inverse trigonometric function arcsin(1) equals:", options: ["0", "π/2", "π", "3π/2"], correct: 1, exp: "π/2 radians." },
+                { q: "6. Domain of y = arcsin x is:", options: ["(-∞, ∞)", "[-1, 1]", "[0, π]", "(-1, 1)"], correct: 1, exp: "[-1, 1]." },
+                { q: "7. Range of principal value of arcsin x is:", options: ["[0, π]", "[-π/2, π/2]", "(0, π)", "[0, 2π]"], correct: 1, exp: "[-π/2, π/2]." },
+                { q: "8. Range of principal value of arccos x is:", options: ["[0, π]", "[-π/2, π/2]", "(0, π)", "[0, 2π]"], correct: 0, exp: "[0, π]." },
+                { q: "9. Value of arctan(1) is:", options: ["0", "π/4", "π/2", "π"], correct: 1, exp: "π/4." },
+                { q: "10. Simplify sin(arcsin 0.5):", options: ["0.5", "0", "1", "√3/2"], correct: 0, exp: "sin(arcsin x) = x." },
+                { q: "11. [Scenario] Value of cos(arccos(-1)):", options: ["1", "-1", "0", "undefined"], correct: 1, exp: "-1." },
+                { q: "12. [Scenario] tan(arctan 10):", options: ["10", "1", "0", "1/10"], correct: 0, exp: "10." },
+                { q: "13. [Scenario] sin(arccos 0) equals:", options: ["0", "1", "-1", "0.5"], correct: 1, exp: "arccos 0 = π/2, sin(π/2) = 1." },
+                { q: "14. [Scenario] cos(arcsin 1) equals:", options: ["1", "0", "-1", "0.5"], correct: 1, exp: "arcsin 1 = π/2, cos(π/2) = 0." },
+                { q: "15. [Scenario] sec(arcsec 2) equals:", options: ["2", "1/2", "1", "0"], correct: 0, exp: "2." },
+                { q: "16. [Scenario] cot(arccot 5) equals:", options: ["5", "1/5", "0", "1"], correct: 0, exp: "5." },
+                { q: "17. [Scenario] Identity arcsin x + arccos x equals:", options: ["π/2", "π", "0", "1"], correct: 0, exp: "Complementary angle identity." },
+                { q: "18. [Scenario] arctan x + arctan y equals:", options: ["arctan((x+y)/(1-xy))", "arctan((x-y)/(1+xy))", "arctan(x+y)", "none"], correct: 0, exp: "Sum formula for inverse tangents." },
+                { q: "19. [Scenario] Value of sin(arctan 3/4):", options: ["3/5", "4/5", "3/4", "4/3"], correct: 0, exp: "Perpendicular=3, Base=4, Hypotenuse=5 ⇒ sin = 3/5." },
+                { q: "20. [Scenario] Principal branch of arccot x is:", options: ["(0, π)", "[0, π]", "[-π/2, π/2]", "(0, 2π)"], correct: 0, exp: "(0, π)." }
             ]
         };
 
-        function handleClassChange(sel) {
-            const cls = sel.value;
+        function handleClassChange(selectElem) {
+            const selectedClass = selectElem.value;
             const inputBox = document.getElementById("student-input-box");
-            const nameInput = document.getElementById("std-name-input");
-            const simInput = document.getElementById("std-sim");
             const datalist = document.getElementById("students-datalist");
+            const simInput = document.getElementById("std-sim");
 
-            if (!cls) {
+            if (!selectedClass) {
                 inputBox.classList.add("hidden");
                 return;
             }
 
-            inputBox.classList.remove("hidden");
-            simInput.readOnly = false;
-            simInput.value = "";
-
-            const filtered = masterStudentRoster.filter(s => s.class === cls);
-            datalist.innerHTML = filtered.map(s => `<option value="${s.name}">`).join("");
-            nameInput.value = "";
-        }
-
-        function handleStudentInput(inp) {
-            const val = inp.value.trim().toUpperCase();
-            const cls = document.getElementById("std-class").value;
-            const simInput = document.getElementById("std-sim");
-
-            const found = masterStudentRoster.find(s => s.class === cls && s.name.toUpperCase() === val);
-            if (found) {
-                simInput.value = found.sim;
-                simInput.readOnly = true;
-            } else {
-                simInput.readOnly = false;
-            }
-        }
-
-        function startQuiz(e) {
-            e.preventDefault();
-            const cls = document.getElementById("std-class").value;
-            const name = document.getElementById("std-name-input").value.trim().toUpperCase();
-            const sim = document.getElementById("std-sim").value.trim();
-            const cat = document.getElementById("chapter-select").value;
-
-            if (!cls || !name || !sim) {
-                alert("Please fill all registration fields!");
+            if (selectedClass === "Guest") {
+                inputBox.classList.remove("hidden");
+                document.getElementById("std-name-input").value = "";
+                simInput.value = "";
+                datalist.innerHTML = "";
                 return;
             }
 
-            studentData = { name, class: cls, sim };
-            activeQuestions = questionsDatabase[cat] || questionsDatabase["model_paper_2025"];
-            userAnswers = {};
-            currentQuestionIdx = 0;
+            inputBox.classList.remove("hidden");
+            datalist.innerHTML = "";
+            const filteredStudents = masterStudentRoster.filter(s => s.class === selectedClass);
+            filteredStudents.forEach(s => {
+                const opt = document.createElement("option");
+                opt.value = s.name;
+                datalist.appendChild(opt);
+            });
+        }
 
-            document.getElementById("display-std-name").innerText = name;
-            document.getElementById("display-std-class").innerText = cls;
+        function handleStudentInput(inputElem) {
+            const typedName = inputElem.value.trim().toUpperCase();
+            const selectedClass = document.getElementById("std-class").value;
+            const simInput = document.getElementById("std-sim");
+
+            const found = masterStudentRoster.find(s => s.name === typedName && s.class === selectedClass);
+            if (found) {
+                simInput.value = found.sim;
+            }
+        }
+
+        function startQuiz(event) {
+            event.preventDefault();
+            studentData.class = document.getElementById("std-class").value;
+            studentData.name = document.getElementById("std-name-input").value.trim().toUpperCase();
+            studentData.sim = document.getElementById("std-sim").value.trim();
+
+            const chapterKey = document.getElementById("chapter-select").value;
+            activeQuestions = questionsDatabase[chapterKey] || questionsDatabase["model_paper_2025"];
+            currentQuestionIdx = 0;
+            userAnswers = {};
+
+            document.getElementById("display-std-name").innerText = studentData.name;
+            document.getElementById("display-std-class").innerText = studentData.class;
             document.getElementById("progress-total").innerText = activeQuestions.length;
 
             document.getElementById("registration-card").classList.add("hidden");
             document.getElementById("quiz-container").classList.remove("hidden");
 
-            renderQuestion();
+            loadQuestion();
         }
 
-        function renderQuestion() {
+        function loadQuestion() {
             const q = activeQuestions[currentQuestionIdx];
             document.getElementById("progress-current").innerText = currentQuestionIdx + 1;
             document.getElementById("question-text").innerText = q.q;
 
-            const optContainer = document.getElementById("options-container");
-            optContainer.innerHTML = "";
+            const optsContainer = document.getElementById("options-container");
+            optsContainer.innerHTML = "";
 
-            q.options.forEach((opt, idx) => {
+            const isAlreadyAnswered = userAnswers[currentQuestionIdx] !== undefined;
+
+            q.options.forEach((optText, idx) => {
                 const isSelected = userAnswers[currentQuestionIdx] === idx;
                 const btn = document.createElement("button");
-                btn.className = `w-full text-left p-3.5 rounded-xl border-2 font-sans transition flex items-center justify-between ${isSelected ? 'border-blue-700 bg-blue-50 font-bold text-blue-900' : 'border-amber-200 bg-white hover:bg-amber-50 text-slate-700'}`;
-                btn.innerHTML = `<span>${String.fromCharCode(65 + idx)}. ${opt}</span>`;
+                
+                btn.disabled = isAlreadyAnswered;
+                btn.className = `w-full text-left p-3.5 rounded-xl border-2 font-sans transition flex items-center justify-between ${
+                    isSelected 
+                        ? 'bg-amber-200 border-amber-600 font-bold text-blue-900 cursor-not-allowed' 
+                        : isAlreadyAnswered 
+                            ? 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed' 
+                            : 'bg-white border-amber-200 hover:bg-amber-50 text-slate-800'
+                }`;
+                btn.innerHTML = `<span><strong class="mr-2">${String.fromCharCode(65 + idx)}.</strong> ${optText}</span>`;
                 btn.onclick = () => selectOption(idx);
-                optContainer.appendChild(btn);
+                optsContainer.appendChild(btn);
             });
 
             const feedbackBox = document.getElementById("feedback-box");
-            if (userAnswers[currentQuestionIdx] !== undefined) {
+            if (isAlreadyAnswered) {
+                const userChoice = userAnswers[currentQuestionIdx];
+                const isCorrect = userChoice === q.correct;
                 feedbackBox.classList.remove("hidden");
-                const correct = userAnswers[currentQuestionIdx] === q.correct;
-                feedbackBox.innerHTML = `<strong>${correct ? '✅ Correct!' : '❌ Incorrect.'}</strong> ${q.exp}`;
+                feedbackBox.innerHTML = `<p class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-red-700'}">${isCorrect ? '✅ Correct!' : '❌ Incorrect.'}</p><p class="mt-1 text-sm">💡 <strong>Explanation:</strong> ${q.exp}</p>`;
             } else {
                 feedbackBox.classList.add("hidden");
             }
 
-            document.getElementById("prev-btn").disabled = currentQuestionIdx === 0;
-            document.getElementById("next-btn").innerText = currentQuestionIdx === activeQuestions.length - 1 ? '🏁 Finish' : 'Next ➡';
+            document.getElementById("next-btn").innerText = currentQuestionIdx === activeQuestions.length - 1 ? "🏁 Finish Quiz" : "Next ➡";
         }
 
         function selectOption(idx) {
-            userAnswers[currentQuestionIdx] = idx;
-            renderQuestion();
-        }
+            if (userAnswers[currentQuestionIdx] !== undefined) return;
 
-        function prevQuestion() {
-            if (currentQuestionIdx > 0) {
-                currentQuestionIdx--;
-                renderQuestion();
-            }
+            userAnswers[currentQuestionIdx] = idx;
+            loadQuestion();
         }
 
         function nextQuestion() {
+            if (userAnswers[currentQuestionIdx] === undefined) {
+                alert("Please select an answer before proceeding to the next question.");
+                return;
+            }
+
             if (currentQuestionIdx < activeQuestions.length - 1) {
                 currentQuestionIdx++;
-                renderQuestion();
+                loadQuestion();
             } else {
                 finishQuiz();
             }
         }
 
         function finishQuiz() {
-            let score = 0;
+            let correctCount = 0;
             activeQuestions.forEach((q, idx) => {
-                if (userAnswers[idx] === q.correct) score++;
+                if (userAnswers[idx] === q.correct) correctCount++;
             });
 
-            const percentage = Math.round((score / activeQuestions.length) * 100);
+            const percentage = Math.round((correctCount / activeQuestions.length) * 100);
 
-            // Save to Firebase
-            const record = { ...studentData, score, total: activeQuestions.length, percentage, timestamp: new Date().toISOString() };
-            fetch(`${FIREBASE_DB_URL}/results.json`, {
-                method: 'POST',
-                body: JSON.stringify(record)
-            }).catch(err => console.log(err));
+            const payload = {
+                name: studentData.name,
+                class: studentData.class,
+                sim: studentData.sim,
+                score: correctCount,
+                total: activeQuestions.length,
+                percentage: percentage,
+                timestamp: new Date().toISOString()
+            };
+
+            fetch(`${FIREBASE_DB_URL}/leaderboard.json`, {
+                method: "POST",
+                body: JSON.stringify(payload)
+            }).catch(err => console.log("Firebase save error:", err));
+
+            const completionModal = document.getElementById("completion-modal");
+            const completionContent = document.getElementById("completion-content");
 
             if (percentage === 100) {
-                confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+                confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
             }
 
-            const modal = document.getElementById("completion-modal");
-            const content = document.getElementById("completion-content");
-            content.innerHTML = `
-                <h2 class="text-3xl font-bold text-blue-900 handwriting mb-2">🎉 Practice Completed!</h2>
-                <p class="text-lg text-slate-700 mb-4">Great job, <span class="font-bold">${studentData.name}</span>!</p>
-                <div class="bg-amber-100 p-4 rounded-xl border-2 border-amber-300 mb-6 inline-block w-full">
-                    <p class="text-2xl font-bold text-amber-900">Score: ${score} / ${activeQuestions.length} (${percentage}%)</p>
+            completionContent.innerHTML = `
+                <h2 class="text-3xl font-bold text-blue-900 handwriting mb-2">🎉 Assessment Completed!</h2>
+                <p class="text-lg text-slate-700 mb-4">Great job, <span class="font-bold text-blue-900">${studentData.name}</span>!</p>
+                <div class="bg-amber-100 p-4 rounded-xl border-2 border-amber-300 mb-6 inline-block">
+                    <p class="text-xl font-bold text-amber-900">Score: ${correctCount} / ${activeQuestions.length} (${percentage}%)</p>
                 </div>
                 <div class="flex justify-center gap-4">
-                    <button onclick="location.reload()" class="px-6 py-2.5 bg-amber-800 text-white font-bold rounded-xl shadow">🔄 Practice Again</button>
-                    ${percentage === 100 ? '<button onclick="window.print()" class="px-6 py-2.5 bg-emerald-700 text-white font-bold rounded-xl shadow">📜 Print Certificate</button>' : ''}
+                    ${percentage === 100 ? `<button onclick="printCertificate()" class="px-5 py-2.5 bg-emerald-700 text-white font-bold rounded-xl shadow hover:bg-emerald-800 transition">🖨️ Print Certificate</button>` : ''}
+                    <button onclick="location.reload()" class="px-5 py-2.5 bg-blue-800 text-white font-bold rounded-xl shadow hover:bg-blue-900 transition">🔄 Close Portal</button>
                 </div>
             `;
-            modal.classList.remove("hidden");
+            completionModal.classList.remove("hidden");
+        }
+
+        function printCertificate() {
+            document.getElementById("cert-student-name").innerText = studentData.name;
+            document.getElementById("cert-student-class").innerText = studentData.class;
+            document.getElementById("cert-student-sim").innerText = studentData.sim;
+            window.print();
         }
 
         function toggleTeacherPanel() {
-            const modal = document.getElementById("teacher-modal");
-            modal.classList.toggle("hidden");
+            document.getElementById("teacher-modal").classList.toggle("hidden");
         }
 
         function authTeacher() {
             const pass = document.getElementById("teacher-pass").value;
-            if (pass === "asad123") {
+            if (pass === "Fazaia2026@Math") {
                 document.getElementById("teacher-auth").classList.add("hidden");
                 document.getElementById("teacher-controls").classList.remove("hidden");
             } else {
-                alert("Incorrect password!");
+                alert("Incorrect Teacher Password!");
             }
         }
 
         function importMCQsFromText() {
-            alert("MCQ Import functionality is connected to the teacher management suite.");
+            const category = document.getElementById("import-category").value;
+            const text = document.getElementById("import-text").value.trim();
+            if (!text) return alert("Please paste MCQ records.");
+
+            const lines = text.split("\n");
+            let importedCount = 0;
+
+            if (!questionsDatabase[category]) questionsDatabase[category] = [];
+
+            lines.forEach(line => {
+                const parts = line.split("|");
+                if (parts.length >= 8) {
+                    questionsDatabase[category].push({
+                        q: `${parts[0]}. ${parts[1]}`,
+                        options: [parts[2], parts[3], parts[4], parts[5]],
+                        correct: parseInt(parts[6]),
+                        exp: parts[7]
+                    });
+                    importedCount++;
+                }
+            });
+
+            alert(`Successfully imported ${importedCount} MCQs into ${category}!`);
+            document.getElementById("import-text").value = "";
+            toggleTeacherPanel();
         }
 
         function toggleLeaderboard() {
             const modal = document.getElementById("leaderboard-modal");
             modal.classList.toggle("hidden");
             if (!modal.classList.contains("hidden")) {
-                fetchLeaderboard();
+                fetchLeaderboard("All");
             }
         }
 
-        function fetchLeaderboard(filterClass = 'All') {
-            fetch(`${FIREBASE_DB_URL}/results.json`)
+        function fetchLeaderboard(filterClass) {
+            const tbody = document.getElementById("leaderboard-body");
+            tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500">Loading Leaderboard...</td></tr>`;
+
+            fetch(`${FIREBASE_DB_URL}/leaderboard.json`)
                 .then(res => res.json())
                 .then(data => {
-                    if (!data) {
-                        document.getElementById("leaderboard-body").innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500">No records found yet.</td></tr>`;
-                        return;
+                    fullLeaderboardData = [];
+                    if (data) {
+                        Object.keys(data).forEach(key => {
+                            fullLeaderboardData.push(data[key]);
+                        });
                     }
-                    fullLeaderboardData = Object.values(data);
+                    fullLeaderboardData.sort((a, b) => b.percentage - a.percentage);
                     renderLeaderboardTable(filterClass);
                 })
-                .catch(err => {
-                    document.getElementById("leaderboard-body").innerHTML = `<tr><td colspan="6" class="p-4 text-center text-red-500">Failed to load leaderboard.</td></tr>`;
+                .catch(() => {
+                    tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-red-500">Failed to load leaderboard.</td></tr>`;
                 });
         }
 
-        function filterLeaderboard(cls) {
-            renderLeaderboardTable(cls);
+        function filterLeaderboard(className) {
+            renderLeaderboardTable(className);
         }
 
-        function renderLeaderboardTable(cls) {
-            let filtered = fullLeaderboardData;
-            if (cls !== 'All') {
-                filtered = fullLeaderboardData.filter(d => d.class === cls);
-            }
-            filtered.sort((a, b) => b.percentage - a.percentage || b.score - a.score);
-
+        function renderLeaderboardTable(filterClass) {
             const tbody = document.getElementById("leaderboard-body");
+            tbody.innerHTML = "";
+
+            const filtered = filterClass === "All" ? fullLeaderboardData : fullLeaderboardData.filter(item => item.class === filterClass);
+
             if (filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500">No records for class ${cls}.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500">No records found.</td></tr>`;
                 return;
             }
 
-            tbody.innerHTML = filtered.map((row, idx) => `
-                <tr class="border-b hover:bg-amber-100">
-                    <td class="p-2 border font-bold text-amber-900">#${idx + 1}</td>
-                    <td class="p-2 border font-semibold text-blue-900">${row.name}</td>
-                    <td class="p-2 border">${row.class}</td>
-                    <td class="p-2 border">${row.sim}</td>
-                    <td class="p-2 border font-bold">${row.score} / ${row.total}</td>
-                    <td class="p-2 border font-bold text-emerald-700">${row.percentage}%</td>
-                </tr>
-            `).join("");
+            filtered.forEach((item, index) => {
+                const tr = document.createElement("tr");
+                tr.className = index % 2 === 0 ? "bg-white" : "bg-amber-50/50";
+                tr.innerHTML = `
+                    <td class="p-2 border border-amber-200 font-bold text-center">${index + 1}</td>
+                    <td class="p-2 border border-amber-200 font-semibold text-blue-900">${item.name}</td>
+                    <td class="p-2 border border-amber-200">${item.class}</td>
+                    <td class="p-2 border border-amber-200">${item.sim}</td>
+                    <td class="p-2 border border-amber-200 font-bold">${item.score} / ${item.total}</td>
+                    <td class="p-2 border border-amber-200 font-bold text-emerald-700">${item.percentage}%</td>
+                `;
+                tbody.appendChild(tr);
+            });
         }
     </script>
 </body>
